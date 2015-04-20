@@ -23,8 +23,7 @@ Synchronization was first reported in physical systems by Huygens in 1665 of two
 
 Interpersonal synchrony is defined in the social psychology literature as individuals' termporal coordination during social interaction. In the physical sciences, synchronization is defined as an adjustment of rhythms of oscillating objects due to weak interaction, with generalizations possible for chaotic systems, which depend upon a phase of the chaotic system existing. %%% cite social psych, physics definition of synchronization
 
-%%% what are the functions of synchrony?
-%%%% moving together in time as cooperation enducing mechanism. enhances rapport, and actually enhances the ability to persue joint goals (and those are three separate things that it does). therefore, should be measured.
+Although social synchrony is one of many other synchronies, many of which do not necessarily serve a function of any kind, it is observed that social synchrony serves a function in human social groups. There exists evidence that synchronization acts as a cooperation-enducing mechanism, that it acts to induce rapport, and that it in actuality, independent of its effect on rapport, enhances the ability to pursue joint goals in tandem for those who are synchronized. This suggests immediately that it must be measured in a systematic way, to study phenomena of that kind. %%% cite for cooperation enducing mechanism, inducing rapport, enhancing the ability to pursue joint goals
 
 In the beginning of the social synchronization literature, most psychologists did not used the then-developing automated signals processing techniques for the detection and measurement of synchronization, instead using manual methods to detect and rate the presence or absence of synchronization, with trained raters and validated measuring systems. Although these measurements have been validated, they depend upon human raters and therefore are less replicable and less convenient than automated systems. %%% cite some of those non-automated systems
 
@@ -32,13 +31,11 @@ Given that the signals created by an individual during social interaction have a
 
 As a specific instance of a domain where signals processing techniques are used, a large problem in synchronization is the definition of the signal itself and its extraction from observations of social interaction. To this end, many methods have been used, including extraction of coordination of movement features and speech features, movement of single and dyadic body parts, image processing techniques and video tracking techniques. %%% cite a bunch of stuff taken from delaherche cohen paper and my own lit stuff
 
+An important analogy exists between the collection of time series data about the physiology of the body in order to assess synchrony and the collection of time series data about the body in order to assess health. Indeed, there exists a literature on the synchronization properties and the time series analysis of heart rate variability which we have derived much inspiration from. %%% cite some heart rate variability papers
+
 %%% those techniques have a problem, VR is cool kids way of doing it
 
 %%% what's a virtual world, agent, avatar, all that stuff. how much of an introduction? just recapitulate the Blascovitch argument for the social psych side of virtual worlds
-
-%%% link to physiological data collection, heart rate variability inspiration. why is this a good inspiration?
-
-%%% what's the scope of this project? What are we not doing? We're not doing much machine learning, we're just using nonlinear dynamical systems techniques
 
 This project will attempt to use some of the already existing tools for the analysis of time series data on VR time series data, as well as apply some tools which have not previously been used to analyze synchronization in VR time series data of social synchronization in a virtual world.
 %%% summary of what exists, talk only about the fact that they exist, as a preliminary summary of the essay. we will go deeper and actually formal with this one
@@ -46,6 +43,8 @@ This project will attempt to use some of the already existing tools for the anal
 %%% recurrence analysis
 %%% review MI method in physics literature.
 %%% spectral methods, analytic signal idea
+
+%%% describe the data that we got, data from Andrea's stuff basically
 
 \section{Time Domain Analysis}
 
@@ -74,20 +73,36 @@ Create the state space embedding, talk about the method of the creation of state
 
 There might be a phase transition to synchronization: arnold maps go here
 
-%\section{Deterministic dual between discrete time series and ordered multigraph}
-%
-%There's a fairly big previous literature on this. Visibility graph, dual graph, spectral methods, recurrence graph methods, steal forward citations for this.
-%
-%What's the ordered multigraph that I'm talking about? Mathematical definition. Talk about the construction of the multigraph from the time series.
-%
-%Why do you need a discrete time series? How are we discretizing our time series now? Why is it a deterministic dual, what is the algorithm and process by which we create this deterministic dual: that is, how to get from multigraph to time series?
-%
+\section{Deterministic dual between discrete time series and ordered multigraph}
+
+There exists a line of analysis in the complex network literature which aims to convert time series into a network. This is advantageous for analysis of time series because there is a deep and well-developed theory of networks: so far, an important result is that different time series result in networks with distinct topological properties, and that these topological properties relate to the time series in some way in addition to being determined by them. %%% cite the campanharo dual network paper
+%%%% cite visibility graph, spectral methods, recurrence graph, other stuff
+
+%% why do we need a discrete time series, how are we discretizing our time series
+
+Upon hearing of the mapping from a time series into a network, it might be wondered at if there exists a mapping from a network back into a time series. There does exist some methods to apply the inverse mapping, but none of these are deterministic, meaning that the network topology constrains the set of time series that the mapping can produce from that network, but does not completely determine it. Therefore, it cannot be said that the mapping from time series to networks or back is properly a \emph{transform}.%%% again the campanharo dual network paper
+
+A deterministic transformation from time series to networks and from networks to time series can be made, however, if only a special kind of networks called \emph{labelled multigraph} is talked about. %%% mathematical definition, cite would be nice
+
+In order to construct the labelled multigraph from a time series,
+
+%% method
+
+In order to reconstruct the time series from a labelled multigraph,
+
+%%% method
+
 %Recreate the time series of logistic map here.
+
+% recreate time series of representative time thing here
 %
-%Note tha time series resampling is now possible deterministically. Do it with the logistic map here.
+%Note tha time series resampling is now possible deterministically. Talk about the time series resampling.
+
+%Do it with the logistic map here.
 %
 %Do the time series resampling with the damned other things.
 %
+
 %Now, do complex network analysis things with the VR data and with logistic map.
 
 \end{document}
