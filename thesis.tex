@@ -19,42 +19,45 @@ There exists a literature dealing with time series analysis in the nonlinear sci
 
 \section{Introduction}
 
-%%% history in physics, Huygens yadda yadda
-%%% history in social science
+Synchronization was first reported in physical systems by Huygens in 1665 of two pendulum clocks which were ticking in unison, due to the weak coupling of the beam from which both clocks were hung. The physical and biological systems which were later found to synchronize include Josephson junctions, fireflies emitting synchronous patterns of light, synchronous contraction of heart cells, synchronization of human circadian rhythm to a solar light cycle, and synchronous interaction of human beings. %%% cite Huygens, synchronization review, Josephson junction sync, firefly sync, heart cell sync, bernieri
 
-%%% probably become more familiar with the social sciency things here
+Interpersonal synchrony is defined in the social psychology literature as individuals' termporal coordination during social interaction. In the physical sciences, synchronization is defined as an adjustment of rhythms of oscillating objects due to weak interaction, with generalizations possible for chaotic systems, which depend upon a phase of the chaotic system existing. %%% cite social psych, physics definition of synchronization
 
-%%% what disciplines exist that deal with this? there are a lot.
+%%% what are the functions of synchrony?
+%%%% moving together in time as cooperation enducing mechanism. enhances rapport, and actually enhances the ability to persue joint goals. therefore, should be measured.
 
-%%% talk about the non-automatic tools that deal with this.
+In the beginning of the social synchronization literature, most psychologists did not used the then-developing automated signals processing techniques for the detection and measurement of synchronization, instead using manual methods to detect and rate the presence or absence of synchronization, with trained raters and validated measuring systems. Although these measurements have been validated, they depend upon human raters and therefore are less replicable and less convenient than automated systems. %%% cite some of those non-automated systems
 
-%%% why automatic tools?
+Given that the signals created by an individual during social interaction have a phase, and social interaction can be construed as a weak interaction between the two individual systems, it should be clear that the definition of interpersonal synchrony given in the social psychological literature is a subset of the definition given in the physics literature. This has often been noted, and has therefore spawned a cross-disciplinary field wherein signals processing techniques are used to measure interpersonal synchrony. %%% cite the reviews of this thing
 
-%%% what automatic tools exist?
+As a specific instance of a domain where signals processing techniques are used, a large problem in synchronization is the definition of the signal itself and its extraction from observations of social interaction. To this end, many methods have been used, including extraction of coordination of movement features and speech features, movement of single and dyadic body parts, image processing techniques and video tracking techniques. %%% cite a bunch of stuff taken from delaherche cohen paper and my own lit stuff
+
+%%% those techniques have a problem, VR is cool kids way of doing it
+
+%%% what's a virtual world, agent, avatar, all that stuff
 
 %%% what's the scope of this project? What are we not doing?
 
-%%% definitions?
+%%% link to physiological data collection, heart rate variability inspiration. why is this a good inspiration?
 
-%%% what are the functions of synchrony?
-Interpersonal synchrony is defined in the social psychology literature as individuals' termporal coordination during social interaction. In the physical sciences, synchronization is defined as an adjustment of rhythms of oscillating objects due to weak interaction, with generalizations possible for chaotic systems, which depend upon a phase of the chaotic system existing. %%% cite social psych, physics definition of synchronization
-
-Given that the signals created by an individual during social interaction have a phase, and social interaction can be construed as a weak interaction between the two individual systems, it should be clear that the definition of interpersonal synchrony given in the social psychological literature is a subset of the definition given in the physics literature. This has often been noted, and has therefore spawned a cross-disciplinary field wherein one uses signals processing techniques to measure interpersonal synchrony. %%% cite the reviews of this thing
-
-%%% link to physiological data collection, heart rate variability inspiration
-
+This project will attempt to use some of the already existing tools for the analysis of time series data on VR time series data, as well as apply some tools which have not previously been used to analyze synchronization in VR time series data of social synchronization in a virtual world.
+%%% summary of what exists, talk only about the fact that they exist, as a preliminary summary of the essay. we will go deeper and actually formal with this one
 %%% correlation (time-lagged cross-correlation)
 %%% recurrence analysis
-%%% spectral methods
 %%% review MI method in physics literature.
+%%% spectral methods, analytic signal idea
 
 \section{Time Domain Analysis}
 
-%%% what are the correlations, mathematically?
+%%% definition of what the time series is in the time domain
+%%% description of the preprocessing mess done on it
+
+%%% what are the correlations, mathematically? what are correlations in general, mathematically? autocorrelation? cross-correlation?
+
 %%% what are the cornettos? why the cornettos? what are they mathematically?
 Correlation and the cornettos go here. Talk about benefits and detriments of the cornetto stuff
 
-%%% what's entropy? equivocation? mutual information, mathematically? social science-dly?
+%%% what's entropy? equivocation? mutual information, mathematically? social science-dly? what's the liberal arts interpretation of the damn things?
 %%% what's KS entropy? interpretation of KS entropy?
 
 %%% put in a bunch of stuff for MI in physiological data
@@ -63,9 +66,9 @@ Mutual information analysis goes here. So does a KS entropy analysis
 \section{Frequency Domain Analysis}
 Hilbert space and fourier transform methods go here. The \emph{really} exciting thing about these analyses are that they allow the study of the phase of the thing
 
-%%% why the analytic signal concept?
+%%% why the analytic signal concept? what's the analytic signal concept? hilbert transform? what's that, why use it over poincare map?
 
-\section{Phase Transition to Synchronization}
+\section{State Space Methods}
 
 Create the state space embedding, talk about the method of the creation of state space embedding
 
