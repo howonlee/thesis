@@ -68,8 +68,37 @@ This project will attempt to use some of the already existing tools for the anal
 %%% what are the cornettos? why the cornettos? what are they mathematically?
 Correlation and the cornettos go here. Talk about benefits and detriments of the cornetto stuff
 
-%%% what's entropy? equivocation? mutual information, mathematically? social science-dly? what's the liberal arts interpretation of the damn things?
-%%% what's KS entropy? interpretation of KS entropy?
+\subsection{Mutual Information Analysis}
+
+The main limitation of cross-correlational analysis of time series is that it is fundamentally linear. That is, the dependences which the correlation function can capture are linear in nature. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly. %% cite pompe paper.
+
+In order to introduce mutual information, we must introduce Shannon information and Shannon entropy.
+
+Shannon information is defined on a measurement drawn from some set (let the set be discrete, $X \in {1 ... n}$, for ease of notation: there exist continuous analogues). Given that measurement from some set, the Shannon information in bits is defined as:
+
+$$ -\log_2 P_X(i) $$
+
+where $P_X(i)$ is the probability that a measurement will find the system in state $i$. That is, a lower probability answer is more surprising, and therefore more information is found in it.
+
+Shannon entropy, denoted $H(X)$ is defined on a data stream (a measurement stream) $X$. It is the average amount of information contained in every message received, and so is also measured in bits. An easy intuition about entropy can be gained by noting that a \emph{fair} coin flipping process is the most entropic possible coin flip, because we are most surprised by it. Formally, entropy is:
+
+$$H(X) = -\sum_i P_X(i) \log_2 P_X(i)$$
+
+Information and entropy are also defined on joint probability distributions in an analogous way. The information of a joint probability distribution on variables $X$ and $Y$ is:
+
+$$ -\log_2 P_{XY}(i, j) $$
+
+And the entropy, therefore, is:
+
+$$H(X, Y) = -\sum_i \sum_j P_{XY}(i, j) log_2 P_{XY}(i, j)$$
+
+Now, if we sample two random variables simultaneously, the relationship has a quantity defined upon it which is called the \emph{mutual information}. Because it is defined on the relation, it has an auto-mutual information variant and a cross-mutual information variant, like correlation does. However, mutual information measures something different, which is the \emph{information which one of the random variables gives me about the other random variable}. It is defined as:
+
+$$I(X, Y) = H(X) + H(Y) - H(X, Y)$$
+
+And obviously one sees that it is symmetric with respect to $X$ and $Y$.
+
+%%% and then we go to our data
 
 %%% put in a bunch of stuff for MI in physiological data
 Mutual information analysis goes here. So does a KS entropy analysis
