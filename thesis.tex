@@ -19,9 +19,6 @@ There exists a literature dealing with time series analysis in the nonlinear sci
 
 %%% target is JB, ASW, SG, each of them at once depressingly
 %%% examples should abound, and should be explicated
-%%% take the ability to take a few more readers at each step
-%%% un-chunk
-%%% undo functional fixity
 
 \section{Introduction}
 
@@ -56,7 +53,7 @@ This project will attempt to use some of the already existing tools for the anal
 %%% review MI method in physics literature.
 %%% spectral methods, analytic signal idea
 
-%%% describe the data that we got, data from Andrea's stuff basically
+%%% describe the data that we got, data from Andrea's stuff basically, maybe the new coding
 
 \section{Time Domain Analysis}
 
@@ -67,6 +64,8 @@ This project will attempt to use some of the already existing tools for the anal
 
 %%% what are the correlations, mathematically? what are correlations in general, mathematically? autocorrelation? cross-correlation?
 
+%%% poincare maps go here I guess
+
 %%% what are the cornettos? why the cornettos? what are they mathematically?
 Correlation and the cornettos go here. Talk about benefits and detriments of the cornetto stuff
 
@@ -75,6 +74,8 @@ Correlation and the cornettos go here. Talk about benefits and detriments of the
 \subsection{Mutual Information Analysis}
 
 The main limitation of cross-correlational analysis of time series is that it is fundamentally linear. That is, the dependences which the correlation function can capture are linear in nature. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly. %% cite pompe paper.
+
+%%%% the sine relation example goes here, showing that correlation is not good
 
 In order to introduce mutual information, we must introduce Shannon information and Shannon entropy.
 
@@ -100,7 +101,7 @@ Now, if we sample two random variables simultaneously, the relationship has a qu
 
 $$I(X, Y) = H(X) + H(Y) - H(X, Y)$$
 
-And obviously one sees that it is symmetric with respect to $X$ and $Y$.
+And one sees that this quantity is symmetric with respect to $X$ and $Y$.
 
 %%% and then we go to our data
 
@@ -109,33 +110,35 @@ Mutual information analysis goes here. So does a KS entropy analysis
 
 \section{Frequency Domain Analysis}
 
-There is more than one way to represent time series data, even given only the data itself and not any underlying function that generates it. The most important alternate representation is the frequency domain representation, which is taken in finite data with the Fourier transform.
+There is more than one way to represent time series data, even given only the data itself and not any underlying function that generates it. The most important alternate representation is the frequency domain representation, which is taken in finite data with the discrete Fourier transform.
 
 The frequency domain represents data in terms of the linear combination of simple sine and cosine waves: the analogy often used is that of a chord being hit on a piano, which can be represented with its time domain signal but can also be represented as the amplitude of the individual notes within the chord, which presents a better decomposition of the sound in and of itself. Likewise, we can attempt to decompose our time domain signals into the frequencies of the sinusoids which make it up.
 
-%%%What is the frequency domain? Why is it equivalent to the time domain? What is the Fourier transform? What is the power spectrum?
+%%% why is it a _transform_? (aka, show that math). what is power spectrum? what is the relation to the autocorrelation?
+
+%%% other people have used spectral methods
 
 \subsection{Gibbs Phenomenon}
 
-An important precondition of much of the Fourier analysis viewpoint, %%% talk about continuity instead
+An important precondition of much of the Fourier analysis viewpoint is the continuity of the functions which are to be transformed. %%% talk about continuity instead
 
-%%% annoying bit about square integrability
+%%% annoying bit about square integrability and lipschitz function. we have finite data. but talk about the Gibbs phenomenon anyways
 
 \subsection{Analytic Functions}
 
-Why do we need the Hilbert transform? When can we use it? Give the data that shows that we can use it. Give the data that makes us suspect that we can't use it.
+%%%Why do we need the Hilbert transform? When can we use it? Give the data that shows that we can use it.
+
+%%% what's an analytic function?
 
 %%%% do the phase difference measure
 
-\subsubsection{\gamma}
+\subsubsection{$\gamma$}
 
-What's gamma? Why gamma? %cite the hilber phase space concept
+%%%What's gamma? Why gamma? %cite the hilber phase space concept
 
-Why use this one over poincare map? Why would it be more durable?
+%%%Why use this one over poincare map? Why would it be more durable?
 
 \section{Deterministic dual between discrete time series and ordered multigraph}
-
-%%% talk about 1/f noise
 
 There exists a line of analysis in the complex network literature which aims to convert time series into a network. This is advantageous for analysis of time series because there is a deep and well-developed theory of networks: so far, an important result is that different time series result in networks with distinct topological properties, and that these topological properties relate to the time series in some way in addition to being determined by them. %%% cite the campanharo dual network paper
 %%%% cite visibility graph, spectral methods, recurrence graph, other stuff
@@ -145,6 +148,10 @@ There exists a line of analysis in the complex network literature which aims to 
 Upon hearing of the mapping from a time series into a network, it might be wondered at if there exists a mapping from a network back into a time series. There does exist some methods to apply the inverse mapping, but none of these are deterministic, meaning that the network topology constrains the set of time series that the mapping can produce from that network, but does not completely determine it. Therefore, it cannot be said that the mapping from time series to networks or back is properly a \emph{transform}.%%% again the campanharo dual network paper
 
 A deterministic transformation from time series to networks and from networks to time series can be made, however, if only a special kind of networks called \emph{labelled multigraph} is talked about. %%% mathematical definition, cite would be nice
+
+%%% talk about 1/f noise
+
+%%% prove that this transformation works on square waves and on nonsmooth functions
 
 In order to construct the labelled multigraph from a time series,
 
