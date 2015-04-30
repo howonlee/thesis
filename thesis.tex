@@ -13,7 +13,7 @@
 \maketitle
 
 \section{Abstract}
-There exists a literature dealing with time series analysis in the nonlinear sciences which in the case of synchronization. We attempt many of these methods in analyzing an instance of the phenomenon of interpersonal synchrony in a virtual environment.%%% We also propose a mapping from time series to networks with a deterministic inverse. %%% we also put in that Boltzmann machine shit because it's hilarious
+There exists a literature dealing with time series analysis in the nonlinear sciences in the case of synchronization, or the adjustment of rhythms of oscillating objects to coincide with each other due to weak interaction. We attempt many of these methods in analyzing an instance of the phenomenon of interpersonal synchrony in a virtual environment.%%% We also propose a mapping from time series to networks with a deterministic inverse. %%% we also put in that Boltzmann machine shit because it's hilarious
 
 %%% acknowledgements go here
 
@@ -109,25 +109,33 @@ Mutual information analysis goes here. So does a KS entropy analysis
 
 \section{Frequency Domain Analysis}
 
-What is the frequency domain? Why is it equivalent to the time domain? What is the Fourier transform? What is the power spectrum?
+There is more than one way to represent time series data, even given only the data itself and not any underlying function that generates it. The most important alternate representation is the frequency domain representation, which is taken in finite data with the Fourier transform.
+
+The frequency domain represents data in terms of the linear combination of simple sine and cosine waves: the analogy often used is that of a chord being hit on a piano, which can be represented with its time domain signal but can also be represented as the amplitude of the individual notes within the chord, which presents a better decomposition of the sound in and of itself. Likewise, we can attempt to decompose our time domain signals into the frequencies of the sinusoids which make it up.
+
+%%%What is the frequency domain? Why is it equivalent to the time domain? What is the Fourier transform? What is the power spectrum?
+
+\subsection{Gibbs Phenomenon}
+
+An important precondition of much of the Fourier analysis viewpoint, %%% talk about continuity instead
+
+%%% annoying bit about square integrability
+
+\subsection{Analytic Functions}
 
 Why do we need the Hilbert transform? When can we use it? Give the data that shows that we can use it. Give the data that makes us suspect that we can't use it.
+
+%%%% do the phase difference measure
+
+\subsubsection{\gamma}
 
 What's gamma? Why gamma? %cite the hilber phase space concept
 
 Why use this one over poincare map? Why would it be more durable?
 
-\section{Phase Space Methods}
-
-It should be investigated if the time series produced by the data are amenable to a phase space analysis and, if so, to do a phase space analysis. This should be done with Rosenstein's algorithm.
-
-%%% talk about nonstationarity problems in data occasionally
-
-Create the state space embedding, talk about the method of the creation of state space embedding
-
-There might be a phase transition to synchronization: arnold maps go here
-
 \section{Deterministic dual between discrete time series and ordered multigraph}
+
+%%% talk about 1/f noise
 
 There exists a line of analysis in the complex network literature which aims to convert time series into a network. This is advantageous for analysis of time series because there is a deep and well-developed theory of networks: so far, an important result is that different time series result in networks with distinct topological properties, and that these topological properties relate to the time series in some way in addition to being determined by them. %%% cite the campanharo dual network paper
 %%%% cite visibility graph, spectral methods, recurrence graph, other stuff
