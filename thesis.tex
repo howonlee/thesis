@@ -103,6 +103,11 @@ $$I(X, Y) = H(X) + H(Y) - H(X, Y)$$
 
 And one sees that this quantity is symmetric with respect to $X$ and $Y$.
 
+\subsubsection{AMI and CMI}
+
+%%% ami and cmi stand for auto and cross mutual information, respectively.
+%%% why are they important? better analogy to auto and cross correlation measures, basically
+
 %%% and then we go to our data
 
 %%% put in a bunch of stuff for MI in physiological data
@@ -110,13 +115,13 @@ Mutual information analysis goes here. So does a KS entropy analysis
 
 \section{Frequency Domain Analysis}
 
-There is more than one way to represent time series data, even given only the data itself and not any underlying function that generates it. The most important alternate representation is the frequency domain representation, which is taken in finite data with the discrete Fourier transform.
+There is more than one way to represent time series data, even given only the data itself and not any underlying function that generates it. The most important alternate representation is the frequency domain representation, which is taken in finite data with the discrete Fourier transform. Later, we will show the use of the frequency representation in re-representing our data so that it shows a numerical current state of the phase, using the related Hilbert transform.
 
 The frequency domain represents data in terms of the linear combination of simple sine and cosine waves: the analogy often used is that of a chord being hit on a piano, which can be represented with its time domain signal but can also be represented as the amplitude of the individual notes within the chord, which presents a better decomposition of the sound in and of itself. Likewise, we can attempt to decompose our time domain signals into the frequencies of the sinusoids which make it up.
 
 %%% why is it a _transform_? (aka, show that math). what is power spectrum? what is the relation to the autocorrelation?
 
-%%% other people have used spectral methods
+%%% other people have used spectral methods.
 
 \subsection{Gibbs Phenomenon}
 
@@ -124,15 +129,13 @@ An important precondition of much of the Fourier analysis viewpoint is the conti
 
 %%% annoying bit about square integrability and lipschitz function. we have finite data. but talk about the Gibbs phenomenon anyways
 
-\subsection{Analytic Functions}
+\subsection{Analytic Functions, Hilbert Transform and $\gamma$}
 
 %%%Why do we need the Hilbert transform? When can we use it? Give the data that shows that we can use it.
 
 %%% what's an analytic function?
 
 %%%% do the phase difference measure
-
-\subsubsection{$\gamma$}
 
 %%%What's gamma? Why gamma? %cite the hilber phase space concept
 
@@ -147,7 +150,7 @@ There exists a line of analysis in the complex network literature which aims to 
 
 Upon hearing of the mapping from a time series into a network, it might be wondered at if there exists a mapping from a network back into a time series. There does exist some methods to apply the inverse mapping, but none of these are deterministic, meaning that the network topology constrains the set of time series that the mapping can produce from that network, but does not completely determine it. Therefore, it cannot be said that the mapping from time series to networks or back is properly a \emph{transform}.%%% again the campanharo dual network paper
 
-A deterministic transformation from time series to networks and from networks to time series can be made, however, if only a special kind of networks called \emph{labelled multigraph} is talked about. %%% mathematical definition, cite would be nice
+A deterministic transformation from time series to networks and from networks to time series can be made, however, if only a special kind of network called the \emph{labelled multigraph} is used. %%% mathematical definition, cite would be nice
 
 %%% talk about 1/f noise
 
