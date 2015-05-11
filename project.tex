@@ -13,16 +13,16 @@
 \maketitle
 
 \section{Abstract}
-There exists a literature dealing with time series analysis in the nonlinear sciences in the case of synchronization, or the adjustment of rhythms of oscillating objects to coincide with each other due to weak interaction. We attempt many of these methods in analyzing an instance of the phenomenon of interpersonal synchrony in a virtual environment.%%% We also propose a mapping from time series to networks with a deterministic inverse. %%% we also put in that Boltzmann machine shit because it's hilarious
+There exists a literature dealing with time series analysis in the nonlinear sciences in the case of synchronization, or the adjustment of rhythms of oscillating objects to coincide with each other due to weak interaction. We attempt many of these methods in analyzing an instance of the phenomenon of interpersonal synchrony in a virtual environment.%%% We also propose a mapping from time series to networks with a deterministic inverse.
 
 %%% acknowledgements go here
 
-%%% target is JB, ASW, SG, each of them at once depressingly
+%%% target is JB, ASW, SG, each of them at once
 %%% examples should abound, and should be explicated
 
 \section{Introduction}
 
-%%%% here, citation means read em again and think about them and expand a little bit
+%%%% here, citation means read em again and think about them and expand a little bit, and _then_ cite and poke around
 
 Before defining what we mean by synchronization in this context, we note that there exists a long history of the study of synchronization outside of social science. Synchronization was first reported in physical systems by Huygens in 1665. He saw that two pendulum clocks in the boat that he was testing the clocks in were mysteriously ticking in unison, and found that the cause was a support beam which connected the clocks, which moved imperceptibly and therefore maintained the synchronization. %% cite for history of huygen's synchronization paper
 
@@ -38,22 +38,23 @@ Given that the signals created by an individual during social interaction have a
 
 As a specific instance of a domain where signals processing techniques are used, a large problem in synchronization is the definition of the signal itself and its extraction from observations of social interaction. To this end, many methods have been used, including extraction of coordination of movement features and speech features, movement of single and dyadic body parts, image processing techniques and video tracking techniques. %%% cite a bunch of stuff taken from delaherche cohen paper and my own lit stuff
 
-An important analogy exists between the collection of time series data about the physiology of the body in order to assess synchrony and the collection of time series data about the body in order to assess health. Indeed, there exists a literature on the synchronization properties and the time series analysis of heart rate variability which we have derived much inspiration from. %%% cite some heart rate variability papers
-
-%%% why should we use heart rate variability sorts of measures? what do they really have to do with anything?
+An important analogy exists between the collection of time series data about the physiology of the body in order to assess synchrony and the collection of time series data about the body in order to assess health. Indeed, there exists a literature on the synchronization properties and the time series analysis of heart rate variability which we have derived much inspiration from, not necessarily in the usage of correlational metrics, for which there is a literature dealing in social synchronization, but more sophisticated metrics for which there is not such a literature. The essential premise is that we treat social synchronization as an instance of an abstract problem of physical synchronization, which justifies using measures used by other physiological measurements.%%% cite some heart rate variability papers
 
 %%% those techniques have a problem, VR is cool kids way of doing it
 
 %%% experimental control versus ecological validity: but you don't have to choose between the tool, you can escape the lab in a controlled setting with virutal reality. naturalistic vision of vistas and scenes, naturalistic ability to interact socially, although I think this condition was mixed media. really great data collection %%% cite blascovich and beall "basic research tool in psych" paper
-
 This project will attempt to use some of the already existing tools for the analysis of time series data on VR time series data, as well as apply some tools which have not previously been used to analyze synchronization in VR time series data of social synchronization in a virtual world.
 %%% summary of what exists, talk only about the fact that they exist, as a preliminary summary of the essay. we will go deeper and actually formal with this one
-%%% correlation (time-lagged cross-correlation)
-%%% recurrence analysis
+%%% correlation (time-lagged cross-correlation), recurrence analysis
 %%% review MI method in physics literature.
 %%% spectral methods, analytic signal idea
+%%% graphs
 
-%%% describe the data that we got, data from Andrea's stuff basically, maybe the new coding
+
+
+%%% describe the data that we got, data from Andrea's stuff basically, maybe the new coding.
+%%% problems: missing data
+%%% another wonky thing: the ad hoc reductions made, just see Andrea's stuff here
 
 \section{Time Domain Analysis}
 
@@ -105,13 +106,12 @@ And one sees that this quantity is symmetric with respect to $X$ and $Y$.
 
 \subsubsection{AMI and CMI}
 
-%%% ami and cmi stand for auto and cross mutual information, respectively.
-%%% why are they important? better analogy to auto and cross correlation measures, basically
-
-%%% and then we go to our data
+Auto-mutual information (AMI) and cross mutual information(CMI) are the mutual information analogues to autocorrelation and cross-correlation. They have the same advantages over the correlation variants as mutual information itself has to correlation. Therefore, they are better measurements for synchronization.
 
 %%% put in a bunch of stuff for MI in physiological data
 Mutual information analysis goes here. So does a KS entropy analysis
+
+%%% and then we go to our data
 
 \section{Frequency Domain Analysis}
 
@@ -119,25 +119,34 @@ There is more than one way to represent time series data, even given only the da
 
 The frequency domain represents data in terms of the linear combination of simple sine and cosine waves: the analogy often used is that of a chord being hit on a piano, which can be represented with its time domain signal but can also be represented as the amplitude of the individual notes within the chord, which presents a better decomposition of the sound in and of itself. Likewise, we can attempt to decompose our time domain signals into the frequencies of the sinusoids which make it up.
 
-%%% why is it a _transform_? (aka, show that math). what is power spectrum? what is the relation to the autocorrelation?
+The discrete fourier transform is an essential tool for the further analyses below. It converts a finite discrete sample from the time to the frequency domain in a computable and fast way.
+
+%%% short section on math of dft. why is it a _transform_? (aka, show that math). what is power spectrum? what is the relation to the autocorrelation?
 
 %%% other people have used spectral methods.
 
-\subsection{Gibbs Phenomenon}
+\subsection{Gibbs Phenomenon and Analytic Function}
 
-An important precondition of much of the Fourier analysis viewpoint is the continuity of the functions which are to be transformed. %%% talk about continuity instead
+An important precondition of much of the Fourier analysis viewpoint is the continuous differentiability of the functions which are to be transformed. If there exist jump discontinuities in a function which we are treating as periodic and piecewise continuously differentiable, there comes to become a phenomenon called the Gibbs phenomenon. This is when the sums of the Fourier series have  large oscillatory behavior near the jump discontinuity, which approaches a finite limit but does not die out. %%%cite for gibbs phenomenon, talk about signal processing
 
-%%% annoying bit about square integrability and lipschitz function. we have finite data. but talk about the Gibbs phenomenon anyways
+However, it may not even be that our data is simply subject to the Gibbs phenomenon, given that in many places, the raw data and the ad hoc dimensionality reduction is not piecewise continuously differentiable. %%%%%%% square integrability
 
-\subsection{Analytic Functions, Hilbert Transform and $\gamma$}
+An analytic function is one whose Taylor series converges about every point in its domain, within some neighborhood. This depends upon it being infinitely differentiable at every point. The question as to whether a function is infinitely differentiable becomes an empirical one if we look at a finite time series, or at least we must investigate the question empirically, without a closed-form expression for the time series data.
 
-%%%Why do we need the Hilbert transform? When can we use it? Give the data that shows that we can use it.
+Upon making this investigation, there seems to be some deviance from being analytic.
 
-%%% what's an analytic function?
+%%%% chart of not-smooth goes here
+
+\subsection{Hilbert Transform and $\gamma$}
+
+The Hilbert transform is a transform of real-valued time series data into data which "shows" its inherent phase. %%% look up the transform and redescribe again, I suppose
+
+
+%%%Why do we need the Hilbert transform? When can we use it? Give the data that shows that we can use it. 
 
 %%%% do the phase difference measure
 
-%%%What's gamma? Why gamma? %cite the hilber phase space concept
+%%%What's gamma? Why gamma?
 
 %%%Why use this one over poincare map? Why would it be more durable?
 
@@ -150,7 +159,7 @@ There exists a line of analysis in the complex network literature which aims to 
 
 Upon hearing of the mapping from a time series into a network, it might be wondered at if there exists a mapping from a network back into a time series. There does exist some methods to apply the inverse mapping, but none of these are deterministic, meaning that the network topology constrains the set of time series that the mapping can produce from that network, but does not completely determine it. Therefore, it cannot be said that the mapping from time series to networks or back is properly a \emph{transform}.%%% again the campanharo dual network paper
 
-A deterministic transformation from time series to networks and from networks to time series can be made, however, if only a special kind of network called the \emph{labelled multigraph} is used. %%% mathematical definition, cite would be nice
+A deterministic transformation from time series to networks and from networks to time series can be made, however, if only a special kind of network called the \emph{labelled multigraph} is used. %%% mathematical definition, citation
 
 %%% talk about 1/f noise
 
