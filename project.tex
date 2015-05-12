@@ -70,6 +70,7 @@ This project will attempt to use some of the already existing tools for the anal
 %%% what are the cornettos? why the cornettos? what are they mathematically?
 Correlation and the cornettos go here. Talk about benefits and detriments of the cornetto stuff
 
+One analysis commonly used with relaxation oscillators like ECG data is the Poincare map, not to be confused with the Poincare plot. However, because there are not clear demarcations as to where each oscillation is, the Poincare map is less suited to this dataset and will not be used. %%% cite for Poincare map
 %% what's the essential linearity problem with correlational analysis?
 
 \subsection{Mutual Information Analysis}
@@ -125,19 +126,11 @@ The discrete fourier transform is an essential tool for the further analyses bel
 
 %%% other people have used spectral methods.
 
-\subsection{Gibbs Phenomenon and Analytic Function}
-
-An important precondition of much of the Fourier analysis viewpoint is the continuous differentiability of the functions which are to be transformed. If there exist jump discontinuities in a function which we are treating as periodic and piecewise continuously differentiable, there comes to become a phenomenon called the Gibbs phenomenon. This is when the sums of the Fourier series have  large oscillatory behavior near the jump discontinuity, which approaches a finite limit but does not die out. %%%cite for gibbs phenomenon, talk about signal processing
-
-However, it may not even be that our data is simply subject to the Gibbs phenomenon, given that in many places, the raw data and the ad hoc dimensionality reduction is not piecewise continuously differentiable. %%%%%%% square integrability
-
-An analytic function is one whose Taylor series converges about every point in its domain, within some neighborhood. This depends upon it being infinitely differentiable at every point. The question as to whether a function is infinitely differentiable becomes an empirical one if we look at a finite time series, or at least we must investigate the question empirically, without a closed-form expression for the time series data.
-
-Upon making this investigation, there seems to be some deviance from being analytic.
-
-%%%% chart of not-smooth goes here
+%%% why use coherence instead of other measures?
 
 \subsection{Hilbert Transform and $\gamma$}
+
+%%% why use hilbert transform instead of other measrues?
 
 The Hilbert transform is a transform of real-valued time series data into data which "shows" its inherent phase. %%% look up the transform and redescribe again, I suppose
 
@@ -152,26 +145,26 @@ The Hilbert transform is a transform of real-valued time series data into data w
 
 \section{Deterministic dual between discrete time series and ordered multigraph}
 
-There exists a line of analysis in the complex network literature which aims to convert time series into a network. This is advantageous for analysis of time series because there is a deep and well-developed theory of networks: so far, an important result is that different time series result in networks with distinct topological properties, and that these topological properties relate to the time series in some way in addition to being determined by them. %%% cite the campanharo dual network paper
-%%%% cite visibility graph, spectral methods, recurrence graph, other stuff
+\subsection{Description}
 
-%% why do we need a discrete time series, how are we discretizing our time series
+There exists a line of analysis in the complex network literature which aims to convert a discrete or discretized time series into a network. This is advantageous for analysis of time series because there is a deep and well-developed theory of networks: so far, an important result is that different time series result in networks with distinct topological properties, and that these topological properties relate to the time series in some way in addition to being determined by them. %%% cite the campanharo dual network paper
+%%%% cite and quickly describe visibility graph, spectral methods, recurrence graph, other stuff
 
 Upon hearing of the mapping from a time series into a network, it might be wondered at if there exists a mapping from a network back into a time series. There does exist some methods to apply the inverse mapping, but none of these are deterministic, meaning that the network topology constrains the set of time series that the mapping can produce from that network, but does not completely determine it. Therefore, it cannot be said that the mapping from time series to networks or back is properly a \emph{transform}.%%% again the campanharo dual network paper
 
 A deterministic transformation from time series to networks and from networks to time series can be made, however, if only a special kind of network called the \emph{labelled multigraph} is used. %%% mathematical definition, citation
 
-%%% talk about 1/f noise
-
-%%% prove that this transformation works on square waves and on nonsmooth functions
+%%% link to pumping lemma
 
 In order to construct the labelled multigraph from a time series,
 
-%% method
+%% method, include knuth notation for it
 
 In order to reconstruct the time series from a labelled multigraph,
 
-%%% method
+%%% method, include knuth notation for it
+
+\subsection{Toy Model}
 
 %Recreate the time series of logistic map here.
 
@@ -179,10 +172,7 @@ In order to reconstruct the time series from a labelled multigraph,
 %
 %Note tha time series resampling is now possible deterministically. Talk about the time series resampling.
 
-%Do it with the logistic map here.
-%
-%Do the time series resampling with the damned other things.
-%
+\subsection{Real Data}
 
 %Now, do complex network analysis things with the VR data and with logistic map.
 
