@@ -132,10 +132,17 @@ The discrete fourier transform is an essential tool for the further analyses bel
 
 A signal is called an \emph{analytic signal} if it does not have any negative-frequency components. The Hilbert transform is a way to get the analytic \emph{representation} for a signal in the time domain, which throws away the superfluous information which would be in a spectrum of that signal. This allows the expression of the analytic signal in terms of its time-variant magnitude and phase, allowing a study of the phase in an \emph{unwrapped form}. %%% cite gabor 1946
 
-How this is done is by constructing the 
+Formally speaking, given that the original signal is $s(t)$, the analytic signal $\zeta$ is:
+
+$$\zeta(t) = s(t) + js_H(t) = A(t)e^{j\phi(t)}$$
+
+$$s_H(t) = \frac{1}{\pi} PV \int_{-\infty}^{\infty} \frac{s(t)}{t - \tau} d\tau$$
+
+$s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cauchy principal value integral. The Hilbert transform is thus formally equivalent to convolution of $s(t)$ with $\frac{1}{\pi t}$, so it can easily be calculated from the fast Fourier transform.
+
+%%% finish the formalism
 
 %%% pretty picture of unwrapped hilbert transform for toy function
-%%% pretty formalism of the hilbert function
 %%% why use hilbert transform instead of other measrues?
 
 %%%% do the phase difference measure
@@ -148,22 +155,19 @@ How this is done is by constructing the
 
 \subsection{Description}
 
+%%% define discrete time series more clearly
 There exists a line of analysis in the complex network literature which aims to convert a discrete or discretized time series into a network. This is advantageous for analysis of time series because there is a deep and well-developed theory of networks: so far, an important result is that different time series result in networks with distinct topological properties, and that these topological properties relate to the time series in some way in addition to being determined by them. %%% cite the campanharo dual network paper
 %%%% cite and quickly describe visibility graph, spectral methods, recurrence graph, other stuff
 
 Upon hearing of the mapping from a time series into a network, it might be wondered at if there exists a mapping from a network back into a time series. There does exist some methods to apply the inverse mapping, but none of these are deterministic, meaning that the network topology constrains the set of time series that the mapping can produce from that network, but does not completely determine it. Therefore, it cannot be said that the mapping from time series to networks or back is properly a \emph{transform}.%%% again the campanharo dual network paper
 
-A deterministic transformation from time series to networks and from networks to time series can be made, however, if only a special kind of network called the \emph{labelled multigraph} is used. %%% mathematical definition, citation
+A deterministic transformation from time series to networks and from networks to time series can be made, however, if we allow duplication in the adjacencies of each vertex of the graph (making the graph a multigraph, by many definitions of multigraph), and if we keep the order in which the vertices were travelled in the discrete time series, making the adjacency list perform the tasks of a stack. In addition to this, the start state of the time series must be stored.
 
-%%% link to pumping lemma
+In order to construct the labelled multigraph from a time series, the possible states of the time series, $\Sigma = {1 ... N}$ are made into the vertices of the multigraph. Then, starting with the value of the series at $t =1$, the vertices are traversed in the order that the corresponding states are traversed in the time series, and when one leaves a vertex $V_1$ to go to a vertex $V_2$, the identity of $V_2$ is pushed onto the stack for the adjacencies of $V_1$.
 
-In order to construct the labelled multigraph from a time series,
+In order to reconstruct the time series from a multigraph of this kind, therefore, we start from the %%%%%%%%%%%%%%%%%%%%%
 
-%% method, include knuth notation for it
-
-In order to reconstruct the time series from a labelled multigraph,
-
-%%% method, include knuth notation for it
+%%%% picture would be nice here
 
 \subsection{Toy Model}
 
@@ -176,5 +180,9 @@ In order to reconstruct the time series from a labelled multigraph,
 \subsection{Real Data}
 
 %Now, do complex network analysis things with the VR data and with logistic map.
+
+\begin{thebibliography}{}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\end{thebibliography}
 
 \end{document}
