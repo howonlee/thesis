@@ -22,62 +22,60 @@ There exists a literature dealing with time series analysis in the nonlinear sci
 
 \section{Introduction}
 
-%%%% here, citation means read em again and think about them and expand a little bit, and _then_ cite and poke around
+Before defining what we mean by synchronization in this context, we note that there exists a long history of the study of synchronization outside of social science. Synchronization was first reported in physical systems by Huygens in 1665. He saw that two pendulum clocks in the boat that he was testing the clocks in were mysteriously ticking in unison, and found that the cause was a support beam which connected the clocks, which moved imperceptibly and therefore maintained the synchronization\cite{huygens}.
 
-Before defining what we mean by synchronization in this context, we note that there exists a long history of the study of synchronization outside of social science. Synchronization was first reported in physical systems by Huygens in 1665. He saw that two pendulum clocks in the boat that he was testing the clocks in were mysteriously ticking in unison, and found that the cause was a support beam which connected the clocks, which moved imperceptibly and therefore maintained the synchronization. %% cite for history of huygen's synchronization paper
+Centuries later, the physical and biological systems which were later found to synchronize include mechanical rotators, lasers, fireflies emitting synchronous patterns of light, synchronous contraction of heart cells, synchronization of human circadian rhythm to a solar light cycle, and synchronous interaction of human beings\cite{syncreview}, \cite{physsync}.
 
-Centuries later, the physical and biological systems which were later found to synchronize include mechanical rotators, lasers, fireflies emitting synchronous patterns of light, synchronous contraction of heart cells, synchronization of human circadian rhythm to a solar light cycle, and synchronous interaction of human beings. %%%cite synchronization review, sync papers for all those things
+Now, we should define the terms. Interpersonal synchrony is defined in the social science literature as individuals' termporal coordination during social interaction\cite{socialsync}. In the physical sciences, synchronization is defined as an adjustment of rhythms of oscillating objects due to weak interaction, with generalizations possible for chaotic systems, which depend upon a phase of the chaotic system existing\cite{physsync}.
 
-Now, we should define the terms. Interpersonal synchrony is defined in the social science literature as individuals' termporal coordination during social interaction. In the physical sciences, synchronization is defined as an adjustment of rhythms of oscillating objects due to weak interaction, with generalizations possible for chaotic systems, which depend upon a phase of the chaotic system existing. %%% cite social psych, physics definition of synchronization
+Although social synchrony is one of many other synchronies, many of which do not necessarily serve a function of any kind, it is observed that social synchrony serves a function in human social groups. There exists evidence that synchronization acts as a cooperation-enducing mechanism\cite{coop}, that it acts to induce rapport\cite{rapport}, and that it in actuality, independent of its effect on rapport, enhances the ability to pursue joint goals in tandem for those who are synchronized\cite{goals}. This suggests immediately that it must be measured in a systematic way, to study phenomena of that kind.
 
-Although social synchrony is one of many other synchronies, many of which do not necessarily serve a function of any kind, it is observed that social synchrony serves a function in human social groups. There exists evidence that synchronization acts as a cooperation-enducing mechanism, that it acts to induce rapport, and that it in actuality, independent of its effect on rapport, enhances the ability to pursue joint goals in tandem for those who are synchronized. This suggests immediately that it must be measured in a systematic way, to study phenomena of that kind. %%% cite for cooperation enducing mechanism, inducing rapport, enhancing the ability to pursue joint goals
+In the beginning of the social synchronization literature, most psychologists did not used the then-developing automated signals processing techniques for the detection and measurement of synchronization, instead using manual methods to detect and rate the presence or absence of synchronization, with trained raters and validated measuring systems\cite{manual}. Although these measurements have been validated\cite{manualval}, they depend upon human raters and therefore are less replicable and less convenient than automated systems.
 
-In the beginning of the social synchronization literature, most psychologists did not used the then-developing automated signals processing techniques for the detection and measurement of synchronization, instead using manual methods to detect and rate the presence or absence of synchronization, with trained raters and validated measuring systems. Although these measurements have been validated, they depend upon human raters and therefore are less replicable and less convenient than automated systems. %%% cite some of those non-automated systems
+Given that the signals created by an individual during social interaction have a phase, and social interaction can be construed as a weak interaction between the two individual systems, it should be clear that the definition of interpersonal synchrony given in the social psychological literature is a subset of the definition given in the physics literature. This has often been noted\cite{socialsync}, and has therefore spawned a cross-disciplinary field wherein signals processing techniques are used to measure interpersonal synchrony.
 
-Given that the signals created by an individual during social interaction have a phase, and social interaction can be construed as a weak interaction between the two individual systems, it should be clear that the definition of interpersonal synchrony given in the social psychological literature is a subset of the definition given in the physics literature. This has often been noted, and has therefore spawned a cross-disciplinary field wherein signals processing techniques are used to measure interpersonal synchrony. %%% cite the reviews of this thing
+As a specific instance of a domain where signals processing techniques are used, a large problem in synchronization is the definition of the signal itself and its extraction from observations of social interaction. To this end, many methods have been used, including extraction of coordination of movement features and speech features, movement of single and dyadic body parts, image processing techniques and video tracking techniques. %%% cite a bunch of stuff from delaherche cohen paper and my own lit stuff
 
-As a specific instance of a domain where signals processing techniques are used, a large problem in synchronization is the definition of the signal itself and its extraction from observations of social interaction. To this end, many methods have been used, including extraction of coordination of movement features and speech features, movement of single and dyadic body parts, image processing techniques and video tracking techniques. %%% cite a bunch of stuff taken from delaherche cohen paper and my own lit stuff
+An important analogy exists between the collection of time series data about the physiology of the body in order to assess synchrony and the collection of time series data about the body in order to assess health. Indeed, there exists a literature on the synchronization properties and the time series analysis of heart rate variability which we have derived much inspiration from, not necessarily in the usage of correlational metrics, for which there is a literature dealing in social synchronization, but more sophisticated metrics for which there is not such a literature\cite{hrv1}\cite{hrv2}. The essential premise is that we treat social synchronization as an instance of an abstract problem of physical synchronization, which justifies using measures used by other physiological measurements.
 
-An important analogy exists between the collection of time series data about the physiology of the body in order to assess synchrony and the collection of time series data about the body in order to assess health. Indeed, there exists a literature on the synchronization properties and the time series analysis of heart rate variability which we have derived much inspiration from, not necessarily in the usage of correlational metrics, for which there is a literature dealing in social synchronization, but more sophisticated metrics for which there is not such a literature. The essential premise is that we treat social synchronization as an instance of an abstract problem of physical synchronization, which justifies using measures used by other physiological measurements.%%% cite some heart rate variability papers
+------------ vr benefits: experimental control versus ecological validity: but you don't have to choose between the tool, you can escape the lab in a controlled setting with virutal reality. naturalistic vision of vistas and scenes, naturalistic ability to interact socially, although I think this condition was mixed media. really great data collection\cite{blascovich}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% those techniques have a problem, VR is cool kids way of doing it
-
-%%% experimental control versus ecological validity: but you don't have to choose between the tool, you can escape the lab in a controlled setting with virutal reality. naturalistic vision of vistas and scenes, naturalistic ability to interact socially, although I think this condition was mixed media. really great data collection %%% cite blascovich and beall "basic research tool in psych" paper
 This project will attempt to use some of the already existing tools for the analysis of time series data on VR time series data, as well as apply some tools which have not previously been used to analyze synchronization in VR time series data of social synchronization in a virtual world.
-%%% summary of what exists, talk only about the fact that they exist, as a preliminary summary of the essay. we will go deeper and actually formal with this one
-%%% correlation (time-lagged cross-correlation), recurrence analysis
-%%% review MI method in physics literature.
-%%% spectral methods, analytic signal idea
-%%% graphs
+--- summary of what exists, talk only about the fact that they exist, as a preliminary summary of the essay. we will go deeper and actually formal with this one. correlation, MI in physics, spectral methods, analytic signal, graph analysis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-%%% describe the data that we got, data from Andrea's stuff basically, maybe the new coding.
-%%% problems: missing data
-%%% another wonky thing: the ad hoc reductions made, just see Andrea's stuff here
+--- This is the place where we will describe the data we got, the ad hoc analyses made previously to fold in the data into small number of dimensions. Discuss the data incompletion problem.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Time Domain Analysis}
 
 \subsection{Correlation Analysis}
 
-%%% definition of what the time series is in the time domain
-%%% description of the preprocessing mess done on it
+-- easy description of correlational analysis, autocorrelation, cross-correlation
+%%%%%%%%%%%%%%%%%
+-- add the summary plots of correlations because it's easy
+%%%%%%%%%%%%%%%%%
+-- describe the poincare plots (not maps)
+%%%%%%%%%%%%%%%%%
+-- add the poincare plot summary? hard to do whole-data summary of poincare plot
+%%%%%%%%%%%%%%%%%
+--- describe the cornettos, add the cornettos
+%%%%%%%%%%%%%%%%%
 
-%%% what are the correlations, mathematically? what are correlations in general, mathematically? autocorrelation? cross-correlation?
-
-%%% poincare maps go here I guess
-
-%%% what are the cornettos? why the cornettos? what are they mathematically?
-Correlation and the cornettos go here. Talk about benefits and detriments of the cornetto stuff
-
-One analysis commonly used with relaxation oscillators like ECG data is the Poincare map, not to be confused with the Poincare plot. However, because there are not clear demarcations as to where each oscillation is, the Poincare map is less suited to this dataset and will not be used. %%% cite for Poincare map
-%% what's the essential linearity problem with correlational analysis?
+One analysis commonly used with relaxation oscillators like ECG data is the Poincare map, not to be confused with the Poincare plot. However, because there are not clear demarcations as to where each oscillation is, the Poincare map is less suited to this dataset and will not be used\cite{poincaremap}
 
 \subsection{Mutual Information Analysis}
 
-The main limitation of cross-correlational analysis of time series is that it is fundamentally linear. That is, the dependences which the correlation function can capture are linear in nature. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly. %% cite pompe paper.
+The main limitation of cross-correlational analysis of time series is that it is fundamentally linear. That is, the dependences which the correlation function can capture are linear in nature. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly\cite{pompe}
 
-%%%% the sine relation example goes here, showing that correlation is not good
+--- the sine relation example and picture goes here, showing that correlation is not good
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
 
 In order to introduce mutual information, we must introduce Shannon information and Shannon entropy.
 
@@ -109,10 +107,10 @@ And one sees that this quantity is symmetric with respect to $X$ and $Y$.
 
 Auto-mutual information (AMI) and cross mutual information(CMI) are the mutual information analogues to autocorrelation and cross-correlation. They have the same advantages over the correlation variants as mutual information itself has to correlation. Therefore, they are better measurements for synchronization.
 
-%%% put in a bunch of stuff for MI in physiological data
-Mutual information analysis goes here. So does a KS entropy analysis
-
-%%% and then we go to our data
+------ actual content of Mutual information analysis goes here.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Frequency Domain Analysis}
 
@@ -122,6 +120,9 @@ The frequency domain represents data in terms of the linear combination of simpl
 
 The discrete fourier transform is an essential tool for the further analyses below. It converts a finite discrete sample from the time to the frequency domain in a computable and fast way.
 
+---- add back in the math of DFT
+---- add back in the coherence measures
+
 %%% short section on math of dft. why is it a _transform_? (aka, show that math). what is power spectrum? what is the relation to the autocorrelation?
 
 %%% other people have used spectral methods.
@@ -130,7 +131,7 @@ The discrete fourier transform is an essential tool for the further analyses bel
 
 \subsection{Hilbert Transform and $\gamma$}
 
-A signal is called an \emph{analytic signal} if it does not have any negative-frequency components. The Hilbert transform is a way to get the analytic \emph{representation} for a signal in the time domain, which throws away the superfluous information which would be in a spectrum of that signal. This allows the expression of the analytic signal in terms of its time-variant magnitude and phase, allowing a study of the phase in an \emph{unwrapped form}. %%% cite gabor 1946
+A signal is called an \emph{analytic signal} if it does not have any negative-frequency components. The Hilbert transform is a way to get the analytic \emph{representation} for a signal in the time domain, which throws away the superfluous information which would be in a spectrum of that signal. This allows the expression of the analytic signal in terms of its time-variant magnitude and phase, allowing a study of the phase in an \emph{unwrapped form}\cite{gabor}.
 
 Formally speaking, given that the original signal is $s(t)$, the analytic signal $\zeta$ is:
 
@@ -140,53 +141,64 @@ $$s_H(t) = \frac{1}{\pi} PV \int_{-\infty}^{\infty} \frac{s(t)}{t - \tau} d\tau$
 
 $s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cauchy principal value integral. The Hilbert transform is thus formally equivalent to convolution of $s(t)$ with $\frac{1}{\pi t}$, so it can easily be calculated from the fast Fourier transform.
 
-%%% finish the formalism
-
-%%% pretty picture of unwrapped hilbert transform for toy function
-%%% why use hilbert transform instead of other measrues?
-
-%%%% do the phase difference measure
-
-%%%What's gamma? Why gamma?
-
-%%%Why use this one over poincare map? Why would it be more durable?
+--- finish the Hilbert transform, add the justification (you can take out the amplitude entirely as a factor, whereas coherence and that sort of thing ends up not doing this).
+--- add pretty pictures of unwrapped hilbert transform, and the description of the gammadifference measures
+--- -then- add the gamma results and the hilbert transform results themselves
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Deterministic dual between discrete time series and ordered multigraph}
 
 \subsection{Description}
 
 %%% define discrete time series more clearly
-There exists a line of analysis in the complex network literature which aims to convert a discrete or discretized time series into a network. This is advantageous for analysis of time series because there is a deep and well-developed theory of networks: so far, an important result is that different time series result in networks with distinct topological properties, and that these topological properties relate to the time series in some way in addition to being determined by them. %%% cite the campanharo dual network paper
+There exists a line of analysis in the complex network literature which aims to convert a discrete or discretized time series into a network. This is advantageous for analysis of time series because there is a deep and well-developed theory of networks: so far, an important result is that different time series result in networks with distinct topological properties, and that these topological properties relate to the time series in some way in addition to being determined by them\cite{campanharo}.
 %%%% cite and quickly describe visibility graph, spectral methods, recurrence graph, other stuff
 
-Upon hearing of the mapping from a time series into a network, it might be wondered at if there exists a mapping from a network back into a time series. There does exist some methods to apply the inverse mapping, but none of these are deterministic, meaning that the network topology constrains the set of time series that the mapping can produce from that network, but does not completely determine it. Therefore, it cannot be said that the mapping from time series to networks or back is properly a \emph{transform}.%%% again the campanharo dual network paper
+Upon hearing of the mapping from a time series into a network, it might be wondered at if there exists a mapping from a network back into a time series. There does exist some methods to apply the inverse mapping, but none of these are deterministic, meaning that the network topology constrains the set of time series that the mapping can produce from that network, but does not completely determine it\cite{campanharo}. Therefore, it cannot be said that the mapping from time series to networks or back is properly a \emph{transform}.
 
-A deterministic transformation from time series to networks and from networks to time series can be made, however, if we allow duplication in the adjacencies of each vertex of the graph (making the graph a multigraph, by many definitions of multigraph), and if we keep the order in which the vertices were travelled in the discrete time series. In addition to this, the start state of the time series must be stored.
+A deterministic transformation from time series to networks and from networks to time series can be made, however, if we allow duplication in the adjacencies of each vertex of the graph (making the graph a multigraph, by many definitions of multigraph\cite{multigraph}), and if we keep the order in which the vertices were travelled in the discrete time series. In addition to this, the start state of the time series must be stored.
 
 In order to construct the labelled multigraph from a time series, the possible states of the time series, $\Sigma = {1 ... N}$ are made into the vertices of the multigraph. Then, starting with the value of the series at $t =1$, the vertices are traversed in the order that the corresponding states are traversed in the time series, and when one leaves a vertex $V_1$ to go to a vertex $V_2$, the identity of $V_2$ is pushed onto the list (like a stack) for the adjacencies of $V_1$.
 
-In order to reconstruct the time series from a multigraph of this kind, therefore, we start from the start node again and consume the adjacency lists starting from the initial elements of the lists, to find the next node to jump to.
+In order to reconstruct the time series from a multigraph of this kind, therefore, we start from the start node again and consume the adjacency lists starting from the initial elements of the lists, to find the next node to jump to. The intuition is of using the adjacency list like the instructions for a pushdown automaton\cite{pushdown}.
 
-%%%% picture would be nice here
-
-%%% mention pushdown automata here, pumping lemma related
-
-%%% two uses: apply graph theory, do deterministic resampling
+%%%% picture and knuth notation would be nice here
 
 \subsection{Toy Model}
 
-%Recreate the time series of logistic map here.
-
-% recreate time series of representative time thing here
-%
-%Note tha time series resampling is now possible deterministically. Talk about the time series resampling.
+----------- Here, we will recreate the time series of a trivial sinusoid and then the logistic map and a simple fBM when we do it
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Real Data}
 
-%Now, do complex network analysis things with the VR data and with logistic map.
+------------- Here, we will recreate the real VR time series and discuss interesting network theoretic properties (degree distribution, clustering, etc etc)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{thebibliography}{}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+  \bibitem{huygens}
+  \bibitem{syncreview}
+  \bibitem{physsync}
+  \bibitem{socialsync}
+  \bibitem{coop}
+  \bibitem{rapport}
+  \bibitem{goals}
+  \bibitem{campanharo}
+  \bibitem{pushdown}
+  \bibitem{multigraph}
+  \bibitem{manual}
+  \bibitem{manualval}
+  \bibitem{blascovich}
+  \bibitem{pompe}
+  \bibitem{poincaremap}
+  \bibitem{hrv1}
+  \bibitem{hrv2}
+  \bibitem{gabor}
 \end{thebibliography}
 
 \end{document}
