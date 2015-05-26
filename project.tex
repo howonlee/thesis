@@ -13,7 +13,7 @@
 \maketitle
 
 \section{Abstract}
-There exists a literature dealing with time series analysis in the nonlinear sciences in the case of synchronization, or the adjustment of rhythms of oscillating objects to coincide with each other due to weak interaction. We attempt many of these methods in analyzing an instance of the phenomenon of interpersonal synchrony in a virtual environment.%%% We also propose a mapping from time series to networks with a deterministic inverse.
+There exists a literature dealing with time series analysis in the nonlinear sciences in the case of synchronization, or the adjustment of rhythms of oscillating objects to coincide with each other due to weak interaction. We attempt many of these methods in analyzing an instance of the phenomenon of interpersonal synchrony in a virtual environment. We also propose a mapping from time series to networks with a deterministic inverse.
 
 %%% acknowledgements go here
 
@@ -30,9 +30,11 @@ Now, we should define the terms. Interpersonal synchrony is defined in the socia
 
 Although social synchrony is one of many other synchronies, many of which do not necessarily serve a function of any kind, it is observed that social synchrony serves a function in human social groups. There exists evidence that synchronization acts as a cooperation-enducing mechanism\cite{coop}, that it acts to induce rapport\cite{rapport}, and that it in actuality, independent of its effect on rapport, enhances the ability to pursue joint goals in tandem for those who are synchronized\cite{goals}. This suggests immediately that it must be measured in a systematic way, to study phenomena of that kind.
 
-In the beginning of the social synchronization literature, most psychologists did not used the then-developing automated signals processing techniques for the detection and measurement of synchronization, instead using manual methods to detect and rate the presence or absence of synchronization, with trained raters and validated measuring systems\cite{manual}. Although these measurements have been validated\cite{manualval}, they depend upon human raters and therefore are less replicable and less convenient than automated systems.
+In the beginning of the social synchronization literature, most psychologists did not use the then-developing automated signals processing techniques for the detection and measurement of synchronization, instead using manual methods to detect and rate the presence or absence of synchronization, with trained raters and validated measuring systems\cite{manual}. Although these measurements have been validated\cite{manualval}, they depend upon human raters and therefore are less replicable and less convenient than automated systems.
 
 Given that the signals created by an individual during social interaction have a phase, and social interaction can be construed as a weak interaction between the two individual systems, it should be clear that the definition of interpersonal synchrony given in the social psychological literature is a subset of the definition given in the physics literature. This has often been noted\cite{socialsync}, and has therefore spawned a cross-disciplinary field wherein signals processing techniques are used to measure interpersonal synchrony.
+
+%%% why it's different than other approaches to measuring interactional synchrony
 
 As a specific instance of a domain where signals processing techniques are used, a large problem in synchronization is the definition of the signal itself and its extraction from observations of social interaction. To this end, many methods have been used, including extraction of coordination of movement features and speech features, movement of single and dyadic body parts, image processing techniques and video tracking techniques. %%% cite a bunch of stuff from delaherche cohen paper and my own lit stuff
 
@@ -47,35 +49,37 @@ This project will attempt to use some of the already existing tools for the anal
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Justification for Nonlinear Measures}
+
+One might wonder why the existing methods of measurement of synchronization do not already serve for the purpose of measuring synchronization of body movements in VR. They do not serve for the same reasons that they do not serve in physical time series. That is, they are fundamentally \emph{linear} measures of the relation that they have to each other, meaning that measuring only correlation implicitly puts in the assumption that an affine transform relates the two signals to each other. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly\cite{pompe}.
+
+\begin{figure}\label{nonlinearity}
+  %%%% add the nonlinearity figure here
+\end{figure}
+
+One example which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ are not related to each other, but by inspection, one can say that actually $y = 1 - x^2$. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is %%%% whatever the mutual information is.
+
+There exists a linear \emph{spectral} measure, coherence, which has been used in relating time series data before.
+
+\subsection{Data Description}
+
 --- This is the place where we will describe the data we got, the ad hoc analyses made previously to fold in the data into small number of dimensions. Discuss the data incompletion problem.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% to do this analysis, we will use the data of a previously published study (as won et al), where synchronization was measured in 50 or so dyads on a kinect.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Time Domain Analysis}
 
 \subsection{Correlation Analysis}
 
--- easy description of correlational analysis, autocorrelation, cross-correlation
-%%%%%%%%%%%%%%%%%
--- add the summary plots of correlations because it's easy
-%%%%%%%%%%%%%%%%%
--- describe the poincare plots (not maps)
-%%%%%%%%%%%%%%%%%
--- add the poincare plot summary? hard to do whole-data summary of poincare plot
-%%%%%%%%%%%%%%%%%
---- describe the cornettos, add the cornettos
-%%%%%%%%%%%%%%%%%
+%% how Andrea did it, basically: 400 windows, Pearson's r. What is correlational analysis, really. What can it do. With a picture. What is autocorrelation. What is cross-correlation.
+%% add the MC plot of correlation. add the summary plot of correlation over the entire dataset.
+%% describe what a poincare plot is. put an example one in. describe our poincare plot summary measure, and put the summary in
+%% describe and add the cornettos
 
 One analysis commonly used with relaxation oscillators like ECG data is the Poincare map, not to be confused with the Poincare plot. However, because there are not clear demarcations as to where each oscillation is, the Poincare map is less suited to this dataset and will not be used\cite{poincaremap}
 
 \subsection{Mutual Information Analysis}
-
-The main limitation of cross-correlational analysis of time series is that it is fundamentally linear. That is, the dependences which the correlation function can capture are linear in nature. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly\cite{pompe}
-
---- the sine relation example and picture goes here, showing that correlation is not good
-%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%
 
 In order to introduce mutual information, we must introduce Shannon information and Shannon entropy.
 
