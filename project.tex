@@ -53,13 +53,12 @@ This project will attempt to use some of the already existing tools for the anal
 
 One might wonder why the existing methods of measurement of synchronization do not already serve for the purpose of measuring synchronization of body movements in VR. They do not serve for the same reasons that they do not serve in physical time series. That is, they are fundamentally \emph{linear} measures of the relation that they have to each other, meaning that measuring only correlation implicitly puts in the assumption that an affine transform relates the two signals to each other. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly\cite{pompe}.
 
-\begin{figure}\label{nonlinearity}
-  %%%% add the nonlinearity figure here
+\begin{figure}\label{fig:nonlinearity}
+  \includegraphics[scale=0.5]{mi_ex}
+  \caption{Example of simple nonlinear relation between two variables}
 \end{figure}
 
-One example which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ are not related to each other, but by inspection, one can say that actually $y = 1 - x^2$. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is %%%% whatever the mutual information is.
-
-There exists a linear \emph{spectral} measure, coherence, which has been used in relating time series data before.
+One example which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{ref:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables are basically
 
 \subsection{Data Description}
 
