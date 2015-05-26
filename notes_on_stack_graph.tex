@@ -19,7 +19,11 @@
 There exists a line of analysis in the complex network literature which aims to convert a discrete or discretized time series into a network. This is advantageous for analysis of time series because there is a deep and well-developed theory of networks: so far, an important result is that different time series result in networks with distinct topological properties, and that these topological properties relate to the time series in some way in addition to being determined by them\cite{campanharo}.
 %%%% cite and quickly describe visibility graph, spectral methods, recurrence graph, other stuff
 
+%%% talk about the fourier basis claims of the visibility graph people, recapitulate them
+
 Upon hearing of the mapping from a time series into a network, it might be wondered at if there exists a mapping from a network back into a time series. There does exist some methods to apply the inverse mapping, but none of these are deterministic, meaning that the network topology constrains the set of time series that the mapping can produce from that network, but does not completely determine it\cite{campanharo}. Therefore, it cannot be said that the mapping from time series to networks or back is properly a \emph{transform}.
+
+%%% bigger spectral properties, what about homophily, associativity, stuff like that
 
 A deterministic transformation from time series to networks and from networks to time series can be made, however, if we allow duplication in the adjacencies of each vertex of the graph (making the graph a multigraph, by many definitions of multigraph\cite{multigraph}), and if we keep the order in which the vertices were travelled in the discrete time series. In addition to this, the start state of the time series must be stored.
 
