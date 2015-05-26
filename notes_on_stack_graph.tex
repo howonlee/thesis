@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\newcommand{\del}{\nabla}
+\begin{document}
+
+\title{Notes on Stack Graph}
+\author{Howon Lee}
+\maketitle
+%%%% this will be folded into the main thesis
+
+\section{Deterministic dual between discrete time series and ordered multigraph}
+
+\subsection{Description}
+
+%%% define discrete time series more clearly
+There exists a line of analysis in the complex network literature which aims to convert a discrete or discretized time series into a network. This is advantageous for analysis of time series because there is a deep and well-developed theory of networks: so far, an important result is that different time series result in networks with distinct topological properties, and that these topological properties relate to the time series in some way in addition to being determined by them\cite{campanharo}.
+%%%% cite and quickly describe visibility graph, spectral methods, recurrence graph, other stuff
+
+Upon hearing of the mapping from a time series into a network, it might be wondered at if there exists a mapping from a network back into a time series. There does exist some methods to apply the inverse mapping, but none of these are deterministic, meaning that the network topology constrains the set of time series that the mapping can produce from that network, but does not completely determine it\cite{campanharo}. Therefore, it cannot be said that the mapping from time series to networks or back is properly a \emph{transform}.
+
+A deterministic transformation from time series to networks and from networks to time series can be made, however, if we allow duplication in the adjacencies of each vertex of the graph (making the graph a multigraph, by many definitions of multigraph\cite{multigraph}), and if we keep the order in which the vertices were travelled in the discrete time series. In addition to this, the start state of the time series must be stored.
+
+In order to construct the labelled multigraph from a time series, the possible states of the time series, $\Sigma = {1 ... N}$ are made into the vertices of the multigraph. Then, starting with the value of the series at $t =1$, the vertices are traversed in the order that the corresponding states are traversed in the time series, and when one leaves a vertex $V_1$ to go to a vertex $V_2$, the identity of $V_2$ is pushed onto the list (like a stack) for the adjacencies of $V_1$.
+
+In order to reconstruct the time series from a multigraph of this kind, therefore, we start from the start node again and consume the adjacency lists starting from the initial elements of the lists, to find the next node to jump to. The intuition is of using the adjacency list like the instructions for a pushdown automaton\cite{pushdown}.
+
+%%%% picture and knuth notation would be nice here
+
+\subsection{Toy Model}
+
+----------- Here, we will recreate the time series of a trivial sinusoid and then the logistic map and a simple fBM when we do it
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Real Data}
+
+------------- Here, we will recreate the real VR time series and discuss interesting network theoretic properties (degree distribution, clustering, etc etc)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
