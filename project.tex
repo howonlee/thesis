@@ -13,7 +13,7 @@
 \maketitle
 
 \section{Abstract}
-There exists a literature dealing with time series analysis in the nonlinear sciences in the case of synchronization, or the adjustment of rhythms of oscillating objects to coincide with each other due to weak interaction. We attempt many of these methods in analyzing an instance of the phenomenon of interpersonal synchrony in a virtual environment. We also propose a mapping from time series to networks with a deterministic inverse.
+There exists a literature dealing with time series analysis in the nonlinear sciences in the case of synchronization, or the adjustment of rhythms of oscillating objects to coincide with each other due to weak interaction. We attempt many of these methods in analyzing an instance of the phenomenon of interpersonal synchrony in a virtual environment. We also propose a mapping from time series to networks with a deterministic inverse, useful for exploratory analysis.
 
 %%% acknowledgements go here
 
@@ -34,8 +34,6 @@ In the beginning of the social synchronization literature, most psychologists di
 
 Given that the signals created by an individual during social interaction have a phase, and social interaction can be construed as a weak interaction between the two individual systems, it should be clear that the definition of interpersonal synchrony given in the social psychological literature is a subset of the definition given in the physics literature. This has often been noted\cite{socialsync}, and has therefore spawned a cross-disciplinary field wherein signals processing techniques are used to measure interpersonal synchrony.
 
-%%% why it's different than other approaches to measuring interactional synchrony
-
 As a specific instance of a domain where signals processing techniques are used, a large problem in synchronization is the definition of the signal itself and its extraction from observations of social interaction. To this end, many methods have been used, including extraction of coordination of movement features and speech features, movement of single and dyadic body parts, image processing techniques and video tracking techniques. %%% cite a bunch of stuff from delaherche cohen paper and my own lit stuff
 
 An important analogy exists between the collection of time series data about the physiology of the body in order to assess synchrony and the collection of time series data about the body in order to assess health. Indeed, there exists a literature on the synchronization properties and the time series analysis of heart rate variability which we have derived much inspiration from, not necessarily in the usage of correlational metrics, for which there is a literature dealing in social synchronization, but more sophisticated metrics for which there is not such a literature\cite{hrv1}\cite{hrv2}. The essential premise is that we treat social synchronization as an instance of an abstract problem of physical synchronization, which justifies using measures used by other physiological measurements.
@@ -50,12 +48,15 @@ This project will attempt to use some of the already existing tools for the anal
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Justification for Nonlinear Measures}
+%%% why it's different than other approaches to measuring interactional synchrony
 
 --- there's a big correlational and phase coherence literature. talk about it, why it exists.
 
 --- there's a big machine learning literature, basically talk the book on the synchronization stuff
 
---- there's a big other physiological data literature: eeg, ekg. talk about why it doesn't apply directly to us, though there is a social synchronization citation
+--- there's the large sensorimotor literature, they've never used nonlinear stuff.
+
+--- note the physics kids distinction of simple and more complex synchronizations: phase and amplitude synchronizations, those apply to the person as well. so we should not ignore nonlinear measures.
 
 One might wonder why the existing methods of measurement of synchronization do not already serve for the purpose of measuring synchronization of body movements in VR. They do not serve for the same reasons that they do not serve in physical time series. That is, they are fundamentally \emph{linear} measures of the relation that they have to each other, meaning that measuring only correlation implicitly puts in the assumption that an affine transform relates the two signals to each other. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly\cite{pompe}.
 
@@ -66,11 +67,13 @@ One might wonder why the existing methods of measurement of synchronization do n
 
 One example which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{fig:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables determine each other to a great degree.
 
-We will claim that relations of this sort are common in physiological data of all kinds. %%%% recapitulate those arguments from physiological data
+We will claim that relations of this sort are common in physiological data of all kinds. %%%% recapitulate those arguments from physiological data, cite a lot of the physiological data literature. If neuronal signals are nonlinear and can be related in an MI sort of way, why not the physiological movements which are caused by those neuronal signals?
 
 \subsection{Data Description}
 
 --- This is the place where we will describe the data we got, the ad hoc analyses made previously to fold in the data into small number of dimensions. Discuss the data incompletion problem.
+
+--- Why the dimensionality reduction? we suffer from curse of dimensionality
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% to do this analysis, we will use the data of a previously published study (as won et al), where synchronization was measured in 50 or so dyads on a kinect.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
