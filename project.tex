@@ -37,17 +37,13 @@ An important analogy exists between the collection of time series data about the
 
 Measuring synchronization from virtual reality body tracking has many benefits in comparison to other measures, as argued in Blascovich et al. To wit, much of the typical tradeoff between experimental control and ecological validity is avoided because the ecological validity can be increased by improved graphics and worlds, but total experimental control is always held. Replicability is much better because the hardware and software can be of standard make. And data can be collected without video markers because the tracking apparatus can collect data by itself. \cite{blascovich}
 
+\subsection{Justification for Nonlinear Measures}
+
 This project will attempt to use some of the already existing tools for the analysis of time series data on VR time series data, as well as apply some tools which have not previously been used to analyze synchronization in VR time series data of social synchronization in a virtual world.
 --- summary of what exists, talk only about the fact that they exist, as a preliminary summary of the essay. we will go deeper and actually formal with this one. correlation, MI in physics, spectral methods, analytic signal, graph analysis
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Justification for Nonlinear Measures}
 %%% why it's different than other approaches to measuring interactional synchrony
-
---- there's a big correlational and phase coherence literature. talk about some representative stuff
-
---- there's a big machine learning literature, basically talk the book on the synchronization stuff
 
 One might wonder why the existing methods of measurement of synchronization do not already serve for the purpose of measuring synchronization of body movements in VR. They do not serve for the same reasons that they do not serve in physical time series. That is, they are fundamentally \emph{linear} measures of the relation that they have to each other, meaning that measuring only correlation implicitly puts in the assumption that an affine transform relates the two signals to each other. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly\cite{pompe}.
 
