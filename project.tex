@@ -44,6 +44,7 @@ This project will attempt to use some of the already existing tools for the anal
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% why it's different than other approaches to measuring interactional synchrony
+%%%% already use recurrence methods, talk about the justification that people have there
 
 One might wonder why the existing methods of measurement of synchronization do not already serve for the purpose of measuring synchronization of body movements in VR. They do not serve for the same reasons that they do not serve in physical time series. That is, they are fundamentally \emph{linear} measures of the relation that they have to each other, meaning that measuring only correlation implicitly puts in the assumption that an affine transform relates the two signals to each other. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly\cite{pompe}.
 
@@ -54,13 +55,11 @@ One might wonder why the existing methods of measurement of synchronization do n
 
 One example which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{fig:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables determine each other to a great degree.
 
-Nonlinear analyses have been considered for modelling in the sensorimotor literature, and often rejected because linear models often are a good approximant. However, in the \emph{measurement} of degrees of synchronization, or of the real experimental distinguishing of synchronization state, it does not necessarily follow that avoiding the assumption of linearity is as intractible as fitting a nonlinear \emph{model} would be. %%%%%%%%%%%%%% justify
+This aspect of the analysis, the question as to the linearity of the measures, is mostly at a lower level than the vast literature on the role of synchronization in psychological processes. However, there is a distinction which might be of interest, which is the distinction between phase and amplitude synchronizations. %%%%% complete
 
-%%%% already use recurrence methods, talk about the justification that people have there
+Nonlinear analyses have been considered for modelling in the sensorimotor literature, and often rejected because linear models often are a good approximant. However, in the \emph{measurement} of degrees of synchronization, or of the real experimental distinguishing of synchronization state, it does not necessarily follow that avoiding the assumption of linearity is as intractible as fitting a nonlinear \emph{model} would be. Importantly, there do exist nonlinear models for phase-entrainment dynamics of physiological movement.\cite{schmidt}%%%%%%%%%%%%%% justify
 
-This aspect of the analysis is mostly at a lower level than the vast literature on the role of synchronization in psychological processes. However, there is a distinction which might be of interest, which is the distinction between phase and amplitude synchronizations. %%%%% complete
-
-In other fields of physiological measurement, the use of nonlinear methods is commonplace.
+In other fields of physiological measurement, the use of nonlinear methods is commonplace. %%%% talk it up
 
 \subsection{Data Description}
 
@@ -83,6 +82,8 @@ In other fields of physiological measurement, the use of nonlinear methods is co
 One analysis commonly used with relaxation oscillators like ECG data is the Poincare map, not to be confused with the Poincare plot. However, because there are not clear demarcations as to where each oscillation is, the Poincare map is less suited to this dataset and will not be used\cite{poincaremap}
 
 \subsection{Mutual Information Analysis}
+
+%%% no causality
 
 In order to introduce mutual information, we must introduce Shannon information and Shannon entropy.
 
@@ -174,6 +175,8 @@ $s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cau
   \bibitem{hrv1}
   \bibitem{hrv2}
   \bibitem{gabor}
+  \bibitem{schmidt}
+    Schmidt, R. C., & Turvey, M. T. (1994). Phase-entrainment dynamics of visually coupled rhythmic movements. Biological cybernetics, 70(4), 369-376.
 \end{thebibliography}
 
 \end{document}
