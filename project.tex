@@ -35,7 +35,7 @@ As a specific instance of a domain where signals processing techniques are used,
 
 An important analogy exists between the collection of time series data about the physiology of the body in order to assess synchrony and the collection of time series data about the body in order to assess health. Indeed, there exists a literature on the synchronization properties and the time series analysis of heart rate variability which we have derived much inspiration from, not necessarily in the usage of correlational metrics, for which there is a literature dealing in social synchronization, but more sophisticated metrics for which there is not such a literature\cite{hrv1}\cite{hrv2}. The essential premise is that we treat social synchronization as an instance of an abstract problem of physical synchronization, which justifies using measures used by other physiological measurements.
 
-Measuring synchronization from virtual reality body tracking has many benefits in comparison to other measures, as argued in Blascovich et al. To wit, much of the typical tradeoff between experimental control and ecological validity is avoided because the ecological validity can be increased by improved graphics and worlds, but total experimental control is always held. Replicability is much better because the hardware and software can be of standard make. And data can be collected without video markers because the tracking apparatus can collect data by itself. \cite{blascovich}
+Measuring synchronization from virtual reality body tracking has many benefits in comparison to other measures, as argued in \cite{blascovich}. To wit, much of the typical tradeoff between experimental control and ecological validity is avoided because the ecological validity can be increased by improved graphics and worlds, but total experimental control is always held. Replicability is much better because the hardware and software can be of standard make. And data can be collected without video markers because the tracking apparatus can collect data by itself. \cite{blascovich}
 
 This project will attempt to use some of the already existing tools for the analysis of time series data on VR time series data, as well as apply some tools which have not previously been used to analyze synchronization in VR time series data of social synchronization in a virtual world.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -60,12 +60,15 @@ One might wonder why the existing methods of measurement of synchronization do n
 
 One example which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{fig:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables determine each other to a great degree.
 
-%%% two theories, discrete and continuous, information processing and dynamical systems
-%%% both unified in the modelling of error dynamics by pressing 1999
-%%% we don't have a model of error correction, we have the synchronization measurement itself. go over the models existing super quick. parametric linear models, with corrections for observed nonlinearities.
-%%% cool kids overfitting arguments for the nonlinearities
+In the psychological literature dealing with referential behavior, or behavior which adapts to some process or set of events or plan \cite{pressing}, there exist two theoretical schools towards the modelling of the feedback systems which are presumed to allow synchronization with respect to a referent: information processing theories and dynamical systems theories. Information processing theories tend to deal with participant responses as discrete time series, and fit to data which is compatible with this paradigm (tapping studies, for example). Dynamical systems theories tend to deal with participant responses as trajectories in a phase space and deal with continuous movements as data \cite{repp}. Representative informational theories include ----, and representational dynamical systems theories include ---.
 
-Nonlinear analyses have been considered for modelling in the sensorimotor literature, and often rejected because linear models often are a good approximant. However, in the \emph{measurement} of degrees of synchronization, or of the real experimental distinguishing of synchronization state, it does not necessarily follow that avoiding the assumption of linearity is as intractible as fitting a nonlinear \emph{model} would be. Importantly, there do exist nonlinear models for phase-entrainment dynamics of physiological movement.\cite{schmidt}%%%%%%%%%%%%%% justify, cite
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% get these cites
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+There exist unifications \cite{pressing} which use the formalism of control theory to include both sorts of models as special cases. In that same paper, some evidence of nonlinearity (specifically, difficulty finding a low correlation dimension and a small but positive Lyapunov exponent, with the caveat of small amounts of data) which could not be fitted with a linear autoregressive moving average approach was found. \cite{schulze} notes that there are overfitting difficulties with manually incorporating a nonlinear perception detection threshhold into a model which is to be fit to data.
+
+However, in the \emph{measurement} of degrees of synchronization, or of the experimental discernment of synchronization state, it does not necessarily follow that avoiding the assumption of linearity is as intractible as fitting a nonlinear \emph{model} would be. Importantly, there do exist nonlinear models for phase-entrainment dynamics of physiological movement.\cite{schmidt}
 
 \subsection{Data Description}
 
@@ -109,13 +112,13 @@ And the entropy, therefore, is:
 
 $$H(X, Y) = -\sum_i \sum_j P_{XY}(i, j) log_2 P_{XY}(i, j)$$
 
-Now, if we sample two random variables simultaneously, the relationship has a quantity defined upon it which is called the \emph{mutual information}. Because it is defined on the relation, it has an auto-mutual information variant and a cross-mutual information variant, like correlation does. However, mutual information measures something different, which is the \emph{information which one of the random variables gives me about the other random variable}. It is defined as:
+Now, if we sample two random variables simultaneously, the relationship has a quantity defined upon it which is called the \emph{mutual information}. Because it is defined on the relation, it has an auto-mutual information variant and a cross-mutual information variant, like correlation does. However, mutual information measures something different, which is the \emph{information which one of the random variables gives about the other random variable}. It is defined as:
 
 $$I(X, Y) = H(X) + H(Y) - H(X, Y)$$
 
-And one sees that this quantity is symmetric with respect to $X$ and $Y$.
+And one sees that this quantity is symmetric with respect to $X$ and $Y$. Note that two linearly related variables will have a high mutual information \emph{in addition} to a high correlation coefficient.
 
-%%%%% talk about nice devolution of linearity
+Because we are dealing with real data, mutual information must be estimated from probability distributions represented as histograms. %%%%% there's a deep problem in histogramitization
 
 \subsubsection{AMI and CMI}
 
@@ -222,6 +225,7 @@ Here, we will do some exploration on one of the real VR time series samples, and
   \bibitem{manual}
   \bibitem{manualval}
   \bibitem{blascovich}
+    Loomis, J. M., Blascovich, J. J., \& Beall, A. C. (1999). Immersive virtual environment technology as a basic research tool in psychology. Behavior Research Methods, Instruments, \& Computers, 31(4), 557-564.
   \bibitem{pompe}
   \bibitem{poincaremap}
   \bibitem{hrv1}
@@ -229,6 +233,12 @@ Here, we will do some exploration on one of the real VR time series samples, and
   \bibitem{gabor}
   \bibitem{schmidt}
     Schmidt, R. C., \& Turvey, M. T. (1994). Phase-entrainment dynamics of visually coupled rhythmic movements. Biological cybernetics, 70(4), 369-376.
+  \bibitem{pressing}
+    Pressing, J. (1999). The referential dynamics of cognition and action. Psychological Review, 106(4), 714.
+  \bibitem{repp}
+    Repp, B. H. (2005). Sensorimotor synchronization: a review of the tapping literature. Psychonomic bulletin \& review, 12(6), 969-992.
+  \bibitem{schulze}
+    Vorberg, D., \& Schulze, H. H. (2002). Linear phase-correction in synchronization: Predictions, parameter estimation, and simulations. Journal of Mathematical Psychology, 46(1), 56-87.
 \end{thebibliography}
 
 \end{document}
