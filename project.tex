@@ -59,7 +59,7 @@ This aspect of the analysis, the question as to the linearity of the measures, i
 
 Nonlinear analyses have been considered for modelling in the sensorimotor literature, and often rejected because linear models often are a good approximant. However, in the \emph{measurement} of degrees of synchronization, or of the real experimental distinguishing of synchronization state, it does not necessarily follow that avoiding the assumption of linearity is as intractible as fitting a nonlinear \emph{model} would be. Importantly, there do exist nonlinear models for phase-entrainment dynamics of physiological movement.\cite{schmidt}%%%%%%%%%%%%%% justify
 
-In other fields of physiological measurement, the use of nonlinear methods is commonplace. %%%% talk it up
+In other fields of physiological measurement, the use of nonlinear methods is commonplace. %%%% talk it up: alzheimers neuron data, heart rate variability measures
 
 \subsection{Data Description}
 
@@ -82,8 +82,6 @@ In other fields of physiological measurement, the use of nonlinear methods is co
 One analysis commonly used with relaxation oscillators like ECG data is the Poincare map, not to be confused with the Poincare plot. However, because there are not clear demarcations as to where each oscillation is, the Poincare map is less suited to this dataset and will not be used\cite{poincaremap}
 
 \subsection{Mutual Information Analysis}
-
-%%% no causality
 
 In order to introduce mutual information, we must introduce Shannon information and Shannon entropy.
 
@@ -114,6 +112,8 @@ And one sees that this quantity is symmetric with respect to $X$ and $Y$.
 \subsubsection{AMI and CMI}
 
 Auto-mutual information (AMI) and cross mutual information(CMI) are the mutual information analogues to autocorrelation and cross-correlation. They have the same advantages over the correlation variants as mutual information itself has to correlation. Therefore, they are better measurements for synchronization.
+
+%%% no causality
 
 ------ actual content of Mutual information analysis goes here.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -158,14 +158,15 @@ $s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cau
 
 \begin{thebibliography}{}
   \bibitem{huygens}
+    Pikovsky, A., Rosenblum, M., \& Kurths, J. (2001). A universal concept in nonlinear sciences. Self, 2, 3.
   \bibitem{syncreview}
   \bibitem{physsync}
+    Pikovsky, A., Rosenblum, M., \& Kurths, J. (2001). A universal concept in nonlinear sciences. Self, 2, 3.
   \bibitem{socialsync}
   \bibitem{coop}
   \bibitem{rapport}
   \bibitem{goals}
   \bibitem{campanharo}
-  \bibitem{pushdown}
   \bibitem{multigraph}
   \bibitem{manual}
   \bibitem{manualval}
@@ -176,7 +177,7 @@ $s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cau
   \bibitem{hrv2}
   \bibitem{gabor}
   \bibitem{schmidt}
-    Schmidt, R. C., & Turvey, M. T. (1994). Phase-entrainment dynamics of visually coupled rhythmic movements. Biological cybernetics, 70(4), 369-376.
+    Schmidt, R. C., \& Turvey, M. T. (1994). Phase-entrainment dynamics of visually coupled rhythmic movements. Biological cybernetics, 70(4), 369-376.
 \end{thebibliography}
 
 \end{document}
