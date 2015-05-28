@@ -38,6 +38,8 @@ An important analogy exists between the collection of time series data about the
 Measuring synchronization from virtual reality body tracking has many benefits in comparison to other measures, as argued in \cite{blascovich}. To wit, much of the typical tradeoff between experimental control and ecological validity is avoided because the ecological validity can be increased by improved graphics and worlds, but total experimental control is always held. Replicability is much better because the hardware and software can be of standard make. And data can be collected without video markers because the tracking apparatus can collect data by itself. \cite{blascovich}
 
 This project will attempt to use some of the already existing tools for the analysis of time series data on VR time series data, as well as apply some tools which have not previously been used to analyze synchronization in VR time series data of social synchronization in a virtual world.
+
+We can take the problem at hand as trying to find hidden structure in the unlabelled time series we are given, where the hidden structure is any present synchrony. Therefore, this is an unsupervised learning problem. %%%% why?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% this is an unsupervised problem
 %%%% 3 citations each, k?
@@ -46,29 +48,25 @@ This project will attempt to use some of the already existing tools for the anal
 %%%% phase stuff
 %%%% recurrence methods, note already nonlinear?
 %%%% machine learning
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% why it's different than other approaches to measuring interactional synchrony
 
 \subsection{Justification for Nonlinear Measures}
 
 One might wonder why the existing methods of measurement of synchronization do not already serve for the purpose of measuring synchronization of body movements in VR. They do not serve for the same reasons that they do not serve in physical time series. That is, they are fundamentally \emph{linear} measures of the relation that they have to each other, meaning that measuring only correlation implicitly puts in the assumption that an affine transform relates the two signals to each other. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly\cite{pompe}.
 
 \begin{figure}\label{fig:nonlinearity}
-  \includegraphics[scale=0.5]{mi_ex}
+  \begin{center}
+    \includegraphics[scale=0.5]{mi_ex}
+  \end{center}
   \caption{Example of simple nonlinear relation between two variables}
 \end{figure}
 
 One example which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{fig:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables determine each other to a great degree.
 
-In the psychological literature dealing with referential behavior, or behavior which adapts to some process or set of events or plan \cite{pressing}, there exist two theoretical schools towards the modelling of the feedback systems which are presumed to allow synchronization with respect to a referent: information processing theories and dynamical systems theories. Information processing theories tend to deal with participant responses as discrete time series, and fit to data which is compatible with this paradigm (tapping studies, for example). Dynamical systems theories tend to deal with participant responses as trajectories in a phase space and deal with continuous movements as data \cite{repp}. Representative informational theories include ----, and representational dynamical systems theories include ---.
+In the psychological literature dealing with referential behavior, or behavior which adapts to some process or set of events or plan \cite{pressing}, there exist two theoretical schools towards the modelling of the feedback systems which are presumed to allow synchronization with respect to a referent: information processing theories and dynamical systems theories. Information processing theories tend to deal with participant responses as discrete time series, and fit to data which is compatible with this paradigm (tapping studies, for example). Dynamical systems theories tend to deal with participant responses as trajectories in a phase space and deal with continuous movements as data \cite{repp}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% get these cites
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+There exist unifications \cite{pressing} which use the formalism of control theory to include both sorts of models as special cases. In that same paper, some evidence of nonlinearity (specifically, difficulty finding a low correlation dimension and a small but positive Lyapunov exponent, with the caveat that the cardinality of the data was small) which could not be fitted with a linear autoregressive moving average approach was found. \cite{schulze} notes that there are overfitting difficulties with manually incorporating a nonlinear perception detection threshhold into a second-order autoregressive moving average model which is to be fit to data.
 
-There exist unifications \cite{pressing} which use the formalism of control theory to include both sorts of models as special cases. In that same paper, some evidence of nonlinearity (specifically, difficulty finding a low correlation dimension and a small but positive Lyapunov exponent, with the caveat of small amounts of data) which could not be fitted with a linear autoregressive moving average approach was found. \cite{schulze} notes that there are overfitting difficulties with manually incorporating a nonlinear perception detection threshhold into a model which is to be fit to data.
-
-However, in the \emph{measurement} of degrees of synchronization, or of the experimental discernment of synchronization state, it does not necessarily follow that avoiding the assumption of linearity is as intractible as fitting a nonlinear \emph{model} would be. Importantly, there do exist nonlinear models for phase-entrainment dynamics of physiological movement.\cite{schmidt}
+However, in the \emph{measurement} of degrees of synchronization, or of the experimental discernment of synchronization state, it does not necessarily follow that avoiding the assumption of linearity is as intractible as fitting a nonlinear \emph{model} would be.
 
 \subsection{Data Description}
 
@@ -118,7 +116,7 @@ $$I(X, Y) = H(X) + H(Y) - H(X, Y)$$
 
 And one sees that this quantity is symmetric with respect to $X$ and $Y$. Note that two linearly related variables will have a high mutual information \emph{in addition} to a high correlation coefficient.
 
-Because we are dealing with real data, mutual information must be estimated from probability distributions represented as histograms. %%%%% there's a deep problem in histogramitization
+Because we are dealing with real data, mutual information must be estimated from probability distributions represented as histograms. This is problematic in high-dimensional data, owing to the curse of dimensionality\cite{bellman}.%%%%% there's a deep problem in histogramitization
 
 \subsubsection{AMI and CMI}
 
@@ -231,14 +229,18 @@ Here, we will do some exploration on one of the real VR time series samples, and
   \bibitem{hrv1}
   \bibitem{hrv2}
   \bibitem{gabor}
-  \bibitem{schmidt}
-    Schmidt, R. C., \& Turvey, M. T. (1994). Phase-entrainment dynamics of visually coupled rhythmic movements. Biological cybernetics, 70(4), 369-376.
   \bibitem{pressing}
     Pressing, J. (1999). The referential dynamics of cognition and action. Psychological Review, 106(4), 714.
   \bibitem{repp}
     Repp, B. H. (2005). Sensorimotor synchronization: a review of the tapping literature. Psychonomic bulletin \& review, 12(6), 969-992.
   \bibitem{schulze}
     Vorberg, D., \& Schulze, H. H. (2002). Linear phase-correction in synchronization: Predictions, parameter estimation, and simulations. Journal of Mathematical Psychology, 46(1), 56-87.
+  \bibitem{bellman}
+    Bellman, R. (1956). Dynamic programming and Lagrange multipliers. Proceedings of the National Academy of Sciences of the United States of America, 42(10), 767.
+  \bibitem{mates}
+    Mates, J. (1994). A model of synchronization of motor acts to a stimulus sequence. Biological cybernetics, 70(5), 463-473.
+  \bibitem{hary}
+    Hary, D., \& Moore, G. P. (1987). Synchronizing human movement with an external clock source. Biological cybernetics, 56(5-6), 305-311.
 \end{thebibliography}
 
 \end{document}
