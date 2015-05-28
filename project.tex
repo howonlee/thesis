@@ -37,10 +37,10 @@ An important analogy exists between the collection of time series data about the
 
 Measuring synchronization from virtual reality body tracking has many benefits in comparison to other measures, as argued in Blascovich et al. To wit, much of the typical tradeoff between experimental control and ecological validity is avoided because the ecological validity can be increased by improved graphics and worlds, but total experimental control is always held. Replicability is much better because the hardware and software can be of standard make. And data can be collected without video markers because the tracking apparatus can collect data by itself. \cite{blascovich}
 
-\subsection{Justification for Nonlinear Measures}
-
 This project will attempt to use some of the already existing tools for the analysis of time series data on VR time series data, as well as apply some tools which have not previously been used to analyze synchronization in VR time series data of social synchronization in a virtual world.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% this is an unsupervised problem
+%%%% 3 citations each, k?
 %%%% correlation
 %%%% spectral coherence, wavelet
 %%%% phase stuff
@@ -48,6 +48,8 @@ This project will attempt to use some of the already existing tools for the anal
 %%%% machine learning
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% why it's different than other approaches to measuring interactional synchrony
+
+\subsection{Justification for Nonlinear Measures}
 
 One might wonder why the existing methods of measurement of synchronization do not already serve for the purpose of measuring synchronization of body movements in VR. They do not serve for the same reasons that they do not serve in physical time series. That is, they are fundamentally \emph{linear} measures of the relation that they have to each other, meaning that measuring only correlation implicitly puts in the assumption that an affine transform relates the two signals to each other. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly\cite{pompe}.
 
@@ -58,9 +60,10 @@ One might wonder why the existing methods of measurement of synchronization do n
 
 One example which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{fig:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables determine each other to a great degree.
 
-This aspect of the analysis, the question as to the linearity of the measures, is mostly at a lower level than the literature on the role of synchronization in psychological processes. However, there is a distinction which might be of interest, which is the distinction between phase and amplitude synchronizations. %%%%% complete, cite. note that the apparatus is usually the way to distinguish, but not necessary with hilbert transform. this exists in the literature (the sports example)
-
-%%% here would be a good place to put a short summary of the psychology literature on this stuff, from the review
+%%% two theories, discrete and continuous, information processing and dynamical systems
+%%% both unified in the modelling of error dynamics by pressing 1999
+%%% we don't have a model of error correction, we have the synchronization measurement itself. go over the models existing super quick. parametric linear models, with corrections for observed nonlinearities.
+%%% cool kids overfitting arguments for the nonlinearities
 
 Nonlinear analyses have been considered for modelling in the sensorimotor literature, and often rejected because linear models often are a good approximant. However, in the \emph{measurement} of degrees of synchronization, or of the real experimental distinguishing of synchronization state, it does not necessarily follow that avoiding the assumption of linearity is as intractible as fitting a nonlinear \emph{model} would be. Importantly, there do exist nonlinear models for phase-entrainment dynamics of physiological movement.\cite{schmidt}%%%%%%%%%%%%%% justify, cite
 
@@ -111,6 +114,8 @@ Now, if we sample two random variables simultaneously, the relationship has a qu
 $$I(X, Y) = H(X) + H(Y) - H(X, Y)$$
 
 And one sees that this quantity is symmetric with respect to $X$ and $Y$.
+
+%%%%% talk about nice devolution of linearity
 
 \subsubsection{AMI and CMI}
 
@@ -183,17 +188,26 @@ In order to reconstruct the time series from a multigraph of this kind, therefor
 
 \subsection{Toy Model}
 
------------ Here, we will recreate the time series of a trivial sinusoid and then the logistic map and a simple fBM when we do it
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We will investigate the network properties of three toy models of a one-dimensional time series: a simple sinusoid, a chaotic logistic map, and a fractional Brownian motion.
+
+%%% plot sinusoid, logistic map, fbm
+%%% plot spectra of all three
+
+%%% compare spectra to degree distribution
+%%% compare spectra to eigenvectors
+
+%%% take classic physicist measures
 
 \subsection{Real Data}
 
-------------- Here, we will recreate the real VR time series and discuss interesting network theoretic properties (degree distribution, clustering, etc etc)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Here, we will do some exploration on one of the real VR time series samples, and discuss its network properties.
+%%% plot the time series sample
+
+%%% compare spectra to degree distribution
+%%% compare spectra to eigenvectors
+
+%%% take classic physicist measures
+%%% look at synchronization, maybe?
 
 \begin{thebibliography}{}
   \bibitem{syncreview}
