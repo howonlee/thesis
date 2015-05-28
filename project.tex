@@ -23,9 +23,9 @@ Before defining what we mean by synchronization in this context, we note that th
 
 Centuries later, the physical and biological systems which were later found to synchronize include mechanical rotators, lasers, fireflies emitting synchronous patterns of light, synchronous contraction of heart cells, synchronization of human circadian rhythm to a solar light cycle, and synchronous interaction of human beings\cite{syncreview}, \cite{physsync}.
 
-Now, we should define the terms. Interpersonal synchrony is defined in the social science literature as individuals' termporal coordination during social interaction\cite{socialsync}. In the physical sciences, synchronization is defined as an adjustment of rhythms of oscillating objects due to weak interaction, with generalizations possible for chaotic systems, which depend upon a phase of the chaotic system existing\cite{physsync}.
+Now, we should define the terms. Interpersonal synchrony is defined in the social science literature as individuals' temporal coordination during social interaction\cite{socialsync}. In the physical sciences, synchronization is defined as an adjustment of rhythms of oscillating objects due to weak interaction, with generalizations possible for chaotic systems, which depend upon a phase of the chaotic system existing\cite{physsync}.
 
-Although social synchrony is one of many other synchronies, many of which do not necessarily serve a function of any kind, it is observed that social synchrony serves a function in human social groups. There exists evidence that synchronization acts as a cooperation-enducing mechanism\cite{coop}, that it acts to induce rapport\cite{rapport}, and that it in actuality, independent of its effect on rapport, enhances the ability to pursue joint goals in tandem for those who are synchronized\cite{goals}. This suggests immediately that it must be measured in a systematic way, to study phenomena of that kind.
+Although social synchrony is one of many other synchronies, many of which do not necessarily serve a function of any kind, it is observed that social synchrony serves a function in human social groups. There exists evidence that synchronization acts as a cooperation-inducing mechanism\cite{coop}, that it acts to induce rapport\cite{rapport}, and that it in actuality, independent of its effect on rapport, enhances the ability to pursue joint goals in tandem for those who are synchronized\cite{goals}. This suggests immediately that it must be measured in a systematic way, to study phenomena of that kind.
 
 In the beginning of the social synchronization literature, most psychologists did not use the then-developing automated signals processing techniques for the detection and measurement of synchronization, instead using manual methods to detect and rate the presence or absence of synchronization, with trained raters and validated measuring systems\cite{manual}. Although these measurements have been validated\cite{manualval}, they depend upon human raters and therefore are less replicable and less convenient than automated systems.
 
@@ -39,7 +39,7 @@ Measuring synchronization from virtual reality body tracking has many benefits i
 
 This project will attempt to use some of the already existing tools for the analysis of time series data on VR time series data, as well as apply some tools which have not previously been used to analyze synchronization in VR time series data of social synchronization in a virtual world.
 
-We can take the problem at hand as trying to find hidden structure in the unlabelled time series we are given, where the hidden structure is any present synchrony. Therefore, this is an unsupervised learning problem. %%%% why?
+We can take the problem at hand as trying to find hidden structure in the unlabeled time series we are given, where the hidden structure is any present synchrony. Therefore, this is an unsupervised learning problem. %%%% why?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% this is an unsupervised problem
 %%%% 3 citations each, k?
@@ -64,9 +64,9 @@ One example which should help develop a theoretical intuition about nonlinearity
 
 In the psychological literature dealing with referential behavior, or behavior which adapts to some process or set of events or plan \cite{pressing}, there exist two theoretical schools towards the modelling of the feedback systems which are presumed to allow synchronization with respect to a referent: information processing theories and dynamical systems theories. Information processing theories tend to deal with participant responses as discrete time series, and fit to data which is compatible with this paradigm (tapping studies, for example). Dynamical systems theories tend to deal with participant responses as trajectories in a phase space and deal with continuous movements as data \cite{repp}.
 
-There exist unifications \cite{pressing} which use the formalism of control theory to include both sorts of models as special cases. In that same paper, some evidence of nonlinearity (specifically, difficulty finding a low correlation dimension and a small but positive Lyapunov exponent, with the caveat that the cardinality of the data was small) which could not be fitted with a linear autoregressive moving average approach was found. \cite{schulze} notes that there are overfitting difficulties with manually incorporating a nonlinear perception detection threshhold into a second-order autoregressive moving average model which is to be fit to data.
+There exist unifications \cite{pressing} which use the formalism of control theory to include both sorts of models as special cases. In that same paper, some evidence of nonlinearity (specifically, difficulty finding a low correlation dimension and a small but positive Lyapunov exponent, with the caveat that the cardinality of the data was small) which could not be fitted with a linear autoregressive moving average approach was found. \cite{schulze} notes that there are overfitting difficulties with manually incorporating a nonlinear perception detection threshold into a second-order autoregressive moving average model which is to be fit to data.
 
-However, in the \emph{measurement} of degrees of synchronization, or of the experimental discernment of synchronization state, it does not necessarily follow that avoiding the assumption of linearity is as intractible as fitting a nonlinear \emph{model} would be.
+However, in the \emph{measurement} of degrees of synchronization, or of the experimental discernment of synchronization state, it does not necessarily follow that avoiding the assumption of linearity is as intractable as fitting a nonlinear \emph{model} would be.
 
 \subsection{Data Description}
 
@@ -135,12 +135,12 @@ There is more than one way to represent time series data, even given only the da
 
 The frequency domain represents data in terms of the linear combination of simple sine and cosine waves: the analogy often used is that of a chord being hit on a piano, which can be represented with its time domain signal but can also be represented as the amplitude of the individual notes within the chord, which presents a better decomposition of the sound in and of itself. Likewise, we can attempt to decompose our time domain signals into the frequencies of the sinusoids which make it up.
 
-The discrete fourier transform is an essential tool for the further analyses below. It converts a finite discrete sample from the time to the frequency domain in a computable and fast way.
+The discrete Fourier transform is an essential tool for the further analyses below. It converts a finite discrete sample from the time to the frequency domain in a computable and fast way.
 
 ---- add back in the math of DFT
 ---- add back in the coherence measures
 
-%%% short section on math of dft. why is it a _transform_? (aka, show that math). what is power spectrum? what is the relation to the autocorrelation?
+%%% short section on math of DFT. why is it a _transform_? (aka, show that math). what is power spectrum? what is the relation to the autocorrelation?
 
 %%% other people have used spectral methods.
 
@@ -159,8 +159,8 @@ $$s_H(t) = \frac{1}{\pi} PV \int_{-\infty}^{\infty} \frac{s(t)}{t - \tau} d\tau$
 $s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cauchy principal value integral. The Hilbert transform is thus formally equivalent to convolution of $s(t)$ with $\frac{1}{\pi t}$, so it can easily be calculated from the fast Fourier transform.
 
 --- finish the Hilbert transform, add the justification (you can take out the amplitude entirely as a factor, whereas coherence and that sort of thing ends up not doing this).
---- add pretty pictures of unwrapped hilbert transform, and the description of the gammadifference measures
---- -then- add the gamma results and the hilbert transform results themselves
+--- add pretty pictures of unwrapped Hilbert transform, and the description of the gamma difference measures
+--- -then- add the gamma results and the Hilbert transform results themselves
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -173,7 +173,7 @@ $s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cau
 There exists a line of analysis in the complex network literature which aims to convert a discrete or discretized time series into a network. This is advantageous for analysis of time series because there is a deep and well-developed theory of networks: so far, an important result is that different time series result in networks with distinct topological properties, and that these topological properties relate to the time series in some way in addition to being determined by them\cite{campanharo}.
 %%%% cite and quickly describe visibility graph, spectral methods, recurrence graph, other stuff
 
-%%% talk about the fourier basis claims of the visibility graph people, recapitulate them
+%%% talk about the Fourier basis claims of the visibility graph people, recapitulate them
 
 Upon hearing of the mapping from a time series into a network, it might be wondered at if there exists a mapping from a network back into a time series. There does exist some methods to apply the inverse mapping, but none of these are deterministic, meaning that the network topology constrains the set of time series that the mapping can produce from that network, but does not completely determine it\cite{campanharo}. Therefore, it cannot be said that the mapping from time series to networks or back is properly a \emph{transform}.
 
