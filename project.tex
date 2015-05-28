@@ -17,9 +17,6 @@ There exists a literature dealing with time series analysis in the nonlinear sci
 
 %%% acknowledgements go here
 
-%%% target is JB, ASW, SG, each of them at once
-%%% examples should abound, and should be explicated
-
 \section{Introduction}
 
 Before defining what we mean by synchronization in this context, we note that there exists a long history of the study of synchronization outside of social science. Synchronization was first reported in physical systems by Huygens in 1665. He saw that two pendulum clocks in the boat that he was testing the clocks in were mysteriously ticking in unison, and found that the cause was a support beam which connected the clocks, which moved imperceptibly and therefore maintained the synchronization\cite{huygens}.
@@ -38,9 +35,7 @@ As a specific instance of a domain where signals processing techniques are used,
 
 An important analogy exists between the collection of time series data about the physiology of the body in order to assess synchrony and the collection of time series data about the body in order to assess health. Indeed, there exists a literature on the synchronization properties and the time series analysis of heart rate variability which we have derived much inspiration from, not necessarily in the usage of correlational metrics, for which there is a literature dealing in social synchronization, but more sophisticated metrics for which there is not such a literature\cite{hrv1}\cite{hrv2}. The essential premise is that we treat social synchronization as an instance of an abstract problem of physical synchronization, which justifies using measures used by other physiological measurements.
 
------------- vr benefits: experimental control versus ecological validity: but you don't have to choose between the tool, you can escape the lab in a controlled setting with virutal reality. naturalistic vision of vistas and scenes, naturalistic ability to interact socially, although I think this condition was mixed media. really great data collection\cite{blascovich}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Measuring synchronization from virtual reality body tracking has many benefits in comparison to other measures, as argued in Blascovich et al. To wit, much of the typical tradeoff between experimental control and ecological validity is avoided because the ecological validity can be increased by improved graphics and worlds, but total experimental control is always held. Replicability is much better because the hardware and software can be of standard make. And data can be collected without video markers because the tracking apparatus can collect data by itself. \cite{blascovich}
 
 This project will attempt to use some of the already existing tools for the analysis of time series data on VR time series data, as well as apply some tools which have not previously been used to analyze synchronization in VR time series data of social synchronization in a virtual world.
 --- summary of what exists, talk only about the fact that they exist, as a preliminary summary of the essay. we will go deeper and actually formal with this one. correlation, MI in physics, spectral methods, analytic signal, graph analysis
@@ -50,13 +45,9 @@ This project will attempt to use some of the already existing tools for the anal
 \subsection{Justification for Nonlinear Measures}
 %%% why it's different than other approaches to measuring interactional synchrony
 
---- there's a big correlational and phase coherence literature. talk about it, why it exists.
+--- there's a big correlational and phase coherence literature. talk about some representative stuff
 
 --- there's a big machine learning literature, basically talk the book on the synchronization stuff
-
---- there's the large sensorimotor literature, they've never used nonlinear stuff.
-
---- note the physics kids distinction of simple and more complex synchronizations: phase and amplitude synchronizations, those apply to the person as well. so we should not ignore nonlinear measures.
 
 One might wonder why the existing methods of measurement of synchronization do not already serve for the purpose of measuring synchronization of body movements in VR. They do not serve for the same reasons that they do not serve in physical time series. That is, they are fundamentally \emph{linear} measures of the relation that they have to each other, meaning that measuring only correlation implicitly puts in the assumption that an affine transform relates the two signals to each other. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly\cite{pompe}.
 
@@ -67,13 +58,19 @@ One might wonder why the existing methods of measurement of synchronization do n
 
 One example which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{fig:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables determine each other to a great degree.
 
-We will claim that relations of this sort are common in physiological data of all kinds. %%%% recapitulate those arguments from physiological data, cite a lot of the physiological data literature. If neuronal signals are nonlinear and can be related in an MI sort of way, why not the physiological movements which are caused by those neuronal signals?
+Nonlinear analyses have been considered for modelling in the sensorimotor literature, and often rejected because linear models often are a good approximant. However, in the \emph{measurement} of degrees of synchronization, or of the real experimental distinguishing of synchronization state, it does not necessarily follow that avoiding the assumption of linearity is as intractible as fitting a nonlinear \emph{model} would be. %%%%%%%%%%%%%% justify
+
+%%%% already use recurrence methods, talk about the justification that people have there
+
+This aspect of the analysis is mostly at a lower level than the vast literature on the role of synchronization in psychological processes. However, there is a distinction which might be of interest, which is the distinction between phase and amplitude synchronizations. %%%%% complete
+
+In other fields of physiological measurement, the use of nonlinear methods is commonplace.
 
 \subsection{Data Description}
 
 --- This is the place where we will describe the data we got, the ad hoc analyses made previously to fold in the data into small number of dimensions. Discuss the data incompletion problem.
 
---- Why the dimensionality reduction? we suffer from curse of dimensionality
+--- Why the dimensionality reduction? we suffer from curse of dimensionality, might as well do it ad hoc. Note that it's a terribly naive method of dimensionality reduction, but it shouldn't matter because it's consistent between data
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% to do this analysis, we will use the data of a previously published study (as won et al), where synchronization was measured in 50 or so dyads on a kinect.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
