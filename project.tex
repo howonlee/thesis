@@ -185,9 +185,29 @@ In order to construct the labelled multigraph from a time series, the possible s
 
 In order to reconstruct the time series from a multigraph of this kind, therefore, we start from the start node again and consume the adjacency lists starting from the initial elements of the lists, to find the next node to jump to. The intuition is of using the adjacency list like the instructions for a pushdown automaton\cite{pushdown}.
 
-%%%% picture and knuth notation would be nice here
+%%% picture of stack graph creation process
 
-\subsection{Toy Model}
+%%%% turn these into proper figures
+\begin{verbatim}
+def time_series_to_stack_graph(data):
+    stack_graph = collections.defaultdict(list)
+    for x, y in zip(data, data[1:]):
+        graph[x].append(y)
+    return stack_graph, data[0] #is start
+\end{verbatim}
+
+\begin{verbatim}
+def stack_graph_to_time_series(stack_graph, start):
+    curr_idx = start
+    path = [start]
+    while len(stack_graph[curr_idx]) > 0:
+        curr_member = stack_graph[curr_idx].pop(0)
+        curr_idx = curr_member
+        path.append(curr_member)
+    return path
+\end{verbatim}
+
+\subsection{Toy Models}
 
 We will investigate the network properties of three toy models of a one-dimensional time series: a simple sinusoid, a chaotic logistic map, and a fractional Brownian motion.
 
