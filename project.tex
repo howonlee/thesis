@@ -183,25 +183,31 @@ A deterministic transformation from time series to networks and from networks to
 
 In order to construct the labelled multigraph from a time series, the possible states of the time series, $\Sigma = {1 ... N}$ are made into the vertices of the multigraph. Then, starting with the value of the series at $t =1$, the vertices are traversed in the order that the corresponding states are traversed in the time series, and when one leaves a vertex $V_1$ to go to a vertex $V_2$, the identity of $V_2$ is pushed onto the list (like a stack) for the adjacencies of $V_1$.
 
+%%% mention the stack graph construction figure
+
 In order to reconstruct the time series from a multigraph of this kind, therefore, we start from the start node again and consume the adjacency lists starting from the initial elements of the lists, to find the next node to jump to. The intuition is of using the adjacency list like the instructions for a pushdown automaton\cite{pushdown}.
 
-%%% picture of stack graph creation process
+\begin{figure}\label{fig:stackgraph}
+  \begin{center}
+    \includegraphics{stack_graph}
+  \end{center}
+  \caption{Example construction of stack graph}
+\end{figure}
 
-%%%% turn these into proper figures
 \begin{verbatim}
 def time_series_to_stack_graph(data):
-    stack_graph = collections.defaultdict(list)
-    for x, y in zip(data, data[1:]):
+    stack_graph = graph in the form of list of lists
+    for x, y in data bigrams:
         graph[x].append(y)
-    return stack_graph, data[0] #is start
+    return stack_graph, data[0] #must also have information about start
 \end{verbatim}
 
 \begin{verbatim}
 def stack_graph_to_time_series(stack_graph, start):
     curr_idx = start
     path = [start]
-    while len(stack_graph[curr_idx]) > 0:
-        curr_member = stack_graph[curr_idx].pop(0)
+    while length(stack_graph[curr_idx]) > 0:
+        curr_member = stack_graph[curr_idx].pop_head()
         curr_idx = curr_member
         path.append(curr_member)
     return path
