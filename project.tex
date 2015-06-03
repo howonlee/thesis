@@ -189,11 +189,12 @@ In order to reconstruct the time series from a multigraph of this kind, therefor
 
 \begin{figure}\label{fig:stackgraph}
   \begin{center}
-    \includegraphics{stack_graph}
+    \includegraphics{stack_graph_ex}
   \end{center}
   \caption{Example construction of stack graph}
 \end{figure}
 
+\begin{singlespace}
 \begin{verbatim}
 def time_series_to_stack_graph(data):
     stack_graph = graph in the form of list of lists
@@ -201,7 +202,9 @@ def time_series_to_stack_graph(data):
         graph[x].append(y)
     return stack_graph, data[0] #must also have information about start
 \end{verbatim}
+\end{singlespace}
 
+\begin{singlespace}
 \begin{verbatim}
 def stack_graph_to_time_series(stack_graph, start):
     curr_idx = start
@@ -212,6 +215,7 @@ def stack_graph_to_time_series(stack_graph, start):
         path.append(curr_member)
     return path
 \end{verbatim}
+\end{singlespace}
 
 \subsection{Toy Models}
 
