@@ -171,7 +171,7 @@ $s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cau
 
 %%% define discrete time series more clearly
 There exists a line of analysis in the complex network literature which aims to convert a discrete or discretized time series into a network. This is advantageous for analysis of time series because there is a deep and well-developed theory of networks: so far, an important result is that different time series result in networks with distinct topological properties, and that these topological properties relate to the time series in some way in addition to being determined by them\cite{campanharo}.
-%%%% cite and quickly describe visibility graph, spectral methods, recurrence graph, other stuff
+%%%% cite and quickly describe visibility graph, recurrence graph, other stuff from campanharo's review
 
 %%% talk about the Fourier basis claims of the visibility graph people, recapitulate them
 
@@ -189,7 +189,7 @@ In order to reconstruct the time series from a multigraph of this kind, therefor
 
 \begin{figure}\label{fig:stackgraph}
   \begin{center}
-    \includegraphics{stack_graph_ex}
+    \includegraphics[scale=0.6]{stack_graph_ex}
   \end{center}
   \caption{Example construction of stack graph}
 \end{figure}
@@ -221,13 +221,12 @@ def stack_graph_to_time_series(stack_graph, start):
 
 We will investigate the network properties of three toy models of a one-dimensional time series: a simple sinusoid, a chaotic logistic map, and a fractional Brownian motion.
 
-%%% plot sinusoid, logistic map, fbm
+%%% plot sinusoid, logistic map, fbm, just time series
 %%% plot spectra of all three
 
 %%% compare spectra to degree distribution
 %%% compare spectra to eigenvectors
-
-%%% take classic physicist measures
+%%% put down progression of average path length
 
 \subsection{Real Data}
 
@@ -236,9 +235,9 @@ Here, we will do some exploration on one of the real VR time series samples, and
 
 %%% compare spectra to degree distribution
 %%% compare spectra to eigenvectors
+%%% put down progression of average path length
 
-%%% take classic physicist measures
-%%% look at synchronization, maybe?
+%%% discussion
 
 \begin{thebibliography}{}
   \bibitem{syncreview}
