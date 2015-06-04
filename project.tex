@@ -169,21 +169,18 @@ $s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cau
 
 \subsection{Description}
 
-%%% define discrete time series more clearly
-There exists a line of analysis in the complex network literature which aims to convert a discrete or discretized time series into a network. This is advantageous for analysis of time series because there is a deep and well-developed theory of networks: so far, an important result is that different time series result in networks with distinct topological properties, and that these topological properties relate to the time series in some way in addition to being determined by them\cite{campanharo}.
+There exists a line of analysis in the complex network literature which aims to convert a digital time series into a network. This is advantageous for analysis of time series because there is a deep and well-developed theory of networks: so far, an important result is that different time series result in networks with distinct topological properties, and that these topological properties relate to the time series in some way in addition to being determined by them\cite{campanharo}.
 %%%% cite and quickly describe visibility graph, recurrence graph, other stuff from campanharo's review
 
 %%% talk about the Fourier basis claims of the visibility graph people, recapitulate them
 
-Upon hearing of the mapping from a time series into a network, it might be wondered at if there exists a mapping from a network back into a time series. There does exist some methods to apply the inverse mapping, but none of these are deterministic, meaning that the network topology constrains the set of time series that the mapping can produce from that network, but does not completely determine it\cite{campanharo}. Therefore, it cannot be said that the mapping from time series to networks or back is properly a \emph{transform}.
-
-%%% bigger spectral properties, what about homophily, associativity, stuff like that
+Upon hearing of the mapping from a time series into a network, it might be wondered at if there exists a mapping from a network back into a time series. There does exist some methods to apply the inverse mapping, but none of these are deterministic, meaning that the network topology constrains the set of time series that the mapping can produce from that network, but does not completely determine it\cite{campanharo}. This is an undesirable property because the time series cannot be deterministically reproduced from the graph: what is reproduced is only a time series with statistical properties akin to that of the previous time series.
 
 A deterministic transformation from time series to networks and from networks to time series can be made, however, if we allow duplication in the adjacencies of each vertex of the graph (making the graph a multigraph, by many definitions of multigraph\cite{multigraph}), and if we keep the order in which the vertices were travelled in the discrete time series. In addition to this, the start state of the time series must be stored.
 
 In order to construct the labelled multigraph from a time series, the possible states of the time series, $\Sigma = {1 ... N}$ are made into the vertices of the multigraph. Then, starting with the value of the series at $t =1$, the vertices are traversed in the order that the corresponding states are traversed in the time series, and when one leaves a vertex $V_1$ to go to a vertex $V_2$, the identity of $V_2$ is pushed onto the list (like a stack) for the adjacencies of $V_1$.
 
-%%% mention the stack graph construction figure
+%%% mention the stack graph construction figure, mention the code
 
 In order to reconstruct the time series from a multigraph of this kind, therefore, we start from the start node again and consume the adjacency lists starting from the initial elements of the lists, to find the next node to jump to. The intuition is of using the adjacency list like the instructions for a pushdown automaton\cite{pushdown}.
 
@@ -194,16 +191,20 @@ In order to reconstruct the time series from a multigraph of this kind, therefor
   \caption{Example construction of stack graph}
 \end{figure}
 
-\begin{singlespace}
-\begin{verbatim}
-def time_series_to_stack_graph(data):
+\begin{figure}\label{fig:stackconstructionalgo}
+  \begin{singlespace}
+    \begin{verbatim}
+    def time_series_to_stack_graph(data):
     stack_graph = graph in the form of list of lists
     for x, y in data bigrams:
         graph[x].append(y)
     return stack_graph, data[0] #must also have information about start
-\end{verbatim}
-\end{singlespace}
+    \end{verbatim}
+  \end{singlespace}
+  \caption{Construction of stack graph from time series}
+\end{figure}
 
+\begin{figure}\label{fig:timeconstructionalgo}
 \begin{singlespace}
 \begin{verbatim}
 def stack_graph_to_time_series(stack_graph, start):
@@ -216,6 +217,8 @@ def stack_graph_to_time_series(stack_graph, start):
     return path
 \end{verbatim}
 \end{singlespace}
+  \caption{Construction of time series from stack graph}
+\end{figure}
 
 \subsection{Toy Models}
 
@@ -249,7 +252,7 @@ Here, we will do some exploration on one of the real VR time series samples, and
   \bibitem{rapport}
   \bibitem{goals}
   \bibitem{campanharo}
-    Campanharo, A. S., Sirer, M. I., Malmgren, R. D., Ramos, F. M., & Amaral, L. A. N. (2011). Duality between time series and networks. PloS one, 6(8), e23378.
+    Campanharo, A. S., Sirer, M. I., Malmgren, R. D., Ramos, F. M., \& Amaral, L. A. N. (2011). Duality between time series and networks. PloS one, 6(8), e23378.
   \bibitem{multigraph}
   \bibitem{manual}
   \bibitem{manualval}
