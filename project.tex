@@ -13,7 +13,7 @@
 \maketitle
 
 \section{Abstract}
-There exists a literature dealing with time series analysis in the nonlinear sciences in the case of synchronization, or the adjustment of rhythms of oscillating objects to coincide with each other due to weak interaction. We attempt many of these methods in analyzing an instance of the phenomenon of interpersonal synchrony in a virtual environment. We also propose a mapping from time series to networks with a deterministic inverse, useful for exploratory analysis.
+There exists a literature dealing with time series analysis in the nonlinear sciences in the case of synchronization, or the adjustment of rhythms of oscillating objects to coincide with each other due to weak interaction. We attempt some of these methods in analyzing an instance of the phenomenon of interpersonal synchrony in human movement data. We also propose a mapping from time series to networks with a deterministic inverse, useful for exploratory analysis.
 
 %%% acknowledgements go here
 
@@ -220,27 +220,45 @@ def stack_graph_to_time_series(stack_graph, start):
   \caption{Construction of time series from stack graph}
 \end{figure}
 
-\subsection{Toy Models}
+\subsection{Implementation}
 
-We will investigate the network properties of three toy models of a one-dimensional time series: a simple sinusoid, a chaotic logistic map, and a fractional Brownian motion.
+We will investigate the network properties of three toy models of a one-dimensional time series: a simple sinusoid, a chaotic logistic map, and a fractional Brownian motion. We will also investigate them on an exemplary time series from the dataset.
 
-%%% plot sinusoid, logistic map, fbm, just time series
-%%% plot spectra of all three
-
-%%% compare spectra to degree distribution
-%%% compare spectra to eigenvectors
-%%% put down progression of average path length
-
-\subsection{Real Data}
-
-Here, we will do some exploration on one of the real VR time series samples, and discuss its network properties.
-%%% plot the time series sample
-
-%%% compare spectra to degree distribution
-%%% compare spectra to eigenvectors
-%%% put down progression of average path length
-
-%%% discussion
+\begin{figure}\label{fig:stack_ts_plots}
+  \begin{center}
+    \includegraphics[scale=0.6]{plot_sinusoid}
+    \includegraphics[scale=0.6]{plot_logistic}
+    \includegraphics[scale=0.6]{plot_fbm}
+    \includegraphics[scale=0.6]{plot_vr}
+  \end{center}
+  \caption{Plotted series in time domain. From left to right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
+\end{figure}
+\begin{figure}\label{fig:stack_ts_spectra}
+  \begin{center}
+    \includegraphics[scale=0.6]{spectrum_sinusoid}
+    \includegraphics[scale=0.6]{spectrum_logistic}
+    \includegraphics[scale=0.6]{spectrum_fbm}
+  \end{center}
+  \caption{Plotted series in frequency domain. From left to right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
+\end{figure}
+\begin{figure}\label{fig:stack_ts_degree}
+  \begin{center}
+    \includegraphics[scale=0.6]{spectrum_sinusoid}
+    \includegraphics[scale=0.6]{spectrum_logistic}
+    \includegraphics[scale=0.6]{spectrum_fbm}
+  \end{center}
+  \caption{Degree distribution in stack graph. From left to right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
+  %%% let's have cdfs here, friend
+\end{figure}
+\begin{figure}\label{fig:stack_ts_others}
+  \begin{tabular} {c | c c c c}
+    1 & 2 & 3 & 4 & 5 \\ %%% %%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%5
+    %%%%%%%%%%%%%%%%%%%%5 figure out these statistics
+    %%%%%%%%%%%%%%%%%%%%5
+  \end{center}
+  \caption{Other properties of stack graph on toy time series}
+\end{figure}
 
 \begin{thebibliography}{}
   \bibitem{syncreview}
