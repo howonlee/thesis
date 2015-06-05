@@ -68,16 +68,25 @@ However, in the \emph{measurement} of degrees of synchronization, or of the expe
 
 \subsection{Data Description}
 
---- This is the place where we will describe the data we got, the ad hoc analyses made previously to fold in the data into small number of dimensions. Discuss the data incompletion problem.
+Much of the data is from a previous study in the lab, %%% cite andrea's study.
 
---- Why the dimensionality reduction? we suffer from curse of dimensionality, might as well do it ad hoc. Note that it's a terribly naive method of dimensionality reduction, but it shouldn't matter because it's consistent between data
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% to do this analysis, we will use the data of a previously published study (as won et al), where synchronization was measured in 50 or so dyads on a kinect.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+It consists of stuff. %%% what stuff
+
+Notably, to reduce the data and to avoid the curse of dimensionality in some of our analyses, a preprocessing step was done: %%%% what does the preprocessing step look like, why can we do it
+
+A problem with the data is that it was missing in places. Because of the preprocessing which we did, an interpolation would not have been prudent, and therefore the missing data was construed as 0's. %%%% why would it not have been prudent
 
 \section{Time Domain Analysis}
 
 \subsection{Correlation Analysis}
+
+When we say \emph{correlation}, in most cases, we mean \emph{Pearson's correlation}, or the \emph{Pearson product-moment correlation coefficient}.
+
+Three fundamentally correlational analyses were tried: time-lagged cross-correlation, Poincare plots and an ad hoc method based on taking the slopes of the ovals of Poincare plots.
+
+One analysis commonly used with relaxation oscillators (like ECG data) is the Poincare map, not to be confused with the Poincare plot. However, because there are not clear demarcations as to where each oscillation is, the Poincare map is less suited to this dataset and will not be used\cite{poincaremap}.
+
+\subsubsection{Time-Lagged Cross-Correlation}
 
 %%% pull it from andrea's paper
 %% how Andrea did it, basically: 400 windows, Pearson's r. What is correlational analysis, really. What can it do. With a picture. What is autocorrelation. What is cross-correlation.
@@ -90,10 +99,13 @@ However, in the \emph{measurement} of degrees of synchronization, or of the expe
   \caption{Lagged correlation of all data and pointwise averages of lagged correlation}
 \end{figure}
 
-%% describe what a poincare plot is. put an example one in. describe our poincare plot summary measure, and put the summary in
-%% describe and add the cornettos, talk about how they aren't really causative though
+\subsubsection{Poincare Plots}
 
-One analysis commonly used with relaxation oscillators like ECG data is the Poincare map, not to be confused with the Poincare plot. However, because there are not clear demarcations as to where each oscillation is, the Poincare map is less suited to this dataset and will not be used\cite{poincaremap}
+%% describe what a poincare plot is. put an example one in. describe our poincare plot summary measure, and put the summary in
+
+\subsubsection{Ad Hoc Method}
+
+%% describe and add the cornettos, talk about how they aren't really causative though
 
 \subsection{Mutual Information Analysis}
 
@@ -129,7 +141,7 @@ Because we are dealing with real data, mutual information must be estimated from
 
 \subsubsection{AMI and CMI}
 
-Auto-mutual information (AMI) and cross mutual information(CMI) are the mutual information analogs to autocorrelation and cross-correlation. They have the same advantages over the correlation variants as mere mutual information itself has to correlation. Like lagged correlation, mutual information is symmetric with respect to the compared time series.
+Auto mutual information (AMI) and cross mutual information(CMI) are the mutual information analogs to autocorrelation and cross correlation. They have the same advantages over the correlation variants as mere mutual information itself has to correlation. Like lagged correlation, mutual information is symmetric with respect to the compared time series.
 
 %%%% rolled definitions, redo our implementation actually
 
@@ -147,17 +159,15 @@ The frequency domain represents data in terms of the linear combination of simpl
 
 The discrete Fourier transform is an essential tool for the further analyses below. It converts a finite discrete sample from the time to the frequency domain in a computable and fast way.
 
-%%%% what is the fourier basis
-%%%% what is the fft, power spectrum, relation to autocorrelation
-%%%% what is coherence
+A measure of synchronization in the frequency domain is coherence, which is also a linear measure of synchronization, but not in the same basis as correlation. %%% what different properties does it have
+%%%% what is coherence, formally
 %%% other people have used spectral methods.
-%%% why use coherence instead of other measures? strengths, weaknesses
 
-%%% overall graphs, examples, mc graphs
+%%% overall graphs, exemplar graphs, mc graphs
 
 \subsection{Hilbert Transform and $\gamma$}
 
-A signal is called an \emph{analytic signal} if it does not have any negative-frequency components. The Hilbert transform is a way to get the analytic \emph{representation} for a signal in the time domain, which throws away the superfluous information which would be in a spectrum of that signal. This allows the expression of the analytic signal in terms of its time-variant magnitude and phase, allowing a study of the phase in an \emph{unwrapped form}\cite{gabor}.
+A signal is called an \emph{analytic signal} if it does not have any negative-frequency components. The Hilbert transform is a way to get the analytic \emph{representation} for a signal in the time domain, which throws away the superfluous information which would be in a spectrum of that signal. This allows the expression of the analytic signal in terms of its time-variant magnitude and phase, allowing a study of the phase in an \emph{unwrapped form}\cite{gabor}. Why this is important is that it allows the measurement of phase synchronization, or synchronization of phase alone, apart from the more general phenomena of synchronization.
 
 Formally speaking, given that the original signal is $s(t)$, the analytic signal $\zeta$ is:
 
@@ -167,12 +177,11 @@ $$s_H(t) = \frac{1}{\pi} PV \int_{-\infty}^{\infty} \frac{s(t)}{t - \tau} d\tau$
 
 $s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cauchy principal value integral. The Hilbert transform is thus formally equivalent to convolution of $s(t)$ with $\frac{1}{\pi t}$, so it can easily be calculated from the fast Fourier transform.
 
---- finish the Hilbert transform, add the justification (you can take out the amplitude entirely as a factor, whereas coherence and that sort of thing ends up not doing this).
---- add pretty pictures of unwrapped Hilbert transform, and the description of the gamma difference measures
---- -then- add the gamma results and the Hilbert transform results themselves
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% finish the Hilbert transform math
+%%%% add pretty pictures of unwrapped Hilbert transform, and the description of the gamma difference measures
+%%% overall graphs, exemplar graphs, mc graphs
+%%% gamma results in a nice histogram
 
 \section{Deterministic dual between discrete time series and ordered multigraph}
 
@@ -234,28 +243,28 @@ We will investigate the network properties of three toy models of a one-dimensio
 
 \begin{figure}\label{fig:stack_ts_plots}
   \begin{center}
-    \includegraphics[scale=0.6]{plot_sinusoid}
-    \includegraphics[scale=0.6]{plot_logistic}
-    \includegraphics[scale=0.6]{plot_fbm}
-    \includegraphics[scale=0.6]{plot_vr}
+    \includegraphics[scale=0.4]{plot_sinusoid}
+    \includegraphics[scale=0.4]{plot_logistic}
+    \includegraphics[scale=0.4]{plot_fbm}
+    \includegraphics[scale=0.4]{plot_vr}
   \end{center}
   \caption{Plotted series in time domain. From left to right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
 \end{figure}
 \begin{figure}\label{fig:stack_ts_spectra}
   \begin{center}
-    \includegraphics[scale=0.6]{spectrum_sinusoid}
-    \includegraphics[scale=0.6]{spectrum_logistic}
-    \includegraphics[scale=0.6]{spectrum_fbm}
-    \includegraphics[scale=0.6]{spectrum_vr}
+    \includegraphics[scale=0.4]{spectrum_sinusoid}
+    \includegraphics[scale=0.4]{spectrum_logistic}
+    \includegraphics[scale=0.4]{spectrum_fbm}
+    \includegraphics[scale=0.4]{spectrum_vr}
   \end{center}
   \caption{Plotted series in frequency domain. From left to right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
 \end{figure}
 \begin{figure}\label{fig:stack_ts_degree}
   \begin{center}
-    \includegraphics[scale=0.6]{degrees_sinusoid}
-    \includegraphics[scale=0.6]{degrees_logistic}
-    \includegraphics[scale=0.6]{degrees_fbm}
-    \includegraphics[scale=0.6]{degrees_vr}
+    \includegraphics[scale=0.4]{degrees_sinusoid}
+    \includegraphics[scale=0.4]{degrees_logistic}
+    \includegraphics[scale=0.4]{degrees_fbm}
+    \includegraphics[scale=0.4]{degrees_vr}
   \end{center}
   \caption{Equivalent degree distribution in stack graph. From left to right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
 \end{figure}
@@ -269,6 +278,11 @@ We will investigate the network properties of three toy models of a one-dimensio
   \end{tabular}
   \caption{Other properties of stack graph on toy time series}
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% put some discussion here
 
 \begin{thebibliography}{}
   \bibitem{syncreview}
