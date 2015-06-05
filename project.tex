@@ -39,7 +39,7 @@ Measuring synchronization from virtual reality body tracking has many benefits i
 
 This project will attempt to use some of the already existing tools for the analysis of time series data on VR time series data, as well as apply some tools which have not previously been used to analyze synchronization in VR time series data of social synchronization in a virtual world.
 
-We can take the problem at hand as trying to find hidden structure in the unlabeled time series we are given, where the hidden structure is any present synchrony. Therefore, this is an unsupervised learning problem\cite{socialsync}.
+We can take the problem at hand as trying to find hidden structure in the unlabeled time series we are given, where the hidden structure is any present synchrony. Therefore, this can also be construed as an unsupervised learning problem.\cite{socialsync}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% this is an unsupervised problem
 %%%% 3 citations each, k?
@@ -81,8 +81,17 @@ However, in the \emph{measurement} of degrees of synchronization, or of the expe
 
 \subsection{Correlation Analysis}
 
+%%% pull it from andrea's paper
 %% how Andrea did it, basically: 400 windows, Pearson's r. What is correlational analysis, really. What can it do. With a picture. What is autocorrelation. What is cross-correlation.
-%% add the MC plot of correlation. add the summary plot of correlation over the entire dataset.
+
+\begin{figure}\label{fig:lag_correlation}
+  \begin{center}
+    \includegraphics[scale=0.6]{correlation_mc} %%%% import this stuff
+    \includegraphics[scale=0.6]{correlation_summary}
+  \end{center}
+  \caption{Lagged correlation of all data and pointwise averages of lagged correlation}
+\end{figure}
+
 %% describe what a poincare plot is. put an example one in. describe our poincare plot summary measure, and put the summary in
 %% describe and add the cornettos
 
@@ -116,7 +125,7 @@ $$I(X, Y) = H(X) + H(Y) - H(X, Y)$$
 
 And one sees that this quantity is symmetric with respect to $X$ and $Y$. Note that two linearly related variables will have a high mutual information \emph{in addition} to a high correlation coefficient.
 
-Because we are dealing with real data, mutual information must be estimated from probability distributions represented as histograms. This is problematic in high-dimensional data, owing to the curse of dimensionality\cite{bellman}.%%%%% there's a deep problem in histogramitization
+Because we are dealing with real data, mutual information must be estimated from probability distributions represented as histograms. This is problematic in high-dimensional data, owing to the curse of dimensionality\cite{bellman}. Also, it is the case that the measure itself depends upon an intelligent discretization. %%%% Therefore, as according to \the alzheimers paper, which held the buckets for neurological data, we will bucket in the exact same way those kids did
 
 \subsubsection{AMI and CMI}
 
@@ -179,6 +188,10 @@ A deterministic transformation from time series to networks and from networks to
 In order to construct the labelled multigraph from a time series, the possible states of the time series, $\Sigma = {1 ... N}$ are made into the vertices of the multigraph. Then, starting with the value of the series at $t =1$, the vertices are traversed in the order that the corresponding states are traversed in the time series, and when one leaves a vertex $V_1$ to go to a vertex $V_2$, the identity of $V_2$ is pushed onto the list (like a stack) for the adjacencies of $V_1$ (\ref{fig:stackgraph}). Pseudocode is in \ref{fig:stackconstructionalgo} and \ref{fig:timeconstructionalgo}.
 
 In order to reconstruct the time series from a multigraph of this kind, therefore, we start from the start node again and consume the adjacency lists starting from the initial elements of the lists, to find the next node to jump to. The intuition is of using the adjacency list like the instructions for a pushdown automaton\cite{pushdown}.
+
+%%%% %%%%%%%%%%%%%%%%
+%%%% %%%%%%%%%%%%%%%%
+%%%% bucketing matters
 
 \begin{figure}\label{fig:stackgraph}
   \begin{center}
@@ -244,7 +257,6 @@ We will investigate the network properties of three toy models of a one-dimensio
     \includegraphics[scale=0.6]{spectrum_fbm}
   \end{center}
   \caption{Degree distribution in stack graph. From left to right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
-  %%% let's have cdfs here, friend
 \end{figure}
 \begin{figure}\label{fig:stack_ts_others}
   \begin{tabular} {c | c c c c}
