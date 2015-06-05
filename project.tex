@@ -120,9 +120,7 @@ Because we are dealing with real data, mutual information must be estimated from
 
 \subsubsection{AMI and CMI}
 
-Auto-mutual information (AMI) and cross mutual information(CMI) are the mutual information analogues to autocorrelation and cross-correlation. They have the same advantages over the correlation variants as mutual information itself has to correlation. Therefore, they are better measurements for synchronization.
-
-%%% no causality
+Auto-mutual information (AMI) and cross mutual information(CMI) are the mutual information analogues to autocorrelation and cross-correlation. They have the same advantages over the correlation variants as mutual information itself has to correlation. Therefore, they are better measurements for synchronization. However, like lagged correlation, mutual information is symmetric with respect to the compared time series.
 
 ------ actual content of Mutual information analysis goes here.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -178,9 +176,7 @@ Upon hearing of the mapping from a time series into a network, it might be wonde
 
 A deterministic transformation from time series to networks and from networks to time series can be made, however, if we allow duplication in the adjacencies of each vertex of the graph (making the graph a multigraph, by many definitions of multigraph\cite{multigraph}), and if we keep the order in which the vertices were travelled in the discrete time series. In addition to this, the start state of the time series must be stored.
 
-In order to construct the labelled multigraph from a time series, the possible states of the time series, $\Sigma = {1 ... N}$ are made into the vertices of the multigraph. Then, starting with the value of the series at $t =1$, the vertices are traversed in the order that the corresponding states are traversed in the time series, and when one leaves a vertex $V_1$ to go to a vertex $V_2$, the identity of $V_2$ is pushed onto the list (like a stack) for the adjacencies of $V_1$.
-
-%%% mention the stack graph construction figure, mention the code
+In order to construct the labelled multigraph from a time series, the possible states of the time series, $\Sigma = {1 ... N}$ are made into the vertices of the multigraph. Then, starting with the value of the series at $t =1$, the vertices are traversed in the order that the corresponding states are traversed in the time series, and when one leaves a vertex $V_1$ to go to a vertex $V_2$, the identity of $V_2$ is pushed onto the list (like a stack) for the adjacencies of $V_1$ (\ref{fig:stackgraph}). Pseudocode is in \ref{fig:stackconstructionalgo} and \ref{fig:timeconstructionalgo}.
 
 In order to reconstruct the time series from a multigraph of this kind, therefore, we start from the start node again and consume the adjacency lists starting from the initial elements of the lists, to find the next node to jump to. The intuition is of using the adjacency list like the instructions for a pushdown automaton\cite{pushdown}.
 
