@@ -97,7 +97,9 @@ One analysis commonly used with relaxation oscillators like ECG data is the Poin
 
 \subsection{Mutual Information Analysis}
 
-In order to introduce mutual information, we must introduce Shannon information and Shannon entropy.
+Mutual information is important as a measure because it measures the lack of independence of two random variables, as opposed to correlation, which merely measures whether two random variables covary linearly, and therefore is not sensitive to more complex relations as mutual information is.
+
+In order to introduce mutual information, we must introduce Shannon information and Shannon entropy\cite{nnmi}.
 
 Shannon information is defined on a measurement drawn from some set (let the set be discrete, $X \in {1 ... n}$, for ease of notation: there exist continuous analogues). Given that measurement from some set, the Shannon information in bits is defined as:
 
@@ -123,14 +125,19 @@ $$I(X, Y) = H(X) + H(Y) - H(X, Y)$$
 
 And one sees that this quantity is symmetric with respect to $X$ and $Y$. Note that two linearly related variables will have a high mutual information \emph{in addition} to a high correlation coefficient.
 
-Because we are dealing with real data, mutual information must be estimated from probability distributions represented as histograms. This is problematic in high-dimensional data, owing to the curse of dimensionality\cite{bellman}. Also, it is the case that the measure itself depends upon an intelligent discretization. %%%% Therefore, as according to \the alzheimers paper, which held the buckets for neurological data, we will bucket in the exact same way those kids did
+Because we are dealing with real data, mutual information must be estimated from probability distributions represented as histograms. This is problematic in high-dimensional data, owing to the curse of dimensionality\cite{bellman}. Also, it is the case that the measure itself depends upon an intelligent discretization, which does not make the individual buckets of the histogram too sparse with data\cite{alzheimersmi}. We discretized with 64 buckets, which was recommended for a time series similar in size and range as ours by \cite{alzheimersmi}.
 
 \subsubsection{AMI and CMI}
 
-Auto-mutual information (AMI) and cross mutual information(CMI) are the mutual information analogues to autocorrelation and cross-correlation. They have the same advantages over the correlation variants as mutual information itself has to correlation. Therefore, they are better measurements for synchronization. However, like lagged correlation, mutual information is symmetric with respect to the compared time series.
+Auto-mutual information (AMI) and cross mutual information(CMI) are the mutual information analogs to autocorrelation and cross-correlation. They have the same advantages over the correlation variants as mere mutual information itself has to correlation. Like lagged correlation, mutual information is symmetric with respect to the compared time series.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%% ami mc, summary
+%%%% rolled definitions, redo our implementation actually
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% ami west mc, summary
+%%%%%%%%%%%%%%%%%%%%%%%%%%% ami north mc, summary
 %%%%%%%%%%%%%%%%%%%%%%%%%%% cmi mc, summary
+
+%%% discussion: we can clearly see patterns now, and they aren't spurious anymore
 
 \section{Frequency Domain Analysis}
 
@@ -140,14 +147,13 @@ The frequency domain represents data in terms of the linear combination of simpl
 
 The discrete Fourier transform is an essential tool for the further analyses below. It converts a finite discrete sample from the time to the frequency domain in a computable and fast way.
 
----- add back in the math of DFT
----- add back in the coherence measures
-
-%%% short section on math of DFT. why is it a _transform_? (aka, show that math). what is power spectrum? what is the relation to the autocorrelation?
-
+%%%% what is the fourier basis
+%%%% what is the fft, power spectrum, relation to autocorrelation
+%%%% what is coherence
 %%% other people have used spectral methods.
+%%% why use coherence instead of other measures? strengths, weaknesses
 
-%%% why use coherence instead of other measures?
+%%% overall graphs, examples, mc graphs
 
 \subsection{Hilbert Transform and $\gamma$}
 
@@ -246,12 +252,12 @@ We will investigate the network properties of three toy models of a one-dimensio
 \end{figure}
 \begin{figure}\label{fig:stack_ts_degree}
   \begin{center}
-    \includegraphics[scale=0.6]{spectrum_sinusoid}
-    \includegraphics[scale=0.6]{spectrum_logistic}
-    \includegraphics[scale=0.6]{spectrum_fbm}
-    \includegraphics[scale=0.6]{spectrum_vr}
+    \includegraphics[scale=0.6]{degrees_sinusoid}
+    \includegraphics[scale=0.6]{degrees_logistic}
+    \includegraphics[scale=0.6]{degrees_fbm}
+    \includegraphics[scale=0.6]{degrees_vr}
   \end{center}
-  \caption{Degree distribution in stack graph. From left to right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
+  \caption{Equivalent degree distribution in stack graph. From left to right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
 \end{figure}
 \begin{figure}\label{fig:stack_ts_others}
   \begin{tabular} {c | c c c c}
@@ -308,6 +314,8 @@ We will investigate the network properties of three toy models of a one-dimensio
     Gao, Z., \& Jin, N. (2009). Complex network from time series based on phase space reconstruction. Chaos: An Interdisciplinary Journal of Nonlinear Science, 19(3), 033137.
   \bibitem{nnmi}
     Kraskov, A., Stögbauer, H., \& Grassberger, P. (2004). Estimating mutual information. Physical review E, 69(6), 066138.
+  \bibitem{alzheimersmi}
+    Jeong, J., Gore, J. C., \& Peterson, B. S. (2001). Mutual information analysis of the EEG in patients with Alzheimer's disease. Clinical Neurophysiology, 112(5), 827-835.
 \end{thebibliography}
 
 \end{document}
