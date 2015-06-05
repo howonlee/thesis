@@ -8,7 +8,7 @@
 \doublespacing
 \begin{document}
 
-\title{Nonlinear Analysis of VR Synchronization}
+\title{Nonlinear Analysis of Nonverbal Behavior Synchronization}
 \author{Howon Lee}
 \maketitle
 
@@ -40,9 +40,8 @@ Measuring synchronization from virtual reality body tracking has many benefits i
 This project will attempt to use some of the already existing tools for the analysis of time series data on VR time series data, as well as apply some tools which have not previously been used to analyze synchronization in VR time series data of social synchronization in a virtual world.
 
 We can take the problem at hand as trying to find hidden structure in the unlabeled time series we are given, where the hidden structure is any present synchrony. Therefore, this can also be construed as an unsupervised learning problem.\cite{socialsync}.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% 3 citations each, k?
-Lagged correlation is the most common measure of synchrony in social science datasets. We will examine those in this project as a first pass as well as recurrence methods, spectral coherence, Hilbert transforms and transformation into networks. %%% citations
+
+Lagged correlation is the most common measure of synchrony in social science. We will examine those in this project as a first pass. Then, we will go into recurrence methods, spectral coherence, Hilbert transforms and transformation into networks.
 
 \subsection{Justification for Nonlinear Measures}
 
@@ -55,13 +54,17 @@ One might wonder why the existing methods of measurement of synchronization do n
   \caption{Example of simple nonlinear relation between two variables}
 \end{figure}
 
-One example which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{fig:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables determine each other to a great degree.
+One example which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{fig:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables determine each other to a great degree. %%%%% from Anscombe, actually, or Anscombe's intuition
+
+%%%% talk about the relation to lagged correlation, at least.
 
 In the psychological literature dealing with referential behavior, or behavior which adapts to some process or set of events or plan \cite{pressing}, there exist two theoretical schools towards the modelling of the feedback systems which are presumed to allow synchronization with respect to a referent: information processing theories and dynamical systems theories. Information processing theories tend to deal with participant responses as discrete time series, and fit to data which is compatible with this paradigm (tapping studies, for example). Dynamical systems theories tend to deal with participant responses as trajectories in a phase space and deal with continuous movements as data \cite{repp}.
 
 There exist unifications \cite{pressing} which use the formalism of control theory to include both sorts of models as special cases. In that same paper, some evidence of nonlinearity (specifically, difficulty finding a low correlation dimension and a small but positive Lyapunov exponent, with the caveat that the cardinality of the data was small) which could not be fitted with a linear autoregressive moving average approach was found. \cite{schulze} notes that there are overfitting difficulties with manually incorporating a nonlinear perception detection threshold into a second-order autoregressive moving average model which is to be fit to data.
 
 However, in the \emph{measurement} of degrees of synchronization, or of the experimental discernment of synchronization state, it does not necessarily follow that avoiding the assumption of linearity is as intractable as fitting a nonlinear \emph{model} would be.
+
+%%%%%%%%%%%% this has to be expanded to jeremy's specifications
 
 \subsection{Data Description}
 
@@ -170,21 +173,18 @@ $s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cau
 \subsection{Description}
 
 There exists a line of analysis in the complex network literature which aims to convert a digital time series into a network. This is advantageous for analysis of time series because there is a deep and well-developed theory of networks: so far, an important result is that different time series result in networks with distinct topological properties, and that these topological properties relate to the time series in some way in addition to being determined by them\cite{campanharo}.
-%%%% cite and quickly describe visibility graph, recurrence graph, other stuff from campanharo's review
 
-%%% talk about the Fourier basis claims of the visibility graph lacasa paper, recapitulate it, wonder about it
+These methods are based upon a variety of features of the time series, such as correlational structure\cite{correlationgraph}, visibility\cite{lacasa}, phase space reconstruction\cite{phasespacegraph} and many others, which all attempt to differentiate time series by mapping them into networks with divergent properties. Notably, the degree distribution of the visibility graph is claimed in \cite{lacasa} to be related directly to the Fourier power spectrum of the time series, because the visibility graph depends upon the relation of peaks of the time series to one another.
 
 Upon hearing of the mapping from a time series into a network, it might be wondered at if there exists a mapping from a network back into a time series. There does exist some methods to apply the inverse mapping, but none of these are deterministic, meaning that the network topology constrains the set of time series that the mapping can produce from that network, but does not completely determine it\cite{campanharo}. This is an undesirable property because the time series cannot be deterministically reproduced from the graph: what is reproduced is only a time series with statistical properties akin to that of the previous time series.
 
 A deterministic transformation from time series to networks and from networks to time series can be made, however, if we allow duplication in the adjacencies of each vertex of the graph (making the graph a multigraph, by many definitions of multigraph\cite{multigraph}), and if we keep the order in which the vertices were travelled in the discrete time series. In addition to this, the start state of the time series must be stored.
 
-In order to construct the labelled multigraph from a time series, the possible states of the time series, $\Sigma = {1 ... N}$ are made into the vertices of the multigraph. Then, starting with the value of the series at $t =1$, the vertices are traversed in the order that the corresponding states are traversed in the time series, and when one leaves a vertex $V_1$ to go to a vertex $V_2$, the identity of $V_2$ is pushed onto the list (like a stack) for the adjacencies of $V_1$ (\ref{fig:stackgraph}). Pseudocode is in \ref{fig:stackconstructionalgo} and \ref{fig:timeconstructionalgo}.
+In order to construct the labelled multigraph from a time series, the possible states of the time series, $\Sigma = {1 ... N}$ are made into the vertices of the multigraph. Then, starting with the value of the series at $t =1$, the vertices are traversed in the order that the corresponding states are traversed in the time series, and when one leaves a vertex $V_1$ to go to a vertex $V_2$, the identity of $V_2$ is pushed onto the list (like a stack) for the adjacencies of $V_1$ (\ref{fig:stackgraph}). There is pseudocode for this algorithm in \ref{fig:stackconstructionalgo}
 
-In order to reconstruct the time series from a multigraph of this kind, therefore, we start from the start node again and consume the adjacency lists starting from the initial elements of the lists, to find the next node to jump to. The model is very reminiscent of models from symbolic dynamics %%%% cite models from symbolic dynamics, like the campanharo paper did
+In order to reconstruct the time series from a multigraph of this kind, therefore, we start from the start node again and consume the adjacency lists starting from the initial elements of the lists, to find the next node to jump to: this is detailed in \ref{fig:timeconstructionalgo}.
 
-%%%% %%%%%%%%%%%%%%%%
-%%%% %%%%%%%%%%%%%%%%
-%%%% bucketing matters, cite the alzheimers stuff again
+The model is very reminiscent of models from symbolic dynamics, just as \cite{campanharo} mentioned that their analysis was reminiscent of models from symbolic dynamics, because a continuous system is being discretized into a sequence of symbols representing the state of the system, which turn into nodes in a graph. Therefore, another important consideration is the size of the buckets which the time series is to be discretized into. For the examples below we chose bucket size of $0.05$ to discretize the time series, but this was not a principled decision and other methods, such as nearest neighbors, might be investigated, in an analogous way to the discretization of time series for determination of mutual information\cite{nnmi}.
 
 \begin{figure}\label{fig:stackgraph}
   \begin{center}
@@ -300,6 +300,14 @@ We will investigate the network properties of three toy models of a one-dimensio
     Mates, J. (1994). A model of synchronization of motor acts to a stimulus sequence. Biological cybernetics, 70(5), 463-473.
   \bibitem{hary}
     Hary, D., \& Moore, G. P. (1987). Synchronizing human movement with an external clock source. Biological cybernetics, 56(5-6), 305-311.
+  \bibitem{correlationgraph}
+    Zhang, J., \& Small, M. (2006). Complex network from pseudoperiodic time series: Topology versus dynamics. Physical Review Letters, 96(23), 238701.
+  \bibitem{lacasa}
+    Lacasa, L., Luque, B., Ballesteros, F., Luque, J., \& Nuño, J. C. (2008). From time series to complex networks: The visibility graph. Proceedings of the National Academy of Sciences, 105(13), 4972-4975.
+  \bibitem{phasespacegraph}
+    Gao, Z., \& Jin, N. (2009). Complex network from time series based on phase space reconstruction. Chaos: An Interdisciplinary Journal of Nonlinear Science, 19(3), 033137.
+  \bibitem{nnmi}
+    Kraskov, A., Stögbauer, H., \& Grassberger, P. (2004). Estimating mutual information. Physical review E, 69(6), 066138.
 \end{thebibliography}
 
 \end{document}
