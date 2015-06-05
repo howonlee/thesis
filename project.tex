@@ -15,8 +15,6 @@
 \section{Abstract}
 There exists a literature dealing with time series analysis in the nonlinear sciences in the case of synchronization, or the adjustment of rhythms of oscillating objects to coincide with each other due to weak interaction. We attempt some of these methods in analyzing an instance of the phenomenon of interpersonal synchrony in human movement data. We also propose a mapping from time series to networks with a deterministic inverse, useful for exploratory analysis.
 
-%%% acknowledgements go here
-
 \section{Introduction}
 
 Before defining what we mean by synchronization in this context, we note that there exists a long history of the study of synchronization outside of social science. Synchronization was first reported in physical systems by Huygens in 1665. He saw that two pendulum clocks in the boat that he was testing the clocks in were mysteriously ticking in unison, and found that the cause was a support beam which connected the clocks, which moved imperceptibly and therefore maintained the synchronization\cite{physsync}.
@@ -31,21 +29,17 @@ In the beginning of the social synchronization literature, most psychologists di
 
 Given that the signals created by an individual during social interaction have a phase, and social interaction can be construed as a weak interaction between the two individual systems, it should be clear that the definition of interpersonal synchrony given in the social psychological literature is a subset of the definition given in the physics literature. This has often been noted\cite{socialsync}, and has therefore spawned a cross-disciplinary field wherein signals processing techniques are used to measure interpersonal synchrony.
 
-As a specific instance of a domain where signals processing techniques are used, a large problem in synchronization is the definition of the signal itself and its extraction from observations of social interaction. To this end, many methods have been used, including extraction of coordination of movement features and speech features, movement of single and dyadic body parts, image processing techniques and video tracking techniques. %%% cite a bunch of stuff from delaherche cohen paper and my own lit stuff
+As a specific instance of a domain where signals processing techniques are used, a large problem in synchronization is the definition of the signal itself and its extraction from observations of social interaction. To this end, many methods have been used, including extraction of coordination of movement features and speech features\cite{movementfeatures}, movement of single and dyadic body parts\cite{movementparts}, image processing techniques\cite{imageprocessing} and video tracking techniques\cite{videotracking}.
 
 An important analogy exists between the collection of time series data about the physiology of the body in order to assess synchrony and the collection of time series data about the body in order to assess health. Indeed, there exists a literature on the synchronization properties and the time series analysis of heart rate variability which we have derived much inspiration from, not necessarily in the usage of correlational metrics, for which there is a literature dealing in social synchronization, but more sophisticated metrics for which there is not such a literature\cite{hrv1}\cite{hrv2}. The essential premise is that we treat social synchronization as an instance of an abstract problem of physical synchronization, which justifies using measures used by other physiological measurements.
 
-Measuring synchronization from virtual reality body tracking has many benefits in comparison to other measures, as argued in \cite{blascovich}. To wit, much of the typical tradeoff between experimental control and ecological validity is avoided because the ecological validity can be increased by improved graphics and worlds, but total experimental control is always held. Replicability is much better because the hardware and software can be of standard make. And data can be collected without video markers because the tracking apparatus can collect data by itself. \cite{blascovich}
+It is also important to note that there exists a literature which uses various nonlinear methods to track nonverbal synchronization. Recurrence analysis, which is also from nonlinear dynamical systems, provides a graphical representation of the coupling of systems represented by time series, and is used by \cite{webber}, \cite{musicians} and \cite{puzzles} for detecting postural synchronization. \cite{richardson} modelled the interpersonal coordination of two people rocking together on rocking chairs side-by-side as a couppled dynamical system.
 
-This project will attempt to use some of the already existing tools for the analysis of time series data on VR time series data, as well as apply some tools which have not previously been used to analyze synchronization in VR time series data of social synchronization in a virtual world.
+This project will attempt to use some of the already existing tools for the analysis of time series data on nonverbal tracking time series data, as well as apply some tools which have not previously been used to analyze synchronization in such time series data of social synchronization in a virtual world.
 
 We can take the problem at hand as trying to find hidden structure in the unlabeled time series we are given, where the hidden structure is any present synchrony. Therefore, this can also be construed as an unsupervised learning problem.\cite{socialsync}.
 
-Lagged correlation is the most common measure of synchrony in social science. We will examine those in this project as a first pass. Then, we will go into recurrence methods, spectral coherence, Hilbert transforms and transformation into networks.
-
-\subsection{Justification for Nonlinear Measures}
-
-One might wonder why the existing methods of measurement of synchronization do not already serve for the purpose of measuring synchronization of body movements in VR. They do not serve for the same reasons that they do not serve in physical time series. That is, they are fundamentally \emph{linear} measures of the relation that they have to each other, meaning that measuring only correlation implicitly puts in the assumption that an affine transform relates the two signals to each other. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly\cite{pompe}.
+One might wonder why the existing methods of measurement of synchronization do not already serve for the purpose of measuring synchronization of body movements. They do not serve for the same reasons that they do not serve in physical time series. That is, they are fundamentally \emph{linear} measures of the relation that they have to each other, meaning that measuring only correlation implicitly puts in the assumption that an affine transform relates the two signals to each other. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly\cite{pompe}.
 
 \begin{figure}\label{fig:nonlinearity}
   \begin{center}
@@ -54,27 +48,27 @@ One might wonder why the existing methods of measurement of synchronization do n
   \caption{Example of simple nonlinear relation between two variables}
 \end{figure}
 
-One example which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{fig:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables determine each other to a great degree. %%%%% from Anscombe, actually, or Anscombe's intuition
+One example from \cite{anscombe} which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{fig:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables determine each other to a great degree.
 
 %%%% talk about the relation to lagged correlation, at least.
 
-In the psychological literature dealing with referential behavior, or behavior which adapts to some process or set of events or plan \cite{pressing}, there exist two theoretical schools towards the modelling of the feedback systems which are presumed to allow synchronization with respect to a referent: information processing theories and dynamical systems theories. Information processing theories tend to deal with participant responses as discrete time series, and fit to data which is compatible with this paradigm (tapping studies, for example). Dynamical systems theories tend to deal with participant responses as trajectories in a phase space and deal with continuous movements as data \cite{repp}.
+In the psychological literature dealing with referential behavior, or behavior which adapts to some process or set of events or plan \cite{pressing}, there exist two theoretical schools towards the modelling of the feedback systems which are presumed to allow synchronization with respect to a referent: information processing theories and dynamical systems theories. Information processing theories tend to deal with participant responses as discrete time series, and fit to data which is compatible with this paradigm (tapping studies, for example). Dynamical systems theories tend to deal with participant responses as trajectories in a phase space and deal with continuous movements as data \cite{syncreview}.
 
 There exist unifications \cite{pressing} which use the formalism of control theory to include both sorts of models as special cases. In that same paper, some evidence of nonlinearity (specifically, difficulty finding a low correlation dimension and a small but positive Lyapunov exponent, with the caveat that the cardinality of the data was small) which could not be fitted with a linear autoregressive moving average approach was found. \cite{schulze} notes that there are overfitting difficulties with manually incorporating a nonlinear perception detection threshold into a second-order autoregressive moving average model which is to be fit to data.
 
 However, in the \emph{measurement} of degrees of synchronization, or of the experimental discernment of synchronization state, it does not necessarily follow that avoiding the assumption of linearity is as intractable as fitting a nonlinear \emph{model} would be.
 
-%%%%%%%%%%%% this has to be expanded to jeremy's specifications
+Lagged correlation is the most common measure of synchrony in social science. We will examine those in this project as a first pass. Then, we will go into recurrence methods, spectral coherence, Hilbert transforms and transformation into networks.
 
 \subsection{Data Description}
 
 Much of the data is from a previous study in the lab, %%% cite andrea's study.
 
-It consists of stuff. %%% what stuff
+--- don't have a real description of the data handy! somewhat of an oversight
 
 Notably, to reduce the data and to avoid the curse of dimensionality in some of our analyses, a preprocessing step was done: %%%% what does the preprocessing step look like, why can we do it
 
-A problem with the data is that it was missing in places. Because of the preprocessing which we did, an interpolation would not have been prudent, and therefore the missing data was construed as 0's. %%%% why would it not have been prudent
+A problem with the data is that it was missing in places. Because of the differencing in preprocessing which we did, an interpolation would not have been prudent, because an interpolation would have claimed that the original time series had been steadily increasing, which is not necessarily warranted. Therefore the missing data was construed as 0's, because this would be a simple interpolation in the original time series, before preprocessing.
 
 \section{Time Domain Analysis}
 
@@ -82,18 +76,17 @@ A problem with the data is that it was missing in places. Because of the preproc
 
 When we say \emph{correlation}, in most cases, we mean \emph{Pearson's correlation}, or the \emph{Pearson product-moment correlation coefficient}.
 
-Three fundamentally correlational analyses were tried: time-lagged cross-correlation, Poincare plots and an ad hoc method based on taking the slopes of the ovals of Poincare plots.
+Three fundamentally correlational analyses were tried: time-lagged cross-correlation, Poincare plots and an ad hoc method based on taking the slopes of the change of shape of the data-containing ovals of Poincare plots.
 
 One analysis commonly used with relaxation oscillators (like ECG data) is the Poincare map, not to be confused with the Poincare plot. However, because there are not clear demarcations as to where each oscillation is, the Poincare map is less suited to this dataset and will not be used\cite{poincaremap}.
 
 \subsubsection{Time-Lagged Cross-Correlation}
 
-%%% pull it from andrea's paper
-%% how Andrea did it, basically: 400 windows, Pearson's r. What is correlational analysis, really. What can it do. With a picture. What is autocorrelation. What is cross-correlation.
+This part is a re-analysis of the work from \cite{andrea}, but as stated before, only using the head angle. As in \cite{andrea}, Pearson's correlation was taken on a window of 400 frame data points(50 seconds) and then shifted for consecutive lag times according to \cite{framedifferencing}.
 
 \begin{figure}\label{fig:lag_correlation}
   \begin{center}
-    \includegraphics[scale=0.6]{correlation_mc} %%%% import this stuff
+    \includegraphics[scale=0.6]{correlation_mc}
     \includegraphics[scale=0.6]{correlation_summary}
   \end{center}
   \caption{Lagged correlation of all data and pointwise averages of lagged correlation}
@@ -101,9 +94,21 @@ One analysis commonly used with relaxation oscillators (like ECG data) is the Po
 
 \subsubsection{Poincare Plots}
 
-%% describe what a poincare plot is. put an example one in. describe our poincare plot summary measure, and put the summary in
+%% describe what a poincare plot is. describe our poincare plot summary measure, and put the summary in
+
+\begin{figure}\label{fig:poincare_plots}
+  \begin{center}
+    %%\includegraphics[scale=0.6]{poincare_1}
+    %%\includegraphics[scale=0.6]{poincare_2}
+  \end{center}
+  \caption{Example Poincare plots from real data}
+\end{figure}
+
+%%% table of poincare plots goes here
 
 \subsubsection{Ad Hoc Method}
+
+%%% table of the values for ad hoc method here
 
 %% describe and add the cornettos, talk about how they aren't really causative though
 
@@ -143,13 +148,27 @@ Because we are dealing with real data, mutual information must be estimated from
 
 Auto mutual information (AMI) and cross mutual information(CMI) are the mutual information analogs to autocorrelation and cross correlation. They have the same advantages over the correlation variants as mere mutual information itself has to correlation. Like lagged correlation, mutual information is symmetric with respect to the compared time series.
 
-%%%% rolled definitions, redo our implementation actually
+\begin{figure}\label{fig:lag_cmi}
+  \begin{center}
+    \includegraphics[scale=0.4]{cmi_mc}
+    \includegraphics[scale=0.4]{cmi_summary}
+  \end{center}
+  \caption{Lagged cmi}
+\end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%% ami west mc, summary
-%%%%%%%%%%%%%%%%%%%%%%%%%%% ami north mc, summary
-%%%%%%%%%%%%%%%%%%%%%%%%%%% cmi mc, summary
+\begin{figure}\label{fig:lag_ami}
+  \begin{center}
+    \includegraphics[scale=0.4]{wests_ami_mc}
+    \includegraphics[scale=0.4]{norths_ami_mc}
+    \includegraphics[scale=0.4]{wests_ami_summary}
+    \includegraphics[scale=0.4]{norths_ami_summary}
+  \end{center}
+  \caption{Lagged amis: from left to right, west and north, west and north simultaneous and average plot}
+\end{figure}
 
-%%% discussion: we can clearly see patterns now, and they aren't spurious anymore
+As can be seen, there exist clear patterns which stay constant over the lagging process of which time series are more close to each other with cross-mutual information.
+
+%%% example of time series which is caught by mutual information but not by correlation
 
 \section{Frequency Domain Analysis}
 
@@ -175,7 +194,7 @@ $$\zeta(t) = s(t) + js_H(t) = A(t)e^{j\phi(t)}$$
 
 $$s_H(t) = \frac{1}{\pi} PV \int_{-\infty}^{\infty} \frac{s(t)}{t - \tau} d\tau$$
 
-$s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cauchy principal value integral. The Hilbert transform is thus formally equivalent to convolution of $s(t)$ with $\frac{1}{\pi t}$, so it can easily be calculated from the fast Fourier transform.
+$s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cauchy principal value integral. The Hilbert transform is thus formally equivalent to convolution of $s(t)$ with $\frac{1}{\pi t}$, so in practice, it can easily be calculated from the fast Fourier transform.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% finish the Hilbert transform math
@@ -241,6 +260,8 @@ def stack_graph_to_time_series(stack_graph, start):
 
 We will investigate the network properties of three toy models of a one-dimensional time series: a simple sinusoid, a chaotic logistic map, and a fractional Brownian motion. We will also investigate them on an exemplary time series from the dataset.
 
+The concept of a node degree has a natural analog in the stack graph, where the outdegree number for each node is the size of the corresponding stack (as opposed to the cardinality of the set of outgoing edges, which is a set and doesn't have duplicates). However, the clustering coefficient and average shortest path length of the stack graph do not have as immediately obvious meanings and therefore we took those statistics on a graph induced on the stack graph, where each stack had duplicates removed and therefore turned into a set of tails on the outdegree. This ends up being something like the recurrence matrix construction\cite{recurrencegraph} of a network from the time series, and is an information-losing operation.
+
 \begin{figure}\label{fig:stack_ts_plots}
   \begin{center}
     \includegraphics[scale=0.4]{plot_sinusoid}
@@ -257,7 +278,7 @@ We will investigate the network properties of three toy models of a one-dimensio
     \includegraphics[scale=0.4]{spectrum_fbm}
     \includegraphics[scale=0.4]{spectrum_vr}
   \end{center}
-  \caption{Plotted series in frequency domain. From left to right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
+  \caption{Plotted series in frequency domain. From upper left to lower right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
 \end{figure}
 \begin{figure}\label{fig:stack_ts_degree}
   \begin{center}
@@ -266,28 +287,31 @@ We will investigate the network properties of three toy models of a one-dimensio
     \includegraphics[scale=0.4]{degrees_fbm}
     \includegraphics[scale=0.4]{degrees_vr}
   \end{center}
-  \caption{Equivalent degree distribution in stack graph. From left to right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
+  \caption{Equivalent degree distribution in stack graph. From upper left to lower right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
 \end{figure}
 \begin{figure}\label{fig:stack_ts_others}
-  \begin{tabular} {c | c c c c}
+  \begin{tabular} {c || c c c c}
     Measure & Sinusoid & Logistic Map & FBM & Real Data \\
-    Clustering Coefficient & 2 & 3 & 4 & 5 \\ %%% %%%%%%%%%%%
-    Average Path Length & 2 & 3 & 4 & 5 \\ %%% %%%%%%%%%%%
+    Clustering Coefficient & 0.425 & 0.092 & 0.768 & 0.572 \\
+    Average Shortest Path Length & 7.38 & 2.67 & 1.85 & 2.27 \\
   \end{tabular}
-  \caption{Other properties of stack graph on toy time series}
+  \caption{Other properties of stack graph, after flattening}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%% put some discussion here
+%%% acknowledgements go here
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{thebibliography}{}
   \bibitem{syncreview}
+    Repp, B. H. (2005). Sensorimotor synchronization: a review of the tapping literature. Psychonomic bulletin \& review, 12(6), 969-992.
   \bibitem{physsync}
     Pikovsky, A., Rosenblum, M., \& Kurths, J. (2001). A universal concept in nonlinear sciences. Self, 2, 3.
   \bibitem{socialsync}
     Delaherche, E., Chetouani, M., Mahdhaoui, A., Saint-Georges, C., Viaux, S., \& Cohen, D. (2012). Interpersonal synchrony: A survey of evaluation methods across disciplines. Affective Computing, IEEE Transactions on, 3(3), 349-365.
+  \bibitem{andrea}
+    Won, A. S., Bailenson, J. N., Stathatos, S. C., \& Dai, W. (2014). Automatically detected nonverbal behavior predicts creativity in collaborating dyads. Journal of Nonverbal Behavior, 38(3), 389-408.
   \bibitem{coop}
   \bibitem{rapport}
   \bibitem{goals}
@@ -308,8 +332,6 @@ We will investigate the network properties of three toy models of a one-dimensio
     Gabor, D. (1946). Theory of communication. Part 1: The analysis of information. Journal of the Institution of Electrical Engineers-Part III: Radio and Communication Engineering, 93(26), 429-441.
   \bibitem{pressing}
     Pressing, J. (1999). The referential dynamics of cognition and action. Psychological Review, 106(4), 714.
-  \bibitem{repp}
-    Repp, B. H. (2005). Sensorimotor synchronization: a review of the tapping literature. Psychonomic bulletin \& review, 12(6), 969-992.
   \bibitem{schulze}
     Vorberg, D., \& Schulze, H. H. (2002). Linear phase-correction in synchronization: Predictions, parameter estimation, and simulations. Journal of Mathematical Psychology, 46(1), 56-87.
   \bibitem{bellman}
@@ -328,6 +350,29 @@ We will investigate the network properties of three toy models of a one-dimensio
     Kraskov, A., Stögbauer, H., \& Grassberger, P. (2004). Estimating mutual information. Physical review E, 69(6), 066138.
   \bibitem{alzheimersmi}
     Jeong, J., Gore, J. C., \& Peterson, B. S. (2001). Mutual information analysis of the EEG in patients with Alzheimer's disease. Clinical Neurophysiology, 112(5), 827-835.
+  \bibitem{anscombe}
+    Anscombe, F. J. (1973). Graphs in statistical analysis. The American Statistician, 27(1), 17-21.
+  \bibitem{recurrencegraph}
+    Donner, R. V., Zou, Y., Donges, J. F., Marwan, N., \& Kurths, J. (2010). Recurrence networks—a novel paradigm for nonlinear time series analysis. New Journal of Physics, 12(3), 033025.
+  \bibitem{framedifferencing}
+    Paxton, A., \& Dale, R. (2013). Frame-differencing methods for measuring bodily synchrony in conversation. Behavior research methods, 45(2), 329-343.
+  \bibitem{webber}
+    Webber, C. L., \& Zbilut, J. P. (1994). Dynamical assessment of physiological systems and states using recurrence plot strategies. Journal of applied physiology, 76(2), 965-973.
+  \bibitem{musicians}
+    Camurri, A., Varni, G., \& Volpe, G. (2009, September). Measuring entrainment in small groups of musicians. In Affective Computing and Intelligent Interaction and Workshops, 2009. ACII 2009. 3rd International Conference on (pp. 1-4). IEEE.
+  \bibitem{puzzles}
+    Shockley, K., Santana, M. V., \& Fowler, C. A. (2003). Mutual interpersonal postural constraints are involved in cooperative conversation. Journal of Experimental Psychology: Human Perception and Performance, 29(2), 326.
+  \bibitem{richardson}
+    Richardson, M. J., Marsh, K. L., Isenhower, R. W., Goodman, J. R., \& Schmidt, R. C. (2007). Rocking together: Dynamics of intentional and unintentional interpersonal coordination. Human movement science, 26(6), 867-891.
+  \bibitem{movementfeatures}
+    Delaherche, E., \& Chetouani, M. (2010, October). Multimodal coordination: exploring relevant features and measures. In Proceedings of the 2nd international workshop on Social signal processing (pp. 47-52). ACM.
+  \bibitem{movementparts}
+    Oullier, O., De Guzman, G. C., Jantzen, K. J., Lagarde, J., \& Scott Kelso, J. A. (2008). Social coordination dynamics: Measuring human bonding. Social neuroscience, 3(2), 178-192.
+  \bibitem{imageprocessing}
+    Ashenfelter, K. T., Boker, S. M., Waddell, J. R., \& Vitanov, N. (2009). Spatiotemporal symmetry and multifractal structure of head movements during dyadic conversation. Journal of Experimental Psychology: Human Perception and Performance, 35(4), 1072.
+  \bibitem{videotracking}
+    Campbell, N. (2008, December). Multimodal Processing of Discourse Information; The Effect of Synchrony. In ISUC (pp. 12-15).
 \end{thebibliography}
+As a specific instance of a domain where signals processing techniques are used, a large problem in synchronization is the definition of the signal itself and its extraction from observations of social interaction. To this end, many methods have been used, including extraction of coordination of movement features and speech features\cite{movementfeatures}, movement of single and dyadic body parts\cite{movementparts}, image processing techniques\cite{imageprocessing} and video tracking techniques\cite{videotracking}.
 
 \end{document}
