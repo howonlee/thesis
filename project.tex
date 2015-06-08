@@ -50,8 +50,6 @@ One might wonder why the existing methods of measurement of synchronization do n
 
 One example from \cite{anscombe} which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{fig:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables determine each other to a great degree.
 
-%%%% talk about the relation to lagged correlation, at least.
-
 In the psychological literature dealing with referential behavior, or behavior which adapts to some process or set of events or plan \cite{pressing}, there exist two theoretical schools towards the modelling of the feedback systems which are presumed to allow synchronization with respect to a referent: information processing theories and dynamical systems theories. Information processing theories tend to deal with participant responses as discrete time series, and fit to data which is compatible with this paradigm (tapping studies, for example). Dynamical systems theories tend to deal with participant responses as trajectories in a phase space and deal with continuous movements as data \cite{syncreview}.
 
 There exist unifications \cite{pressing} which use the formalism of control theory to include both sorts of models as special cases. In that same paper, some evidence of nonlinearity (specifically, difficulty finding a low correlation dimension and a small but positive Lyapunov exponent, with the caveat that the cardinality of the data was small) which could not be fitted with a linear autoregressive moving average approach was found. \cite{schulze} notes that there are overfitting difficulties with manually incorporating a nonlinear perception detection threshold into a second-order autoregressive moving average model which is to be fit to data.
@@ -120,15 +118,9 @@ Inspection of the plot itself has more value than simply observing the summary m
   \caption{Example Poincare plots from real data}
 \end{figure}
 
-\subsubsection{Ad Hoc Method}
+%\subsubsection{Ad Hoc Method}
 
-Although it would be possible to project the points into the 3-space for the sliding window trigrams of the time series under study and generalize the Poincare plot this way, we attempted instead a more ad hoc approach to studying the progression of the Poincare plot as more points were added.
-
-%%% why?
-%%% how?
-%%% what's wrong with it?
-%%% what can you reason with it?
-%%% why can't you actually reason with it?
+%Although it would be possible to project the points into the 3-space for the sliding window trigrams of the time series under study and generalize the Poincare plot this way, we attempted instead a more ad hoc approach to studying the progression of the Poincare plot as more points were added. The intuition was that of something like a lagged correlation for the 
 %%% this is why we're doing normal kids MI only
 
 %%% table of the values for ad hoc method here
@@ -227,7 +219,12 @@ A derived statistic from the Hilbert transform for actually measuring synchroniz
 
 $$ \gamma = |\langle e^{i(n\phi_x - m\phi_y)} \rangle| $$
 
-%%% gamma results in a nice histogram
+\begin{figure}\label{fig:total_gammas}
+  \begin{center}
+    \includegraphics[scale=0.6]{total_gammas}
+  \end{center}
+  \caption{Histogram of gamma values in dataset}
+\end{figure}
 
 \section{Deterministic dual between discrete time series and ordered multigraph}
 
@@ -316,8 +313,13 @@ The concept of a node degree has a natural analog in the stack graph, where the 
   \end{center}
   \caption{Equivalent degree distribution in stack graph. From upper left to lower right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
 \end{figure}
+\begin{figure}\label{fig:resampled_stack}
+  \begin{center}
+    \includegraphics[scale=0.6]{resampled_stack}
+  \end{center}
+  \caption{Time series transformed back from the stack graph. Note discretization.}
+\end{figure}
 
-%%%% reconstructed stack graph, note distortions from bucketing
 \begin{figure}\label{fig:stack_ts_others}
   \begin{tabular} {c || c c c c}
     Measure & Sinusoid & Logistic Map & FBM & Real Data \\
