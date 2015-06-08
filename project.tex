@@ -31,7 +31,7 @@ Given that the signals created by an individual during social interaction have a
 
 As a specific instance of a domain where signals processing techniques are used, a large problem in synchronization is the definition of the signal itself and its extraction from observations of social interaction. To this end, many methods have been used, including extraction of coordination of movement features and speech features\cite{movementfeatures}, movement of single and dyadic body parts\cite{movementparts}, image processing techniques\cite{imageprocessing} and video tracking techniques\cite{videotracking}.
 
-An important analogy exists between the collection of time series data about the physiology of the body in order to assess synchrony and the collection of time series data about the body in order to assess health. Indeed, there exists a literature on the synchronization properties and the time series analysis of heart rate variability which we have derived much inspiration from, not necessarily in the usage of correlational metrics, for which there is a literature dealing in social synchronization, but more sophisticated metrics for which there is not such a literature\cite{hrv1}\cite{hrv2}. The essential premise is that we treat social synchronization as an instance of an abstract problem of physical synchronization, which justifies using measures used by other physiological measurements.
+An important analogy exists between the collection of time series data about the physiology of the body in order to assess synchrony and the collection of time series data about the body in order to assess health. Indeed, there exists a literature on the synchronization properties and the time series analysis of heart rate variability which we have derived much inspiration from, not necessarily in the usage of correlational metrics, for which there is a literature dealing in social synchronization, but more sophisticated metrics for which there is not such a literature\cite{hrv1}. The essential premise is that we treat social synchronization as an instance of an abstract problem of physical synchronization, which justifies using measures used by other physiological measurements.
 
 It is also important to note that there exists a literature which uses various nonlinear methods to track nonverbal synchronization. Recurrence analysis, which is also from nonlinear dynamical systems, provides a graphical representation of the coupling of systems represented by time series, and is used by \cite{webber}, \cite{musicians} and \cite{puzzles} for detecting postural synchronization. \cite{richardson} modelled the interpersonal coordination of two people rocking together on rocking chairs side-by-side as a coupled dynamical system.
 
@@ -62,7 +62,7 @@ Lagged correlation is the most common measure of synchrony in social science. We
 
 Participants were drawn from the student population at a medium sized West Coast university in the United States and completed the experiment for course credit or \$15 in cash. 110 participants signed informed consent and were paired with another participant to complete a cooperative task.  Of the resulting 56 pairs, eight pairs were discarded due to recording failure, and one partner refused consent, leaving 47 pairs. 13 of these pairs were female/female, 25 of them were female/male, and 9 of them were male/male.
 
-The data was collected as the angle descriptions of a Microsoft Kinect, which outputs many time series for the angle and positions of the heads and body parts of users, and was preprocessed according to \cite{andrea}.
+The data was collected as the angle descriptions of a Microsoft Kinect, which outputs many time series for the angle and positions of the heads and body parts (torso, arms and legs) of users, and was preprocessed according to \cite{andrea}.
 
 A problem with the data is that it was missing in places. Because of the differencing in preprocessing which we did, an interpolation would not have been prudent, because an interpolation would have claimed that the original time series had been steadily increasing, which is not necessarily warranted. Therefore the missing data was construed as 0's, because this would be a simple interpolation in the original time series, before preprocessing.
 
@@ -112,12 +112,12 @@ Inspection of the plot itself has more value than simply observing the summary m
 
 \begin{figure}\label{fig:poincare_plots}
   \begin{center}
-    %%\includegraphics[scale=0.4]{poincare_1}
-    %%\includegraphics[scale=0.4]{poincare_2}
-    %%\includegraphics[scale=0.4]{poincare_3}
-    %%\includegraphics[scale=0.4]{poincare_4}
+    \includegraphics[scale=0.4]{poincare_1}
+    \includegraphics[scale=0.4]{poincare_2}
+    \includegraphics[scale=0.4]{poincare_3}
+    \includegraphics[scale=0.4]{poincare_4}
   \end{center}
-  \caption{Example Poincare plots from real data}
+  \caption{Example Poincare plots from real data. The first two plots plot both series in a pair, the last two plots plot the difference between both series. Nonlinear structure can be seen in the very last plot.}
 \end{figure}
 
 \subsection{Mutual Information Analysis}
@@ -174,16 +174,7 @@ Auto mutual information (AMI) and cross mutual information(CMI) are the mutual i
   \caption{Lagged amis: from left to right, west and north, west and north simultaneous and average plot}
 \end{figure}
 
-As can be seen, there exist clear patterns which stay constant over the lagging process of which time series are more close to each other with cross-mutual information.
-
-\begin{figure}\label{fig:nonlinearity}
-  \begin{center}
-    \includegraphics[scale=0.5]{discrepency_mi} %%%%
-    \includegraphics[scale=0.5]{discrepency_corr} %%%%
-    \includegraphics[scale=0.5]{discrepency_time} %%%%
-  \end{center}
-  \caption{Example of time series which is seen to be synchronized by mutual information but not by time lagged correlation. In order: mutual information, correlation, time domain.}
-\end{figure}
+As can be seen, there exist clear patterns which stay constant over the lagging process of which time series are more close to each other with cross-mutual information, and clear differentiation between pairs.
 
 \section{Frequency Domain}
 
@@ -205,14 +196,14 @@ $$s_H(t) = \frac{1}{\pi} PV \int_{-\infty}^{\infty} \frac{s(t)}{t - \tau} d\tau$
 
 $s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cauchy principal value integral. The Hilbert transform is thus formally equivalent to convolution of $s(t)$ with $\frac{1}{\pi t}$, so in practice, it can easily be calculated from the fast Fourier transform, by taking the fast Fourier transform, taking the Fourier basis coefficients which correspond to negative frequencies with zeros, and taking the inverse Fourier transform of that result.\cite{hilbert}
 
-\begin{figure}\label{fig:poincare_plots}
+\begin{figure}\label{fig:hilbert_plots}
   \begin{center}
-    %%\includegraphics[scale=0.4]{hilbert_1}
-    %%\includegraphics[scale=0.4]{hilbert_2}
-    %%\includegraphics[scale=0.4]{hilbert_3}
-    %%\includegraphics[scale=0.4]{hilbert_4}
+    \includegraphics[scale=0.4]{hilbert_1}
+    \includegraphics[scale=0.4]{hilbert_2}
+    \includegraphics[scale=0.4]{time_1}
+    \includegraphics[scale=0.4]{time_2}
   \end{center}
-  \caption{Example Hilbert transforms from real data}
+  \caption{Example differences of Hilbert transforms from real data and the corresponding time domain data, note the periodicity}
 \end{figure}
 
 A derived statistic from the Hilbert transform for actually measuring synchronization between two instantaneous phases $\phi_x$ and $\phi_y$ is called $\gamma$ and is from \cite{gamma}. It is defined as:
@@ -343,19 +334,25 @@ Thanks to Jeremy Bailenson for advising, and to Andrea Stevenson Won for the dat
   \bibitem{andrea}
     Won, A. S., Bailenson, J. N., Stathatos, S. C., \& Dai, W. (2014). Automatically detected nonverbal behavior predicts creativity in collaborating dyads. Journal of Nonverbal Behavior, 38(3), 389-408.
   \bibitem{coop}
+    Wiltermuth, S. S., \& Heath, C. (2009). Synchrony and cooperation. Psychological science, 20(1), 1-5.
   \bibitem{rapport}
+    Gratch, J., Wang, N., Gerten, J., Fast, E., \& Duffy, R. (2007, January). Creating rapport with virtual agents. In Intelligent Virtual Agents (pp. 125-138). Springer Berlin Heidelberg.
   \bibitem{goals}
+    Semin, G. R., \& Cacioppo, J. T. (2008). Grounding social cognition: Synchronization, entrainment, and coordination. Embodied grounding: Social, cognitive, affective, and neuroscientific approaches, 119-147.
   \bibitem{campanharo}
     Campanharo, A. S., Sirer, M. I., Malmgren, R. D., Ramos, F. M., \& Amaral, L. A. N. (2011). Duality between time series and networks. PloS one, 6(8), e23378.
   \bibitem{multigraph}
+    West, D. B. (2001). Introduction to graph theory (Vol. 2). Upper Saddle River: Prentice hall.
   \bibitem{manual}
+    Feldman, R. (1998). Coding interactive behavior manual. Unpublished manual.
   \bibitem{manualval}
+    Feldman, R. (2007). Parent–infant synchrony and the construction of shared timing; physiological precursors, developmental outcomes, and risk conditions. Journal of Child psychology and Psychiatry, 48(3‐4), 329-354.
   \bibitem{blascovich}
     Loomis, J. M., Blascovich, J. J., \& Beall, A. C. (1999). Immersive virtual environment technology as a basic research tool in psychology. Behavior Research Methods, Instruments, \& Computers, 31(4), 557-564.
   \bibitem{pompe}
+    Pompe, B., Blidh, P., Hoyer, D., \& Eiselt, M. (1998). Using mutual information to measure coupling in the cardiorespiratory system. Engineering in Medicine and Biology Magazine, IEEE, 17(6), 32-39.
   \bibitem{hrv1}
     Kamen, P. W., \& Tonkin, A. M. (1995). Application of the Poincare plot to heart rate variability: a new measure of functional status in heart failure. Australian and New Zealand journal of medicine, 25(1), 18-26.
-  \bibitem{hrv2}
   \bibitem{pushdown}
     Autebert, J. M., Berstel, J., \& Boasson, L. (1997). Context-free languages and pushdown automata. In Handbook of formal languages (pp. 111-174). Springer Berlin Heidelberg.
   \bibitem{gabor}
@@ -413,13 +410,3 @@ Thanks to Jeremy Bailenson for advising, and to Andrea Stevenson Won for the dat
 \end{thebibliography}
 
 \end{document}
-
-%\subsubsection{Ad Hoc Method}
-
-%Although it would be possible to project the points into the 3-space for the sliding window trigrams of the time series under study and generalize the Poincare plot this way, we attempted instead a more ad hoc approach to studying the progression of the Poincare plot as more points were added. The intuition was that of something like a lagged correlation for the 
-%%% this is why we're doing normal kids MI only
-
-%%% table of the values for ad hoc method here
-
-%% describe and add the cornettos, talk about how they aren't really causative though
-
