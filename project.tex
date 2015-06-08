@@ -78,7 +78,7 @@ When we say \emph{correlation}, in most cases, we mean \emph{Pearson's correlati
 
 Three fundamentally correlational analyses were tried: time-lagged cross-correlation, Poincare plots and an ad hoc method based on taking the slopes of the change of shape of the data-containing ovals of Poincare plots.
 
-One analysis commonly used with relaxation oscillators (like ECG data) is the Poincare map, not to be confused with the Poincare plot. However, because there are not clear demarcations as to where each oscillation is, the Poincare map is less suited to this dataset and will not be used\cite{poincaremap}.
+One analysis commonly used with relaxation oscillators (like ECG data) is the Poincare map, not to be confused with the Poincare plot. However, because there are not clear demarcations as to where each oscillation is, the Poincare map is less suited to this dataset and will not be used\cite{physsync}.
 
 \subsubsection{Time-Lagged Cross-Correlation}
 
@@ -94,19 +94,42 @@ This part is a re-analysis of the work from \cite{andrea}, but as stated before,
 
 \subsubsection{Poincare Plots}
 
-%% describe what a poincare plot is. describe our poincare plot summary measure, and put the summary in
+A Poincare plot\cite{hrv1}, not to be confused with the Poincare map, plots the variables in a time series in a certain order to see if there is self-similar structure in that time series. For a time series which exists as a series of variables indexed by time:
+
+$$x_t, x_{t+1}, .... $$
+
+It plots on the first axis the first members of a sliding window bigram composed of the paired members of the time series and on the second axis, the second members of that bigram.
+
+Alternatively and equivalently, a Poincare plot can be thought of as a 2-dimensional reconstructed time series phase space which projects the reconstructed attractor\cite{kamen}.
+
+In the heart rate variability literature, a summary statistic of Poincare plots is often used. Although the time series in the heart rate variability measure is the oscilloscope measure of the heart beat at a certain point in its waveform, we use it also as a summary measure of the Poincare plot. Although the Poincare plot itself is a nonlinear technique, the summary measure is a linear measure\cite{kamen}, defined by fitting an ellipse to the RR interval. The center of the ellipse is held to be at the mean value of the cloud, and the standard deviations of the point cloud with regards to the $x_t = x_{t+1}$ line and the line perpendicular to that line at the center of the point cloud are calculated: those two values, SD1 and SD2, are the measures. These can be related directly to autocovariance\cite{kamen}.
+
+Inspection of the plot itself has more value than simply observing the summary measure, however. The dispersion of points perpendicular to the line $x_t = x_{t+1}$ represents the short-term variability and the dispersion parallel to the line represents a longer-term variability. But this is not the only thing that the Poincare plot can show: intermittent features will show up as small islands of points athwart the main cloud, for example, which the measure doesn't handle well.
+
+%%%% show a plot with intermittent features
+
+%%% histogram of the ellipse measures here
 
 \begin{figure}\label{fig:poincare_plots}
   \begin{center}
     %%\includegraphics[scale=0.6]{poincare_1}
     %%\includegraphics[scale=0.6]{poincare_2}
+    %%\includegraphics[scale=0.6]{poincare_3}
+    %%\includegraphics[scale=0.6]{poincare_4}
   \end{center}
   \caption{Example Poincare plots from real data}
 \end{figure}
 
-%%% table of poincare plots goes here
-
 \subsubsection{Ad Hoc Method}
+
+Although it would be possible to project the points into the 3-space for the sliding window trigrams of the time series under study and generalize the Poincare plot this way, we attempted instead a more ad hoc approach to studying the progression of the Poincare plot as more points were added.
+
+%%% why?
+%%% how?
+%%% what's wrong with it?
+%%% what can you reason with it?
+%%% why can't you actually reason with it?
+%%% this is why we're doing normal kids MI only
 
 %%% table of the values for ad hoc method here
 
@@ -178,7 +201,7 @@ The frequency domain represents data in terms of the linear combination of simpl
 
 The discrete Fourier transform is an essential tool for the further analyses below. It converts a finite discrete sample from the time to the frequency domain in a computable and fast way.
 
-A measure of synchronization in the frequency domain is coherence, which is also a linear measure of synchronization, but not in the same basis as correlation. %%% what different properties does it have
+A measure of synchronization in the frequency domain is coherence, which is also a linear measure of synchronization, just not in the time basis. It is different from normal lagged correlation because %%% what different properties does it have
 %%%% what is coherence, formally
 %%% other people have used spectral methods.
 
@@ -194,12 +217,16 @@ $$\zeta(t) = s(t) + js_H(t) = A(t)e^{j\phi(t)}$$
 
 $$s_H(t) = \frac{1}{\pi} PV \int_{-\infty}^{\infty} \frac{s(t)}{t - \tau} d\tau$$
 
-$s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cauchy principal value integral. The Hilbert transform is thus formally equivalent to convolution of $s(t)$ with $\frac{1}{\pi t}$, so in practice, it can easily be calculated from the fast Fourier transform.
+$s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cauchy principal value integral. The Hilbert transform is thus formally equivalent to convolution of $s(t)$ with $\frac{1}{\pi t}$, so in practice, it can easily be calculated from the fast Fourier transform, by taking the fast Fourier transform, taking the Fourier basis coefficients which correspond to negative frequencies with zeros, and taking the inverse Fourier transform of that result.\cite{hilbert}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% finish the Hilbert transform math
-%%%% add pretty pictures of unwrapped Hilbert transform, and the description of the gamma difference measures
+This determines uniquely the unwrapped phase that we were looking for, but only upon the assumption that this is a narrow-band signal, meaning one without too much frequency in a broad band. In our data, this may not be the case, so this analysis must also be taken with a grain of salt. %%%%% graph a spectrum of our fbm, refer that shit
+
 %%% overall graphs, exemplar graphs, mc graphs
+
+A derived statistic from the Hilbert transform for actually measuring synchronization between two instantaneous phases $\phi_x$ and $\phi_y$ is called $\gamma$ and is from \cite{gamma}. It is defined as:
+
+$$ \gamma = |\langle e^{i(n\phi_x - m\phi_y)} \rangle| $$
+
 %%% gamma results in a nice histogram
 
 \section{Deterministic dual between discrete time series and ordered multigraph}
@@ -289,6 +316,8 @@ The concept of a node degree has a natural analog in the stack graph, where the 
   \end{center}
   \caption{Equivalent degree distribution in stack graph. From upper left to lower right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
 \end{figure}
+
+%%%% reconstructed stack graph, note distortions from bucketing
 \begin{figure}\label{fig:stack_ts_others}
   \begin{tabular} {c || c c c c}
     Measure & Sinusoid & Logistic Map & FBM & Real Data \\
@@ -323,8 +352,8 @@ The concept of a node degree has a natural analog in the stack graph, where the 
   \bibitem{blascovich}
     Loomis, J. M., Blascovich, J. J., \& Beall, A. C. (1999). Immersive virtual environment technology as a basic research tool in psychology. Behavior Research Methods, Instruments, \& Computers, 31(4), 557-564.
   \bibitem{pompe}
-  \bibitem{poincaremap}
   \bibitem{hrv1}
+    Kamen, P. W., \& Tonkin, A. M. (1995). Application of the Poincare plot to heart rate variability: a new measure of functional status in heart failure. Australian and New Zealand journal of medicine, 25(1), 18-26.
   \bibitem{hrv2}
   \bibitem{pushdown}
     Autebert, J. M., Berstel, J., \& Boasson, L. (1997). Context-free languages and pushdown automata. In Handbook of formal languages (pp. 111-174). Springer Berlin Heidelberg.
@@ -372,7 +401,12 @@ The concept of a node degree has a natural analog in the stack graph, where the 
     Ashenfelter, K. T., Boker, S. M., Waddell, J. R., \& Vitanov, N. (2009). Spatiotemporal symmetry and multifractal structure of head movements during dyadic conversation. Journal of Experimental Psychology: Human Perception and Performance, 35(4), 1072.
   \bibitem{videotracking}
     Campbell, N. (2008, December). Multimodal Processing of Discourse Information; The Effect of Synchrony. In ISUC (pp. 12-15).
+  \bibitem{gamma}
+    Lachaux, J. P., Rodriguez, E., Martinerie, J., \& Varela, F. J. (1999). Measuring phase synchrony in brain signals. Human brain mapping, 8(4), 194-208.
+  \bibitem{hilbert}
+    Hahn, S. L. (1996). Hilbert transforms in signal processing. Artech House on Demand.
+  \bibitem{kamen}
+    Brennan, M., Palaniswami, M., \& Kamen, P. (2001). Do existing measures of Poincare plot geometry reflect nonlinear features of heart rate variability?. Biomedical Engineering, IEEE Transactions on, 48(11), 1342-1347.
 \end{thebibliography}
-As a specific instance of a domain where signals processing techniques are used, a large problem in synchronization is the definition of the signal itself and its extraction from observations of social interaction. To this end, many methods have been used, including extraction of coordination of movement features and speech features\cite{movementfeatures}, movement of single and dyadic body parts\cite{movementparts}, image processing techniques\cite{imageprocessing} and video tracking techniques\cite{videotracking}.
 
 \end{document}
