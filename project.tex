@@ -60,7 +60,7 @@ Lagged correlation is the most common measure of synchrony in social science. We
 
 \subsection{Data Description}
 
-Much of the data is from a previous study in the lab, %%% cite andrea's study.
+Participants were drawn from the student population at a medium sized West Coast university in the United States and completed the experiment for course credit or \$15 in cash.  110 participants signed informed consent and were paired with another participant to complete a cooperative task.  Of the resulting 56 pairs, eight pairs were discarded due to recording failure, and one partner refused consent, leaving 47 pairs. 13 of these pairs were female/female, 25 of them were female/male, and 9 of them were male/male.
 
 --- don't have a real description of the data handy! somewhat of an oversight
 
@@ -104,12 +104,17 @@ In the heart rate variability literature, a summary statistic of Poincare plots 
 
 Inspection of the plot itself has more value than simply observing the summary measure, however. The dispersion of points perpendicular to the line $x_t = x_{t+1}$ represents the short-term variability and the dispersion parallel to the line represents a longer-term variability. But this is not the only thing that the Poincare plot can show: intermittent features will show up as small islands of points athwart the main cloud, for example, which the measure doesn't handle well.
 
-%%%% show a plot with intermittent features
-
-%%% histogram of the ellipse measures here
+\begin{figure}\label{fig:ellipse_histogram}
+  \begin{center}
+    \includegraphics[scale=0.6]{sd1_histogram}
+    \includegraphics[scale=0.6]{sd2_histogram}
+  \end{center}
+  \caption{Histogram of SD1 and SD2 in dataset}
+\end{figure}
 
 \begin{figure}\label{fig:poincare_plots}
   \begin{center}
+    %%%% show a plot with intermittent features
     %%\includegraphics[scale=0.6]{poincare_1}
     %%\includegraphics[scale=0.6]{poincare_2}
     %%\includegraphics[scale=0.6]{poincare_3}
@@ -117,15 +122,6 @@ Inspection of the plot itself has more value than simply observing the summary m
   \end{center}
   \caption{Example Poincare plots from real data}
 \end{figure}
-
-%\subsubsection{Ad Hoc Method}
-
-%Although it would be possible to project the points into the 3-space for the sliding window trigrams of the time series under study and generalize the Poincare plot this way, we attempted instead a more ad hoc approach to studying the progression of the Poincare plot as more points were added. The intuition was that of something like a lagged correlation for the 
-%%% this is why we're doing normal kids MI only
-
-%%% table of the values for ad hoc method here
-
-%% describe and add the cornettos, talk about how they aren't really causative though
 
 \subsection{Mutual Information Analysis}
 
@@ -211,9 +207,7 @@ $$s_H(t) = \frac{1}{\pi} PV \int_{-\infty}^{\infty} \frac{s(t)}{t - \tau} d\tau$
 
 $s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cauchy principal value integral. The Hilbert transform is thus formally equivalent to convolution of $s(t)$ with $\frac{1}{\pi t}$, so in practice, it can easily be calculated from the fast Fourier transform, by taking the fast Fourier transform, taking the Fourier basis coefficients which correspond to negative frequencies with zeros, and taking the inverse Fourier transform of that result.\cite{hilbert}
 
-This determines uniquely the unwrapped phase that we were looking for, but only upon the assumption that this is a narrow-band signal, meaning one without too much frequency in a broad band. In our data, this may not be the case, so this analysis must also be taken with a grain of salt. %%%%% graph a spectrum of our fbm, refer that shit
-
-%%% overall graphs, exemplar graphs, mc graphs
+%%% exemplar graphs
 
 A derived statistic from the Hilbert transform for actually measuring synchronization between two instantaneous phases $\phi_x$ and $\phi_y$ is called $\gamma$ and is from \cite{gamma}. It is defined as:
 
@@ -412,3 +406,13 @@ The concept of a node degree has a natural analog in the stack graph, where the 
 \end{thebibliography}
 
 \end{document}
+
+%\subsubsection{Ad Hoc Method}
+
+%Although it would be possible to project the points into the 3-space for the sliding window trigrams of the time series under study and generalize the Poincare plot this way, we attempted instead a more ad hoc approach to studying the progression of the Poincare plot as more points were added. The intuition was that of something like a lagged correlation for the 
+%%% this is why we're doing normal kids MI only
+
+%%% table of the values for ad hoc method here
+
+%% describe and add the cornettos, talk about how they aren't really causative though
+
