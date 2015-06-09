@@ -50,11 +50,7 @@ One might wonder why the existing methods of measurement of synchronization do n
 
 One example from \cite{anscombe} which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{fig:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables determine each other to a great degree.
 
-%%%%%%%%%%%%%%%%%%%%%%%%5
-%%%%%%%%%%%%%%%%%%%%%%%%5
-%%%%%%%%%%%%%%%%%%%%%%%%5
-%%%%%%%%%%%%%%%%%%%%%%%%5
-%%%%%%%%%%%% semantic reference, please
+An analogous natural phenomenon is in past tense acquisition in language acquisition, where there is a distinct nonlinear effect much like the one in \ref{fig:nonlinearity} in the developmental trajectory, interpreting $x$ as time and $y$ as number of mistakes. That is, children, when learning the past tense, first learn the rules for a past tense inflection ("go" to "went"), then produce overregularizations ("go" to "goed"), and then revert back to the proper usage of the rules. If past tense acquisition was a linear system, children would uniformly get better at the usage of the past tense at the same rate, but this is not observed. It has often been noted that this phenomenon, if it is to be modelled, must be modelled with a nonlinear model, such as a connectionist artificial neural network. %%%% cite the child psych handbook, cite mcclelland
 
 In the psychological literature dealing with referential behavior, or behavior which adapts to some process or set of events or plan \cite{pressing}, there exist two theoretical schools towards the modelling of the feedback systems which are presumed to allow synchronization with respect to a referent: information processing theories and dynamical systems theories. Information processing theories tend to deal with participant responses as discrete time series, and fit to data which is compatible with this paradigm (tapping studies, for example). Dynamical systems theories tend to deal with participant responses as trajectories in a phase space and deal with continuous movements as data \cite{syncreview}.
 
@@ -72,7 +68,13 @@ A problem with the data is that it was missing in places. Because of the differe
 
 \subsection{Roadmap of Analyses}
 
-Lagged correlation is the most common measure of synchrony in social science. We will examine those in this project as a first pass. Then, we will go into recurrence methods, Hilbert transforms and transformation into networks. %% cite everything
+Lagged correlation is the most common measure of synchrony in social science. We will examine those in this project as a first pass. Then, we will go into the Hilbert transform phase locking measure, mutual information and then transformation into networks. %% cite lagged correlation claim, hilbert transform, mutual information
+
+The Hilbert transform phase locking measure is different from the correlation measure because it discounts entirely the effect of the amplitude of the synchronization of the signal, instead measuring phase synchronization only. The cross-mutual information measure is different from the correlation measure because it takes into account \emph{every} higher-order interaction behind the variables, not just the first-order ones as correlation does. %%% cite claims about hilbert transform phase locking, cite mutual information claims
+
+In order to evaluate the differences between these two measures and correlation, we use hypothesis testing, specifically the Kolmogorov-Smirnov test on the empirical distributions of the \emph{measures}. We do find a difference, indicating that the measures do not degenerate into simple correlation.%%% cite ks test
+
+The transformation of time series into networks is a more exploratory analysis, but is interesting in that there does not seem to be a deterministic reverse transformation in the literature, with the caveat that the multigraph formalism makes the semantics of the transformation very easy, almost trivial.
 
 \section{Time Domain Analysis}
 
@@ -98,7 +100,7 @@ This part is a re-analysis of the work from \cite{andrea}, but as stated before,
 
 \subsubsection{Poincare Plots}
 
-A Poincare plot\cite{hrv1}, not to be confused with the Poincare map, plots the variables in a time series in a certain order to see if there is self-similar structure in that time series. For a time series which exists as a series of variables indexed by time:
+A Poincare plot\cite{hrv1}, not to be confused with the Poincare map, plots the variables in a time series in a certain order to see if there is self-similar structure in that time series. If there is self-similar structure in the time series, this is a clear statement that there exists \emph{nonlinear} structure in the time series\cite{hrv1}. For a time series which exists as a series of variables indexed by time:
 
 $$x_t, x_{t+1}, .... $$
 
@@ -194,6 +196,8 @@ The fast Fourier transform\cite{fft} is an essential tool for the further analys
 
 \subsection{Hilbert Transform and $\gamma$}
 
+%%%% citation for the hilbert transform synchronization usage
+
 A signal is called an \emph{analytic signal} if it does not have any negative-frequency components. The Hilbert transform is a way to get the analytic \emph{representation} for a signal in the time domain, which throws away the superfluous information which would be in a spectrum of that signal. This allows the expression of the analytic signal in terms of its time-variant magnitude and phase, allowing a study of the phase in an \emph{unwrapped form}\cite{gabor}. Why this is important is that it allows the measurement of phase synchronization, or synchronization of phase alone, apart from the more general phenomena of synchronization.
 
 Formally speaking, given that the original signal is $s(t)$, the analytic signal $\zeta$ is:
@@ -229,15 +233,13 @@ $$ \gamma = |\langle e^{i(n\phi_x - m\phi_y)} \rangle| $$
 
 In this section we will do a comparison of the linear correlation measure to the two nonlinear synchronization measures which are expressible in a summary measure format (remembering that the summar measures presented of the Poincare plots are actually linearly related to the autocovariance)\cite{kamen}. These are the $\gamma$ static taken on the analytic signal and the cross-mutual information.
 
-This comparison will be done with a Kolmogorov-Smirnov(KS) test on the scaled histograms of each measure on the dataset. The KS test is valid here because if the empirical distributions are different, then this is really a statement that the two measures under comparison are getting different measures from correlation. In the case of the cross-mutual information, it must be getting something \emph{more} than correlation, because that measure degenerates into correlation in the case where it compares two Gaussians.%%% cite for KS test, degeneration of cmi
+This comparison will be done with a Kolmogorov-Smirnov(KS) test on the scaled and normalized histograms of each measure on the dataset. The KS test is valid here because if the empirical distributions are different, then this is really a statement that the two measures under comparison are getting different measures from correlation. Desirably, the KS test only uses the relative distribution of the data. 
 
-It is always the case that high correlation leads to a high mutual information score, because correlation can be represented as a degeneration of the mutual information score.
+Comparing the distribution of correlations and the distribution of the cross-mutual information measure, the KS test gives %%%
+Comparing the distribution of correlations and the distribution of the $\gamma$ measure, the KS test gives %%%
+Comparing the distribution of cross-mutual information and the distribution of the $\gamma$ measure, the KS test gives %%%
 
-%%%%% here would be a good place for that MI thing
-
-%%%% KS statistics, friend
-
-%%%% oversampling concerns, basically
+Therefore, the null hypothesis, that each pair of measures is of the same distribution, can be rejected.
 
 \section{Deterministic dual between discrete time series and ordered multigraph}
 
