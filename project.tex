@@ -13,7 +13,7 @@
 \maketitle
 
 \section{Abstract}
-There exists a literature dealing with time series analysis in the nonlinear sciences in the case of synchronization, or the adjustment of rhythms of oscillating objects to coincide with each other due to weak interaction. We attempt some of these methods in analyzing an instance of the phenomenon of interpersonal synchrony in human movement data. We also propose a mapping from time series to networks with a deterministic inverse, useful for exploratory analysis.
+There exists a literature dealing with time series analysis in the nonlinear sciences in the case of synchronization, or the adjustment of rhythms of oscillating objects to coincide with each other due to weak interaction. We attempt some of these methods in analyzing an instance of the phenomenon of interpersonal synchrony in human movement data, and find a statistically significant difference between these measures, which may point to different use cases for these measures. We also propose a mapping from time series to networks with a deterministic inverse, useful for exploratory analysis.
 
 \section{Introduction}
 
@@ -50,13 +50,17 @@ One might wonder why the existing methods of measurement of synchronization do n
 
 One example from \cite{anscombe} which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{fig:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables determine each other to a great degree.
 
+%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%% semantic reference, please
+
 In the psychological literature dealing with referential behavior, or behavior which adapts to some process or set of events or plan \cite{pressing}, there exist two theoretical schools towards the modelling of the feedback systems which are presumed to allow synchronization with respect to a referent: information processing theories and dynamical systems theories. Information processing theories tend to deal with participant responses as discrete time series, and fit to data which is compatible with this paradigm (tapping studies, for example). Dynamical systems theories tend to deal with participant responses as trajectories in a phase space and deal with continuous movements as data \cite{syncreview}.
 
 There exist unifications \cite{pressing} which use the formalism of control theory to include both sorts of models as special cases. In that same paper, some evidence of nonlinearity (specifically, difficulty finding a low correlation dimension and a small but positive Lyapunov exponent, with the caveat that the cardinality of the data was small) which could not be fitted with a linear autoregressive moving average approach was found. \cite{schulze} notes that there are overfitting difficulties with manually incorporating a nonlinear perception detection threshold into a second-order autoregressive moving average model which is to be fit to data.
 
 However, in the \emph{measurement} of degrees of synchronization, or of the experimental discernment of synchronization state, it does not necessarily follow that avoiding the assumption of linearity is as intractable as fitting a nonlinear \emph{model} would be.
-
-Lagged correlation is the most common measure of synchrony in social science. We will examine those in this project as a first pass. Then, we will go into recurrence methods, spectral coherence, Hilbert transforms and transformation into networks.
 
 \subsection{Data Description}
 
@@ -65,6 +69,10 @@ Participants were drawn from the student population at a medium sized West Coast
 The data was collected as the angle descriptions of a Microsoft Kinect, which outputs many time series for the angle and positions of the heads and body parts (torso, arms and legs) of users, and was preprocessed according to \cite{andrea}.
 
 A problem with the data is that it was missing in places. Because of the differencing in preprocessing which we did, an interpolation would not have been prudent, because an interpolation would have claimed that the original time series had been steadily increasing, which is not necessarily warranted. Therefore the missing data was construed as 0's, because this would be a simple interpolation in the original time series, before preprocessing.
+
+\subsection{Roadmap of Analyses}
+
+Lagged correlation is the most common measure of synchrony in social science. We will examine those in this project as a first pass. Then, we will go into recurrence methods, Hilbert transforms and transformation into networks. %% cite everything
 
 \section{Time Domain Analysis}
 
@@ -216,6 +224,20 @@ $$ \gamma = |\langle e^{i(n\phi_x - m\phi_y)} \rangle| $$
   \end{center}
   \caption{Histogram of gamma values in dataset}
 \end{figure}
+
+\section{Comparison of Measures}
+
+In this section we will do a comparison of the linear correlation measure to the two nonlinear synchronization measures which are expressible in a summary measure format (remembering that the summar measures presented of the Poincare plots are actually linearly related to the autocovariance)\cite{kamen}. These are the $\gamma$ static taken on the analytic signal and the cross-mutual information.
+
+This comparison will be done with a Kolmogorov-Smirnov(KS) test on the scaled histograms of each measure on the dataset. The KS test is valid here because if the empirical distributions are different, then this is really a statement that the two measures under comparison are getting different measures from correlation. In the case of the cross-mutual information, it must be getting something \emph{more} than correlation, because that measure degenerates into correlation in the case where it compares two Gaussians.%%% cite for KS test, degeneration of cmi
+
+It is always the case that high correlation leads to a high mutual information score, because correlation can be represented as a degeneration of the mutual information score.
+
+%%%%% here would be a good place for that MI thing
+
+%%%% KS statistics, friend
+
+%%%% oversampling concerns, basically
 
 \section{Deterministic dual between discrete time series and ordered multigraph}
 
