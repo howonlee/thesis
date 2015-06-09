@@ -13,7 +13,7 @@
 \maketitle
 
 \section{Abstract}
-There exists a literature dealing with time series analysis in the nonlinear sciences in the case of synchronization, or the adjustment of rhythms of oscillating objects to coincide with each other due to weak interaction. We attempt some of these methods in analyzing an instance of the phenomenon of interpersonal synchrony in human movement data, and find a statistically significant difference between these measures, which may point to different use cases for these measures. We also propose a mapping from time series to networks with a deterministic inverse, useful for exploratory analysis.
+There exists a literature dealing with time series analysis in the nonlinear sciences in the case of synchronization, or the adjustment of rhythms of oscillating objects to coincide with each other due to weak interaction. We attempt some of these methods in analyzing an instance of the phenomenon of interpersonal synchrony in human movement data and find a statistically significant difference between these measures, which may point to different use cases for these measures. We also propose a mapping from time series to networks with a deterministic inverse, useful for exploratory analysis.
 
 \section{Introduction}
 
@@ -233,16 +233,18 @@ $$ \gamma = |\langle e^{i(n\phi_x - m\phi_y)} \rangle| $$
 
 In this section we will do a comparison of the linear correlation measure to the two nonlinear synchronization measures which are expressible in a summary measure format (remembering that the summar measures presented of the Poincare plots are actually linearly related to the autocovariance)\cite{kamen}. These are the $\gamma$ static taken on the analytic signal and the cross-mutual information.
 
-This comparison will be done with a Kolmogorov-Smirnov(KS) test on the scaled and normalized histograms of each measure on the dataset. The KS test is valid here because if the empirical distributions are different, then this is really a statement that the two measures under comparison are getting different measures from correlation. Desirably, the KS test only uses the relative distribution of the data. 
+This comparison will be done with a Kolmogorov-Smirnov(KS) test on the scaled and normalized histograms of each measure on the dataset. The KS test is valid here because if the empirical distributions are different, then this is really a statement that the two measures under comparison are getting different measures from correlation. Desirably, the KS test only uses the relative distribution of the data. The results (\ref{table:ks_stats}) show that the null hypothesis should be rejected.
 
-Comparing the distribution of correlations and the distribution of the cross-mutual information measure, the KS test gives %%%
-Comparing the distribution of correlations and the distribution of the $\gamma$ measure, the KS test gives %%%
-Comparing the distribution of cross-mutual information and the distribution of the $\gamma$ measure, the KS test gives %%%
-%%%%(0.769411339833875, 7.7901776476049692e-40)
-%%%%(0.67849404117009748, 4.5175160661904541e-31)
-%%%%(0.55128205128205132, 1.2268323859237315e-21)
-
-Therefore, the null hypothesis, that each pair of measures is of the same distribution, can be rejected.
+\begin{figure}\label{table:ks_stats}
+  \begin{center}
+    \begin{tabular}[c | c c]
+      Correlations x CMI & 0.7694 & $7.79 \times 10^{-40}$\\
+      Correlations x $\gamma$ & 0.6785 & $4.52 \times 10^{-31}$\\
+      CMI x $\gamma$ & 0.5513 & $1.227 \times 10^{-21}$\\
+    \end{tabular}
+  \end{center}
+  \caption{KS test statistics and p-values}
+\end{figure}
 
 \section{Deterministic dual between discrete time series and ordered multigraph}
 
