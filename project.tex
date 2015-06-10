@@ -92,9 +92,10 @@ This part is a re-analysis of the work from \cite{andrea}, but as stated before,
 
 \begin{figure}
   \centering
-    \includegraphics[scale=0.6]{correlation_mc}
-    \includegraphics[scale=0.6]{correlation_summary}
-  \caption{Lagged correlation of all data and pointwise averages of lagged correlation}
+  \includegraphics[scale=0.4]{correlation_snapshot_1}
+  \includegraphics[scale=0.4]{correlation_snapshot_50}
+  \includegraphics[scale=0.4]{correlation_snapshot_100}
+  \caption{Histogram of lagged correlations, at lag of 0(upper left), 50(upper right), 100(bottom)}
   \label{fig:lag_correlation}
 \end{figure}
 
@@ -162,29 +163,14 @@ And one sees that this quantity is symmetric with respect to $X$ and $Y$. Note t
 
 Because we are dealing with real data, mutual information must be estimated from probability distributions represented as histograms. This is problematic in high-dimensional data, owing to the curse of dimensionality\cite{bellman}. Also, it is the case that the measure itself depends upon an intelligent discretization, which does not make the individual buckets of the histogram too sparse with data\cite{alzheimersmi}. We discretized with 64 buckets, which was recommended for a time series similar in size and range as ours by \cite{alzheimersmi}.
 
-\subsubsection{AMI and CMI}
-
-Auto mutual information (AMI) and cross mutual information(CMI) are the mutual information analogs to autocorrelation and cross correlation. They have the same advantages over the correlation variants as mere mutual information itself has to correlation. Like lagged correlation, mutual information is symmetric with respect to the compared time series.
+Cross-mutual information(CMI) is the mutual information analog to cross correlation. Like cross correlation, it is symmetric with respect to which time series, and it is the measure which we will actually take of the data, as shown in Figure \ref{fig:lag_cmi}.
 
 \begin{figure}
   \centering
-  \includegraphics[scale=0.4]{cmi_mc}
-  \includegraphics[scale=0.4]{cmi_summary}
-  \caption{Lagged CMI}
+  \includegraphics[scale=0.6]{cmi_snapshot}
+  \caption{Histogram of CMI with 0 lag}
   \label{fig:lag_cmi}
 \end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[scale=0.4]{wests_ami_mc}
-  \includegraphics[scale=0.4]{norths_ami_mc}
-  \includegraphics[scale=0.4]{wests_ami_summary}
-  \includegraphics[scale=0.4]{norths_ami_summary}
-  \caption{Lagged AMI's: from left to right, west and north, west and north simultaneous and average plot}
-  \label{fig:lag_ami}
-\end{figure}
-
-As can be seen, there exist clear patterns which stay constant over the lagging process of which time series are more close to each other with cross-mutual information, and clear differentiation between pairs.
 
 \section{Frequency Domain}
 
@@ -222,14 +208,14 @@ $$ \gamma = |\langle e^{i(n\phi_x - m\phi_y)} \rangle| $$
 
 \begin{figure}
   \centering
-  \includegraphics[scale=0.6]{total_gammas}
+  \includegraphics[scale=0.6]{gamma_snapshot}
   \caption{Histogram of gamma values in dataset}
   \label{fig:total_gammas}
 \end{figure}
 
 \section{Comparison of Measures}
 
-In this section we will do a comparison of the linear correlation measure to the two nonlinear synchronization measures which are expressible in a summary measure format (remembering that the summar measures presented of the Poincare plots are actually linearly related to the autocovariance)\cite{kamen}. These are the $\gamma$ static taken on the analytic signal and the cross-mutual information.
+In this section we will do a comparison of the linear correlation measure to the two nonlinear synchronization measures which are expressible in a summary measure format (remembering that the summary measures presented of the Poincare plots are actually linearly related to the autocovariance)\cite{kamen}. These are the $\gamma$ static taken on the analytic signal and the cross-mutual information.
 
 This comparison will be done with a Kolmogorov-Smirnov(KS) test on the scaled and normalized histograms of each measure on the dataset. The KS test is valid here because if the empirical distributions are different, then this is really a statement that the two measures under comparison are getting different measures from correlation. Desirably, the KS test only uses the relative distribution of the data. The results (Figure \ref{table:ks_stats}) show that the null hypothesis should be rejected.
 
