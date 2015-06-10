@@ -1,6 +1,7 @@
 import numpy as np
 import numpy.random as npr
 import matplotlib.pyplot as plt
+import matplotlib
 import scipy.stats as sci_stats
 
 def mi_ex():
@@ -50,4 +51,6 @@ def cross_mutual_information(data1, data2, stepsize, stepmax):
     return cmis
 
 if __name__ == "__main__":
+    font = {'size': 20}
+    matplotlib.rc('font', **font)
     mi_ex()

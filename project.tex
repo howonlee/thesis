@@ -41,16 +41,16 @@ We can take the problem at hand as trying to find hidden structure in the unlabe
 
 One might wonder why the existing methods of measurement of synchronization do not already serve for the purpose of measuring synchronization of body movements. They do not serve for the same reasons that they do not serve in physical time series. That is, they are fundamentally \emph{linear} measures of the relation that they have to each other, meaning that measuring only correlation implicitly puts in the assumption that an affine transform relates the two signals to each other. It is possible to learn about higher order dependences if correlations of higher moments are used, but this becomes rapidly time-consuming very quickly\cite{pompe}.
 
-\begin{figure}\label{fig:nonlinearity}
-  \begin{center}
-    \includegraphics[scale=0.5]{mi_ex}
-  \end{center}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.5]{mi_ex}
   \caption{Example of simple nonlinear relation between two variables}
+  \label{fig:nonlinearity}
 \end{figure}
 
-One example from \cite{anscombe} which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the figure \ref{fig:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables determine each other to a great degree.
+One example from \cite{anscombe} which should help develop a theoretical intuition about nonlinearity and synchronization is the sine wave relation example. Consider the Figure \ref{fig:nonlinearity}. According to a linear correlation measure, taking the whole domain of $x$ into account at once, the two variables $x$ and $y$ cannot disprove the null hypothesis of independence ($p=0.45$), but by inspection, one can say that actually $y = sin(x) + \epsilon$, where $\epsilon$ is a small amount of Gaussian noise. But nonlinear measures \emph{will} take this nonlinear relation into account. For example, mutual information will say that the mutual information between the two variables $x$ and $y$ is 7.5 bits, which indicates that the variables determine each other to a great degree.
 
-An analogous natural phenomenon is in past tense acquisition in language acquisition, where there is a distinct nonlinear effect much like the one in \ref{fig:nonlinearity} in the developmental trajectory\cite{childlang}, interpreting $x$ as time and $y$ as number of mistakes. That is, children, when learning the past tense, first learn the rules for a past tense inflection ("go" to "went"), then produce overregularizations ("go" to "goed"), and then revert back to the proper usage of the rules. If past tense acquisition was a linear system, children would uniformly get better at the usage of the past tense at the same rate, but this is not observed. It has often been noted that this phenomenon, if it is to be modelled, must be modelled with a nonlinear model, such as a connectionist artificial neural network\cite{childlang}.
+An analogous natural phenomenon is in past tense acquisition in language acquisition, where there is a distinct nonlinear effect much like the one in Figure \ref{fig:nonlinearity} in the developmental trajectory\cite{childlang}, interpreting $x$ as time and $y$ as number of mistakes. That is, children, when learning the past tense, first learn the rules for a past tense inflection ("go" to "went"), then produce overregularizations ("go" to "goed"), and then revert back to the proper usage of the rules. If past tense acquisition was a linear system, children would uniformly get better at the usage of the past tense at the same rate, but this is not observed. It has often been noted that this phenomenon, if it is to be modelled, must be modelled with a nonlinear model, such as a connectionist artificial neural network\cite{childlang}.
 
 In the psychological literature dealing with referential behavior, or behavior which adapts to some process or set of events or plan \cite{pressing}, there exist two theoretical schools towards the modelling of the feedback systems which are presumed to allow synchronization with respect to a referent: information processing theories and dynamical systems theories. Information processing theories tend to deal with participant responses as discrete time series, and fit to data which is compatible with this paradigm (tapping studies, for example). Dynamical systems theories tend to deal with participant responses as trajectories in a phase space and deal with continuous movements as data \cite{syncreview}.
 
@@ -90,12 +90,12 @@ One analysis commonly used with relaxation oscillators (like ECG data) is the Po
 
 This part is a re-analysis of the work from \cite{andrea}, but as stated before, only using the head angle. As in \cite{andrea}, Pearson's correlation was taken on a window of 400 frame data points(50 seconds) and then shifted for consecutive lag times according to \cite{framedifferencing}.
 
-\begin{figure}\label{fig:lag_correlation}
-  \begin{center}
+\begin{figure}
+  \centering
     \includegraphics[scale=0.6]{correlation_mc}
     \includegraphics[scale=0.6]{correlation_summary}
-  \end{center}
   \caption{Lagged correlation of all data and pointwise averages of lagged correlation}
+  \label{fig:lag_correlation}
 \end{figure}
 
 \subsubsection{Poincare Plots}
@@ -112,22 +112,22 @@ In the heart rate variability literature, a summary statistic of Poincare plots 
 
 Inspection of the plot itself has more value than simply observing the summary measure, however. The dispersion of points perpendicular to the line $x_t = x_{t+1}$ represents the short-term variability and the dispersion parallel to the line represents a longer-term variability. But this is not the only thing that the Poincare plot can show: intermittent features will show up as small islands of points athwart the main cloud, for example, which the measure doesn't handle well.
 
-\begin{figure}\label{fig:ellipse_histogram}
-  \begin{center}
-    \includegraphics[scale=0.6]{sd1_histogram}
-    \includegraphics[scale=0.6]{sd2_histogram}
-  \end{center}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.6]{sd1_histogram}
+  \includegraphics[scale=0.6]{sd2_histogram}
   \caption{Histogram of SD1 and SD2 in dataset}
+  \label{fig:ellipse_histogram}
 \end{figure}
 
-\begin{figure}\label{fig:poincare_plots}
-  \begin{center}
-    \includegraphics[scale=0.4]{poincare_1}
-    \includegraphics[scale=0.4]{poincare_2}
-    \includegraphics[scale=0.4]{poincare_3}
-    \includegraphics[scale=0.4]{poincare_4}
-  \end{center}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.4]{poincare_1}
+  \includegraphics[scale=0.4]{poincare_2}
+  \includegraphics[scale=0.4]{poincare_3}
+  \includegraphics[scale=0.4]{poincare_4}
   \caption{Example Poincare plots from real data. The first two plots plot both series in a pair, the last two plots plot the difference between both series. Nonlinear structure can be seen in the very last plot.}
+  \label{fig:poincare_plots}
 \end{figure}
 
 \subsection{Mutual Information Analysis}
@@ -166,22 +166,22 @@ Because we are dealing with real data, mutual information must be estimated from
 
 Auto mutual information (AMI) and cross mutual information(CMI) are the mutual information analogs to autocorrelation and cross correlation. They have the same advantages over the correlation variants as mere mutual information itself has to correlation. Like lagged correlation, mutual information is symmetric with respect to the compared time series.
 
-\begin{figure}\label{fig:lag_cmi}
-  \begin{center}
-    \includegraphics[scale=0.4]{cmi_mc}
-    \includegraphics[scale=0.4]{cmi_summary}
-  \end{center}
-  \caption{Lagged cmi}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.4]{cmi_mc}
+  \includegraphics[scale=0.4]{cmi_summary}
+  \caption{Lagged CMI}
+  \label{fig:lag_cmi}
 \end{figure}
 
-\begin{figure}\label{fig:lag_ami}
-  \begin{center}
-    \includegraphics[scale=0.4]{wests_ami_mc}
-    \includegraphics[scale=0.4]{norths_ami_mc}
-    \includegraphics[scale=0.4]{wests_ami_summary}
-    \includegraphics[scale=0.4]{norths_ami_summary}
-  \end{center}
-  \caption{Lagged amis: from left to right, west and north, west and north simultaneous and average plot}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.4]{wests_ami_mc}
+  \includegraphics[scale=0.4]{norths_ami_mc}
+  \includegraphics[scale=0.4]{wests_ami_summary}
+  \includegraphics[scale=0.4]{norths_ami_summary}
+  \caption{Lagged AMI's: from left to right, west and north, west and north simultaneous and average plot}
+  \label{fig:lag_ami}
 \end{figure}
 
 As can be seen, there exist clear patterns which stay constant over the lagging process of which time series are more close to each other with cross-mutual information, and clear differentiation between pairs.
@@ -206,42 +206,42 @@ $$s_H(t) = \frac{1}{\pi} PV \int_{-\infty}^{\infty} \frac{s(t)}{t - \tau} d\tau$
 
 $s_H$ is called the Hilbert transform; $PV$ indicates that the integral is a Cauchy principal value integral. The Hilbert transform is thus formally equivalent to convolution of $s(t)$ with $\frac{1}{\pi t}$, so in practice, it can easily be calculated from the fast Fourier transform, by taking the fast Fourier transform, taking the Fourier basis coefficients which correspond to negative frequencies with zeros, and taking the inverse Fourier transform of that result.\cite{hilbert}
 
-\begin{figure}\label{fig:hilbert_plots}
-  \begin{center}
-    \includegraphics[scale=0.4]{hilbert_1}
-    \includegraphics[scale=0.4]{hilbert_2}
-    \includegraphics[scale=0.4]{time_1}
-    \includegraphics[scale=0.4]{time_2}
-  \end{center}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.4]{hilbert_1}
+  \includegraphics[scale=0.4]{hilbert_2}
+  \includegraphics[scale=0.4]{time_1}
+  \includegraphics[scale=0.4]{time_2}
   \caption{Example differences of Hilbert transforms from real data and the corresponding time domain data, note the periodicity}
+  \label{fig:hilbert_plots}
 \end{figure}
 
 A derived statistic from the Hilbert transform for actually measuring synchronization between two instantaneous phases $\phi_x$ and $\phi_y$ is called $\gamma$ and is from \cite{gamma}. It is defined as:
 
 $$ \gamma = |\langle e^{i(n\phi_x - m\phi_y)} \rangle| $$
 
-\begin{figure}\label{fig:total_gammas}
-  \begin{center}
-    \includegraphics[scale=0.6]{total_gammas}
-  \end{center}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.6]{total_gammas}
   \caption{Histogram of gamma values in dataset}
+  \label{fig:total_gammas}
 \end{figure}
 
 \section{Comparison of Measures}
 
 In this section we will do a comparison of the linear correlation measure to the two nonlinear synchronization measures which are expressible in a summary measure format (remembering that the summar measures presented of the Poincare plots are actually linearly related to the autocovariance)\cite{kamen}. These are the $\gamma$ static taken on the analytic signal and the cross-mutual information.
 
-This comparison will be done with a Kolmogorov-Smirnov(KS) test on the scaled and normalized histograms of each measure on the dataset. The KS test is valid here because if the empirical distributions are different, then this is really a statement that the two measures under comparison are getting different measures from correlation. Desirably, the KS test only uses the relative distribution of the data. The results (\ref{table:ks_stats}) show that the null hypothesis should be rejected.
+This comparison will be done with a Kolmogorov-Smirnov(KS) test on the scaled and normalized histograms of each measure on the dataset. The KS test is valid here because if the empirical distributions are different, then this is really a statement that the two measures under comparison are getting different measures from correlation. Desirably, the KS test only uses the relative distribution of the data. The results (Figure \ref{table:ks_stats}) show that the null hypothesis should be rejected.
 
-\begin{figure}\label{table:ks_stats}
-  \begin{center}
-    \begin{tabular}{c | c c}
-      Correlations x CMI & 0.7694 & $7.79 \times 10^{-40}$\\
-      Correlations x $\gamma$ & 0.6785 & $4.52 \times 10^{-31}$\\
-      CMI x $\gamma$ & 0.5513 & $1.227 \times 10^{-21}$\\
-    \end{tabular}
-  \end{center}
+\begin{figure}
+  \centering
+  \begin{tabular}{c | c c}
+    Correlations x CMI & 0.7694 & $7.79 \times 10^{-40}$\\
+    Correlations x $\gamma$ & 0.6785 & $4.52 \times 10^{-31}$\\
+    CMI x $\gamma$ & 0.5513 & $1.227 \times 10^{-21}$\\
+  \end{tabular}
   \caption{KS test statistics and p-values}
+  \label{table:ks_stats}
 \end{figure}
 
 \section{Deterministic dual between discrete time series and ordered multigraph}
@@ -256,20 +256,21 @@ Upon hearing of the mapping from a time series into a network, it might be wonde
 
 A deterministic transformation from time series to networks and from networks to time series can be made, however, if we allow duplication in the adjacencies of each vertex of the graph (making the graph a multigraph, by many definitions of multigraph\cite{multigraph}), and if we keep the order in which the vertices were travelled in the discrete time series. In addition to this, the start state of the time series must be stored.
 
-In order to construct the labelled multigraph from a time series, the possible states of the time series, $\Sigma = {1 ... N}$ are made into the vertices of the multigraph. Then, starting with the value of the series at $t =1$, the vertices are traversed in the order that the corresponding states are traversed in the time series, and when one leaves a vertex $V_1$ to go to a vertex $V_2$, the identity of $V_2$ is pushed onto the list (like a stack) for the adjacencies of $V_1$ (\ref{fig:stackgraph}). There is pseudocode for this algorithm in \ref{fig:stackconstructionalgo}
+In order to construct the labelled multigraph from a time series, the possible states of the time series, $\Sigma = {1 ... N}$ are made into the vertices of the multigraph. Then, starting with the value of the series at $t =1$, the vertices are traversed in the order that the corresponding states are traversed in the time series, and when one leaves a vertex $V_1$ to go to a vertex $V_2$, the identity of $V_2$ is pushed onto the list (like a stack) for the adjacencies of $V_1$ (Figure \ref{fig:stackgraph}). There is pseudocode for this algorithm in Figure \ref{fig:stackconstructionalgo}
 
-In order to reconstruct the time series from a multigraph of this kind, therefore, we start from the start node again and consume the adjacency lists starting from the initial elements of the lists, to find the next node to jump to: this is detailed in \ref{fig:timeconstructionalgo}.
+In order to reconstruct the time series from a multigraph of this kind, therefore, we start from the start node again and consume the adjacency lists starting from the initial elements of the lists, to find the next node to jump to: this is detailed in Figure \ref{fig:timeconstructionalgo}.
 
 The model is very reminiscent of models from symbolic dynamics, just as \cite{campanharo} mentioned that their analysis was reminiscent of models from symbolic dynamics, because a continuous system is being discretized into a sequence of symbols representing the state of the system, which turn into nodes in a graph. Therefore, another important consideration is the size of the buckets which the time series is to be discretized into. For the examples below we chose bucket size of $0.05$ to discretize the time series, but this was not a principled decision and other methods, such as nearest neighbors, might be investigated, in an analogous way to the discretization of time series for determination of mutual information\cite{nnmi}.
 
-\begin{figure}\label{fig:stackgraph}
-  \begin{center}
-    \includegraphics[scale=0.6]{stack_graph_ex}
-  \end{center}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.6]{stack_graph_ex}
   \caption{Example construction of stack graph}
+  \label{fig:stackgraph}
 \end{figure}
 
-\begin{figure}\label{fig:stackconstructionalgo}
+\begin{figure}
+  \centering
   \begin{singlespace}
     \begin{verbatim}
     def time_series_to_stack_graph(data):
@@ -280,12 +281,14 @@ The model is very reminiscent of models from symbolic dynamics, just as \cite{ca
     \end{verbatim}
   \end{singlespace}
   \caption{Construction of stack graph from time series}
+  \label{fig:stackconstructionalgo}
 \end{figure}
 
-\begin{figure}\label{fig:timeconstructionalgo}
-\begin{singlespace}
-\begin{verbatim}
-def stack_graph_to_time_series(stack_graph, start):
+\begin{figure}
+  \centering
+  \begin{singlespace}
+    \begin{verbatim}
+    def stack_graph_to_time_series(stack_graph, start):
     curr_idx = start
     path = [start]
     while length(stack_graph[curr_idx]) > 0:
@@ -293,8 +296,9 @@ def stack_graph_to_time_series(stack_graph, start):
         curr_idx = curr_member
         path.append(curr_member)
     return path
-\end{verbatim}
-\end{singlespace}
+    \end{verbatim}
+  \end{singlespace}
+  \label{fig:timeconstructionalgo}
   \caption{Construction of time series from stack graph}
 \end{figure}
 
@@ -304,52 +308,57 @@ We will investigate the network properties of three toy models of a one-dimensio
 
 The concept of a node degree has a natural analog in the stack graph, where the outdegree number for each node is the size of the corresponding stack (as opposed to the cardinality of the set of outgoing edges, which is a set and doesn't have duplicates). However, the clustering coefficient and average shortest path length of the stack graph do not have as immediately obvious meanings and therefore we took those statistics on a graph induced on the stack graph, where each stack had duplicates removed and therefore turned into a set of tails on the outdegree. This ends up being something like the recurrence matrix construction\cite{recurrencegraph} of a network from the time series, and is an information-losing operation.
 
-\begin{figure}\label{fig:stack_ts_plots}
-  \begin{center}
-    \includegraphics[scale=0.4]{plot_sinusoid}
-    \includegraphics[scale=0.4]{plot_logistic}
-    \includegraphics[scale=0.4]{plot_fbm}
-    \includegraphics[scale=0.4]{plot_vr}
-  \end{center}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.4]{plot_sinusoid}
+  \includegraphics[scale=0.4]{plot_logistic}
+  \includegraphics[scale=0.4]{plot_fbm}
+  \includegraphics[scale=0.4]{plot_vr}
   \caption{Plotted series in time domain. From left to right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
+  \label{fig:stack_ts_plots}
 \end{figure}
-\begin{figure}\label{fig:stack_ts_spectra}
-  \begin{center}
-    \includegraphics[scale=0.4]{spectrum_sinusoid}
-    \includegraphics[scale=0.4]{spectrum_logistic}
-    \includegraphics[scale=0.4]{spectrum_fbm}
-    \includegraphics[scale=0.4]{spectrum_vr}
-  \end{center}
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.4]{spectrum_sinusoid}
+  \includegraphics[scale=0.4]{spectrum_logistic}
+  \includegraphics[scale=0.4]{spectrum_fbm}
+  \includegraphics[scale=0.4]{spectrum_vr}
   \caption{Plotted series in frequency domain. From upper left to lower right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
+  \label{fig:stack_ts_spectra}
 \end{figure}
-\begin{figure}\label{fig:stack_ts_degree}
-  \begin{center}
+
+\begin{figure}
+  \centering
     \includegraphics[scale=0.4]{degrees_sinusoid}
     \includegraphics[scale=0.4]{degrees_logit}
     \includegraphics[scale=0.4]{degrees_fbm}
     \includegraphics[scale=0.4]{degrees_vr}
-  \end{center}
   \caption{Equivalent degree distribution in stack graph. From upper left to lower right: sinusoid, logistic map with full chaos (r=3.8), fractional Brownian motion, real data}
-\end{figure}
-\begin{figure}\label{fig:resampled_stack}
-  \begin{center}
-    \includegraphics[scale=0.6]{resampled_stack}
-  \end{center}
-  \caption{Time series transformed back from the stack graph. Note discretization.}
+  \label{fig:stack_ts_degree}
 \end{figure}
 
-\begin{figure}\label{fig:stack_ts_others}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.6]{resampled_stack}
+  \caption{Time series transformed back from the stack graph. Note discretization.}
+  \label{fig:resampled_stack}
+\end{figure}
+
+\begin{figure}
+  \centering
   \begin{tabular} {c || c c c c}
     Measure & Sinusoid & Logistic Map & FBM & Real Data \\
     Clustering Coefficient & 0.425 & 0.092 & 0.768 & 0.572 \\
     Average Shortest Path Length & 7.38 & 2.67 & 1.85 & 2.27 \\
   \end{tabular}
   \caption{Other properties of stack graph, after flattening}
+  \label{fig:stack_ts_others}
 \end{figure}
 
 \subsection{Acknowledgements}
 
-Thanks to Jeremy Bailenson for advising, and to Andrea Stevenson Won for the data used in this analysis, and to the Virtual Human Interaction Lab more generally. Also, thanks to my friends and family.
+Thanks to Jeremy Bailenson for advising, and to Andrea Stevenson Won for the data used in this analysis, and to the Virtual Human Interaction Lab more generally. Thanks to Surya Ganguli for reading. Also, thanks to my friends and family.
 
 \begin{thebibliography}{}
   \bibitem{syncreview}
